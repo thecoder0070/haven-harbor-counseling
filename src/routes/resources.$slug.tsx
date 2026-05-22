@@ -86,7 +86,7 @@ function PostPage() {
         <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{post.excerpt}</p>
 
         <div className="prose-narrow mt-12">
-          {post.body.map((block, i) => renderBlock(block, i))}
+          {post.body.map((block: string, i: number) => renderBlock(block, i))}
         </div>
 
         <div className="mt-16 rounded-3xl border border-border/60 bg-secondary/40 p-8 text-center">
