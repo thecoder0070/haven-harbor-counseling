@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://haven-harbor-counseling.lovable.app/sitemap.xml
