@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/haven-harbor-logo.png";
 
 const nav = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/approach", label: "Approach" },
-  { to: "/christian-counseling", label: "Christian Counseling" },
+  { to: "/christian-counseling", label: "Christian" },
   { to: "/resources", label: "Resources" },
   { to: "/faq", label: "FAQ" },
 ];
@@ -17,19 +18,17 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="container-prose flex h-20 items-center justify-between">
-        <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground font-serif text-lg">
-            H
-          </span>
-          <span className="leading-tight">
-            <span className="block font-serif text-lg text-foreground">Haven &amp; Harbor</span>
-            <span className="block text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">
-              Counseling · Austin, TX
-            </span>
-          </span>
+        <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Haven & Harbor Counseling — Austin, Texas">
+          <img
+            src={logo}
+            alt="Haven & Harbor Counseling — Austin, Texas"
+            width={220}
+            height={64}
+            className="h-12 w-auto md:h-14"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -41,7 +40,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
-            to="/contact"
+            to="/schedule"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition hover:bg-primary/90"
           >
             Book a Consult
@@ -71,7 +70,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              to="/contact"
+              to="/schedule"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
             >

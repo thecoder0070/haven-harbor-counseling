@@ -17,7 +17,7 @@ export function CtaBanner() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              to="/contact"
+              to="/schedule"
               className="rounded-full bg-cream px-6 py-3 text-sm font-semibold text-ink shadow-lift transition hover:bg-cream-deep"
             >
               Book a Free Consult
