@@ -1,68 +1,31 @@
-## Scope
+## Goal
 
-Build the items from the SEO audit plus scheduling + intake link, and swap the text wordmark for the uploaded logo.
+Connect your Google Drive (your account) so we can:
+1. **Link** to specific Drive files from site pages (e.g., intake PDF, resource handouts)
+2. **Import** Drive doc content into pages (e.g., turn a Google Doc into a blog post / resource page)
 
-## 1. Brand: use uploaded logo
+## Steps
 
-- Copy `Haven_and_harbor_logo.png` → `src/assets/haven-harbor-logo.png`
-- `SiteHeader.tsx`: replace the "Haven & Harbor Counseling" text wordmark with the logo image (height ~44px, alt: "Haven & Harbor Counseling — Austin, Texas")
-- `SiteFooter.tsx`: smaller logo at top of footer in place of text wordmark
-- `public/favicon.ico` / `apple-touch-icon`: regenerate from logo
+1. **Connect Google Drive** via the connector picker (`standard_connectors--connect` with `google_drive`). You authorize once with your Google account.
+   - Also connect **Google Docs** so we can read Doc content as structured JSON for imports.
 
-## 2. Scheduling + Intake (external links, no backend)
+2. **Add a small server helper** `src/lib/gdrive.functions.ts`:
+   - `listDriveFiles({ query })` — search your Drive by name/type, returns `{id, name, mimeType, webViewLink}`.
+   - `getDocContent({ documentId })` — fetches a Google Doc and converts it to clean HTML/markdown for rendering.
+   - Both call the Lovable connector gateway server-side (keys stay on server).
 
-Add two reusable config constants in `src/lib/booking.ts`:
+3. **Linking flow** (no UI build needed beyond what exists):
+   - For any page where you want to attach a Drive file, paste the Drive share URL and I'll wire it into the page as a button/link (e.g., "Download intake form"). Make sure the file's Drive sharing is set to "Anyone with the link".
 
-```ts
-export const SCHEDULE_URL = "https://YOUR-PORTAL-LINK"; // placeholder
-export const INTAKE_URL  = "https://YOUR-INTAKE-LINK"; // placeholder
-```
+4. **Import flow** for a Doc → page:
+   - You give me the Doc URL.
+   - I run `getDocContent` once, save the rendered content into the existing `src/lib/posts.ts` (or a new resource route), and commit it as static content. This keeps the published site fast and avoids per-request Drive calls.
+   - To refresh later, just ask me to re-import.
 
-- New route `src/routes/schedule.tsx` — Schedule page explaining what to expect, "Book a free 15-min consult" button → `SCHEDULE_URL` (opens new tab, rel="noopener"), and a secondary "Start the intake form" button → `INTAKE_URL`. Includes note that the portal is HIPAA-secure.
-- Update `SiteHeader` primary CTA from "Contact" emphasis to **"Book Consult"** → `/schedule`
-- Update `CtaBanner` and homepage hero CTA to point to `/schedule`
-- Contact page: add the scheduling + intake buttons alongside the existing contact info
+## What I won't build (unless you ask)
+- A live admin UI that browses your Drive in the browser
+- Visitor-facing uploads to your Drive
+- Auto-sync (changes in Drive auto-updating the site) — imports are on-demand
 
-Leaving the two URLs as placeholders her client portal links drop in later — one file, two strings.
-
-## 3. New SEO pages
-
-Each is a new TanStack route with route-specific `head()` (title, description, og:title/description/url, canonical), an H1, supporting H2s, and internal links to related pages.
-
-| Route | Target query |
-|---|---|
-| `src/routes/cost-of-therapy-austin.tsx` | "how much does therapy cost", "therapy cost austin" |
-| `src/routes/what-is-emdr.tsx` | "what is emdr", "emdr therapy austin" |
-| `src/routes/what-is-ifs-therapy.tsx` | "what is ifs therapy", "internal family systems austin" |
-| `src/routes/first-therapy-session.tsx` | "what to expect first therapy session", "starting therapy" |
-
-Blog posts (4) under `src/routes/resources.$slug.tsx` dynamic route + a small in-file content map (no CMS needed):
-
-- `signs-of-complex-trauma`
-- `christian-counseling-vs-secular-therapy`
-- `trauma-and-sleep`
-- `how-to-know-if-you-need-therapy`
-
-The `resources` index page gets cards linking to each post. Dynamic route uses `head()` with loader-driven title/description and Article JSON-LD.
-
-## 4. JSON-LD additions
-
-- `cost-of-therapy-austin`: FAQPage schema (5–7 Q&A about cost, sliding scale, superbills)
-- `what-is-emdr` + `what-is-ifs-therapy`: MedicalTherapy schema
-- `first-therapy-session`: FAQPage schema
-- Blog posts: Article schema
-
-## 5. Plumbing
-
-- Add new routes to header nav under a "Learn" dropdown (Resources, Cost, EMDR, IFS, First Session, FAQ) to avoid header overflow
-- Add all 11 new URLs to `src/routes/sitemap[.]xml.ts`
-- Fix the small hydration whitespace bug in `SiteFooter` email line at the same time
-
-## Out of scope
-
-- No database, no form submission backend (intake is an external HIPAA link per your choice)
-- No image generation for the new pages (keeps build fast; can add hero images later)
-
-## What I'll need from you after build
-
-The two real URLs for `SCHEDULE_URL` and `INTAKE_URL` — paste them and I'll swap the placeholders.
+## After you approve
+First action will be to prompt the Google Drive + Google Docs connection. Then tell me which file(s) to link or which Doc to import first.
