@@ -1,8 +1,8 @@
-I found the article data is present in `src/lib/posts.ts` (the imported posts have ~8k–10k characters each), but visiting `/resources/what-is-christian-counseling` renders the `/resources` listing page. The likely issue is route matching: the static `/resources` route is taking precedence over the dynamic detail route.
+I’ll change the blog setup so the Journal posts are sourced from the Google Docs you shared, instead of relying only on hardcoded local body text.
 
 Plan:
-
-1. Replace the current flat dynamic blog route with a nested route file under `src/routes/resources.$slug.tsx` if needed by TanStack’s route convention for this project, ensuring `/resources/:slug` resolves to the article component.
-2. Keep the existing article renderer and post data intact, since the body content is already in the data file.
-3. Verify in preview that `/resources/what-is-christian-counseling` shows the title plus the full article body beginning with `"Christian counseling" can mean a lot of things...` instead of the Journal listing.
-4. Check one more article URL to confirm all blog detail links render full content.
+1. Add Google Doc IDs to the blog post records in `src/lib/posts.ts`, keeping the current slugs, titles, excerpts, tags, dates, and SEO metadata.
+2. Add a server-side Google Docs loader that fetches each document through the connected Google Docs integration and converts the document structure into the existing blog block format (`h2:`, `ul:`, paragraphs).
+3. Update `/resources/$slug` so the detail page fetches the matching Google Doc content at page load and renders that content, with a safe fallback to the current local body if the doc fetch fails.
+4. Keep the Resources listing page fast and unchanged visually; it will still use the local titles/excerpts while detail pages pull full article content from the docs.
+5. Verify one of the shared URLs, such as `/resources/what-is-christian-counseling`, displays the Google Doc body text on the article page.
