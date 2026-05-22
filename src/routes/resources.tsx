@@ -54,7 +54,7 @@ function ResourcesPage() {
       <section className="container-prose py-16">
         <h2 className="display text-3xl">Journal</h2>
         <div className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((p) => (
+          {[...posts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => (
             <Link
               key={p.slug}
               to="/resources/$slug"
@@ -64,6 +64,7 @@ function ResourcesPage() {
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-muted-foreground">
                 <span className="rounded-full bg-secondary px-3 py-1 text-foreground/70">{p.tag}</span>
                 <span>{p.dateLabel}</span>
+                <span className="text-foreground/50">· {p.readingTime}</span>
               </div>
               <h3 className="mt-5 font-serif text-2xl leading-snug text-foreground group-hover:text-primary">
                 {p.title}
