@@ -44,7 +44,7 @@ function HomePage() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
-                to="/contact"
+                to="/schedule"
                 className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lift transition hover:bg-primary/90"
               >
                 Book a Free Consult

@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/site/CtaBanner";
 import { findPost, posts, type BlogPost } from "@/lib/posts";
 
 export const Route = createFileRoute("/resources/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): BlogPost => {
     const post = findPost(params.slug);
     if (!post) throw notFound();
     return post;
