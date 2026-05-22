@@ -1,14 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-// TODO: replace with your project URL once a project name or custom domain is set.
-const BASE_URL = "";
+const BASE_URL = "https://haven-harbor-counseling.lovable.app";
 
 interface SitemapEntry {
   path: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
 }
+
+const BLOG_SLUGS = [
+  "signs-of-complex-trauma",
+  "christian-counseling-vs-secular-therapy",
+  "trauma-and-sleep",
+  "how-to-know-if-you-need-therapy",
+];
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -23,10 +29,20 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/faq", changefreq: "monthly", priority: "0.7" },
           { path: "/resources", changefreq: "weekly", priority: "0.7" },
           { path: "/contact", changefreq: "monthly", priority: "0.9" },
+          { path: "/schedule", changefreq: "monthly", priority: "0.9" },
+          { path: "/cost-of-therapy-austin", changefreq: "monthly", priority: "0.9" },
+          { path: "/what-is-emdr", changefreq: "monthly", priority: "0.9" },
+          { path: "/what-is-ifs-therapy", changefreq: "monthly", priority: "0.9" },
+          { path: "/first-therapy-session", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-therapist", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-therapy", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-christian-therapist", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-trauma-therapist", changefreq: "monthly", priority: "0.9" },
+          ...BLOG_SLUGS.map((slug) => ({
+            path: `/resources/${slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.7",
+          })),
         ];
 
         const urls = entries.map((e) =>

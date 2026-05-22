@@ -1,17 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
+import logo from "@/assets/haven-harbor-logo.png";
 
 export function SiteFooter() {
   return (
     <footer className="mt-32 border-t border-border/60 bg-secondary/40">
       <div className="container-prose grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground font-serif text-lg">
-              H
-            </span>
-            <span className="font-serif text-xl">Haven &amp; Harbor Counseling</span>
-          </div>
+          <img
+            src={logo}
+            alt="Haven & Harbor Counseling"
+            width={200}
+            height={56}
+            className="h-12 w-auto"
+          />
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
             A trauma-informed, faith-friendly counseling practice in Austin, Texas — offering safe
             harbor for the weary, the wounded, and the seeking.
@@ -29,6 +31,10 @@ export function SiteFooter() {
             <li><Link to="/approach" className="hover:text-primary">Approach</Link></li>
             <li><Link to="/christian-counseling" className="hover:text-primary">Christian Counseling</Link></li>
             <li><Link to="/resources" className="hover:text-primary">Resources</Link></li>
+            <li><Link to="/cost-of-therapy-austin" className="hover:text-primary">Cost of Therapy</Link></li>
+            <li><Link to="/what-is-emdr" className="hover:text-primary">What is EMDR?</Link></li>
+            <li><Link to="/what-is-ifs-therapy" className="hover:text-primary">What is IFS?</Link></li>
+            <li><Link to="/first-therapy-session" className="hover:text-primary">First Session</Link></li>
             <li><Link to="/faq" className="hover:text-primary">FAQ</Link></li>
           </ul>
         </div>
@@ -36,12 +42,21 @@ export function SiteFooter() {
         <div>
           <h4 className="eyebrow mb-4">Contact</h4>
           <ul className="space-y-3 text-sm text-foreground/80">
-            <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 text-primary" /> hello@havenandharborcounseling.com</li>
-            <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-primary" /> (512) 555-0140</li>
-            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /> Austin, TX 78704</li>
+            <li className="flex items-start gap-2">
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>hello@havenandharborcounseling.com</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>(512) 555-0140</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>Austin, TX 78704</span>
+            </li>
           </ul>
           <Link
-            to="/contact"
+            to="/schedule"
             className="mt-5 inline-flex rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground"
           >
             Book a Consult

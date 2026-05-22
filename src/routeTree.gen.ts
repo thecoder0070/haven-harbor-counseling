@@ -9,10 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatIsIfsTherapyRouteImport } from './routes/what-is-ifs-therapy'
+import { Route as WhatIsEmdrRouteImport } from './routes/what-is-emdr'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ScheduleRouteImport } from './routes/schedule'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as FirstTherapySessionRouteImport } from './routes/first-therapy-session'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as CostOfTherapyAustinRouteImport } from './routes/cost-of-therapy-austin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChristianCounselingRouteImport } from './routes/christian-counseling'
 import { Route as AustinTraumaTherapistRouteImport } from './routes/austin-trauma-therapist'
@@ -22,7 +27,18 @@ import { Route as AustinChristianTherapistRouteImport } from './routes/austin-ch
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 
+const WhatIsIfsTherapyRoute = WhatIsIfsTherapyRouteImport.update({
+  id: '/what-is-ifs-therapy',
+  path: '/what-is-ifs-therapy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhatIsEmdrRoute = WhatIsEmdrRouteImport.update({
+  id: '/what-is-emdr',
+  path: '/what-is-emdr',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -33,14 +49,29 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScheduleRoute = ScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FirstTherapySessionRoute = FirstTherapySessionRouteImport.update({
+  id: '/first-therapy-session',
+  path: '/first-therapy-session',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CostOfTherapyAustinRoute = CostOfTherapyAustinRouteImport.update({
+  id: '/cost-of-therapy-austin',
+  path: '/cost-of-therapy-austin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -89,6 +120,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ResourcesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -100,10 +136,16 @@ export interface FileRoutesByFullPath {
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
+  '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
   '/faq': typeof FaqRoute
-  '/resources': typeof ResourcesRoute
+  '/first-therapy-session': typeof FirstTherapySessionRoute
+  '/resources': typeof ResourcesRouteWithChildren
+  '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/what-is-emdr': typeof WhatIsEmdrRoute
+  '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -115,10 +157,16 @@ export interface FileRoutesByTo {
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
+  '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
   '/faq': typeof FaqRoute
-  '/resources': typeof ResourcesRoute
+  '/first-therapy-session': typeof FirstTherapySessionRoute
+  '/resources': typeof ResourcesRouteWithChildren
+  '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/what-is-emdr': typeof WhatIsEmdrRoute
+  '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -131,10 +179,16 @@ export interface FileRoutesById {
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
+  '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
   '/faq': typeof FaqRoute
-  '/resources': typeof ResourcesRoute
+  '/first-therapy-session': typeof FirstTherapySessionRoute
+  '/resources': typeof ResourcesRouteWithChildren
+  '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/what-is-emdr': typeof WhatIsEmdrRoute
+  '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -148,10 +202,16 @@ export interface FileRouteTypes {
     | '/austin-trauma-therapist'
     | '/christian-counseling'
     | '/contact'
+    | '/cost-of-therapy-austin'
     | '/faq'
+    | '/first-therapy-session'
     | '/resources'
+    | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/what-is-emdr'
+    | '/what-is-ifs-therapy'
+    | '/resources/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -163,10 +223,16 @@ export interface FileRouteTypes {
     | '/austin-trauma-therapist'
     | '/christian-counseling'
     | '/contact'
+    | '/cost-of-therapy-austin'
     | '/faq'
+    | '/first-therapy-session'
     | '/resources'
+    | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/what-is-emdr'
+    | '/what-is-ifs-therapy'
+    | '/resources/$slug'
   id:
     | '__root__'
     | '/'
@@ -178,10 +244,16 @@ export interface FileRouteTypes {
     | '/austin-trauma-therapist'
     | '/christian-counseling'
     | '/contact'
+    | '/cost-of-therapy-austin'
     | '/faq'
+    | '/first-therapy-session'
     | '/resources'
+    | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/what-is-emdr'
+    | '/what-is-ifs-therapy'
+    | '/resources/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -194,14 +266,33 @@ export interface RootRouteChildren {
   AustinTraumaTherapistRoute: typeof AustinTraumaTherapistRoute
   ChristianCounselingRoute: typeof ChristianCounselingRoute
   ContactRoute: typeof ContactRoute
+  CostOfTherapyAustinRoute: typeof CostOfTherapyAustinRoute
   FaqRoute: typeof FaqRoute
-  ResourcesRoute: typeof ResourcesRoute
+  FirstTherapySessionRoute: typeof FirstTherapySessionRoute
+  ResourcesRoute: typeof ResourcesRouteWithChildren
+  ScheduleRoute: typeof ScheduleRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  WhatIsEmdrRoute: typeof WhatIsEmdrRoute
+  WhatIsIfsTherapyRoute: typeof WhatIsIfsTherapyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/what-is-ifs-therapy': {
+      id: '/what-is-ifs-therapy'
+      path: '/what-is-ifs-therapy'
+      fullPath: '/what-is-ifs-therapy'
+      preLoaderRoute: typeof WhatIsIfsTherapyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/what-is-emdr': {
+      id: '/what-is-emdr'
+      path: '/what-is-emdr'
+      fullPath: '/what-is-emdr'
+      preLoaderRoute: typeof WhatIsEmdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -216,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/schedule': {
+      id: '/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
@@ -223,11 +321,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/first-therapy-session': {
+      id: '/first-therapy-session'
+      path: '/first-therapy-session'
+      fullPath: '/first-therapy-session'
+      preLoaderRoute: typeof FirstTherapySessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cost-of-therapy-austin': {
+      id: '/cost-of-therapy-austin'
+      path: '/cost-of-therapy-austin'
+      fullPath: '/cost-of-therapy-austin'
+      preLoaderRoute: typeof CostOfTherapyAustinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -293,8 +405,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
   }
 }
+
+interface ResourcesRouteChildren {
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
+}
+
+const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesSlugRoute: ResourcesSlugRoute,
+}
+
+const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
+  ResourcesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -306,21 +437,16 @@ const rootRouteChildren: RootRouteChildren = {
   AustinTraumaTherapistRoute: AustinTraumaTherapistRoute,
   ChristianCounselingRoute: ChristianCounselingRoute,
   ContactRoute: ContactRoute,
+  CostOfTherapyAustinRoute: CostOfTherapyAustinRoute,
   FaqRoute: FaqRoute,
-  ResourcesRoute: ResourcesRoute,
+  FirstTherapySessionRoute: FirstTherapySessionRoute,
+  ResourcesRoute: ResourcesRouteWithChildren,
+  ScheduleRoute: ScheduleRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  WhatIsEmdrRoute: WhatIsEmdrRoute,
+  WhatIsIfsTherapyRoute: WhatIsIfsTherapyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -160,6 +160,33 @@
     letter-spacing: -0.025em;
   }
 
+  .prose-narrow {
+    max-width: 44rem;
+    margin-inline: auto;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: oklch(0.32 0.02 140);
+  }
+  .prose-narrow > * + * { margin-top: 1.1em; }
+  .prose-narrow h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-top: 2.25em;
+    margin-bottom: 0.4em;
+    color: var(--foreground);
+  }
+  .prose-narrow h2 + p { margin-top: 0.3em; }
+  .prose-narrow ul, .prose-narrow ol { padding-left: 1.4em; }
+  .prose-narrow ul { list-style: disc; }
+  .prose-narrow ol { list-style: decimal; }
+  .prose-narrow li { margin-top: 0.4em; }
+  .prose-narrow li::marker { color: var(--sage-deep); }
+  .prose-narrow strong { color: var(--foreground); font-weight: 600; }
+  .prose-narrow a { color: var(--primary); text-underline-offset: 4px; }
+  .prose-narrow a:hover { text-decoration: underline; }
+
   .grain {
     position: relative;
   }
