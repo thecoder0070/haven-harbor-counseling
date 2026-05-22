@@ -10,6 +10,13 @@ interface SitemapEntry {
 }
 
 const BLOG_SLUGS = [
+  "finding-a-trauma-therapist-in-austin",
+  "what-is-christian-counseling",
+  "emdr-cpt-trauma-therapy-modalities",
+  "religious-trauma-when-faith-hurts",
+  "complex-ptsd-vs-ptsd",
+  "what-to-expect-first-therapy-session",
+  "high-functioning-anxiety",
   "signs-of-complex-trauma",
   "christian-counseling-vs-secular-therapy",
   "trauma-and-sleep",
