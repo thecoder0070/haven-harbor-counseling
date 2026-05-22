@@ -22,6 +22,32 @@ export const Route = createFileRoute("/")({
       { property: "twitter:image", content: hero },
     ],
     links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          name: "Haven & Harbor Counseling",
+          url: "https://haven-harbor-counseling.lovable.app",
+          description:
+            "Trauma-informed, faith-friendly counseling practice in Austin, Texas. In-person sessions in Austin and telehealth across Texas.",
+          medicalSpecialty: "Psychiatric",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Austin",
+            addressRegion: "TX",
+            postalCode: "78704",
+            addressCountry: "US",
+          },
+          areaServed: [
+            { "@type": "City", name: "Austin" },
+            { "@type": "State", name: "Texas" },
+          ],
+          priceRange: "$130–$225",
+        }),
+      },
+    ],
   }),
   component: HomePage,
 });
