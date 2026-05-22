@@ -1,0 +1,35 @@
+# Haven & Harbor Counseling
+
+> Trauma-informed, faith-friendly counseling and therapy in Austin, Texas — for individuals navigating trauma, anxiety, grief, and life transitions.
+
+Haven & Harbor Counseling is an Austin-based private practice offering evidence-based individual therapy (EMDR, IFS, somatic work) with optional Christian/faith integration. In-person and telehealth across Texas.
+
+## Pages
+
+- [Home](/): Practice overview and how to begin.
+- [About](/about): Who we are and our values.
+- [Our Approach](/approach): How therapy works at Haven & Harbor.
+- [Services](/services): Trauma, anxiety, grief, and Christian counseling.
+- [Christian Counseling](/christian-counseling): Faith-integrated therapy.
+- [FAQ](/faq): Common questions about fees, insurance, and first sessions.
+- [Contact](/contact): Reach the practice.
+- [Schedule](/schedule): Book a free consult and access intake forms.
+
+## Resources
+
+- [Resources](/resources): Articles and guides on trauma and healing.
+- [What is EMDR?](/what-is-emdr): Plain-language explanation of EMDR therapy.
+- [What is IFS Therapy?](/what-is-ifs-therapy): Internal Family Systems overview.
+- [Cost of Therapy in Austin](/cost-of-therapy-austin): Fees, insurance, and out-of-pocket guidance.
+- [Your First Therapy Session](/first-therapy-session): What to expect.
+- [Signs of Complex Trauma](/resources/signs-of-complex-trauma)
+- [Christian Counseling vs Secular Therapy](/resources/christian-counseling-vs-secular-therapy)
+- [Trauma and Sleep](/resources/trauma-and-sleep)
+- [How to Know If You Need Therapy](/resources/how-to-know-if-you-need-therapy)
+
+## Optional
+
+- [Austin Therapist](/austin-therapist)
+- [Austin Therapy](/austin-therapy)
+- [Austin Christian Therapist](/austin-christian-therapist)
+- [Austin Trauma Therapist](/austin-trauma-therapist)

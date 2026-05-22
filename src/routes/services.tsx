@@ -7,7 +7,7 @@ import { Heart, Brain, Users, Cross, Leaf, MessageCircle } from "lucide-react";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Trauma Therapy, Anxiety & Christian Counseling in Austin" },
+      { title: "Austin Counseling Services — Trauma & Anxiety" },
       {
         name: "description",
         content:

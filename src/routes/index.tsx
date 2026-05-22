@@ -9,7 +9,7 @@ import office from "@/assets/office.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Haven & Harbor Counseling — Trauma & Christian Therapy in Austin, TX" },
+      { title: "Haven & Harbor Counseling — Austin Trauma Therapy" },
       {
         name: "description",
         content:

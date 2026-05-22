@@ -6,7 +6,7 @@ import { CtaBanner } from "@/components/site/CtaBanner";
 export const Route = createFileRoute("/austin-christian-therapist")({
   head: () => ({
     meta: [
-      { title: "Austin Christian Therapist — Faith-Integrated Counseling | Haven & Harbor" },
+      { title: "Austin Christian Therapist — Haven & Harbor" },
       {
         name: "description",
         content:
