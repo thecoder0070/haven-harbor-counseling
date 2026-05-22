@@ -29,6 +29,23 @@ function ContactPage() {
         subtitle="Send a short note — I'll respond within two business days to set up a free 15-minute consult."
       />
 
+      <section className="container-prose -mt-8 pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border/60 bg-secondary/40 p-5 text-sm">
+          <p className="text-foreground/80">
+            Prefer to book directly? Use online scheduling or start the secure intake form.
+          </p>
+          <div className="flex gap-2">
+            <a href="/schedule" className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">
+              Book online
+            </a>
+            <a href="/schedule" className="rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold">
+              Intake form
+            </a>
+          </div>
+        </div>
+      </section>
+
+
       <section className="container-prose py-20">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="space-y-8 lg:col-span-2">
