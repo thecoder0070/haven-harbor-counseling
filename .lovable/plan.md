@@ -1,31 +1,22 @@
-## Goal
+## Import 7 SEO Blog Posts from Google Drive
 
-Connect your Google Drive (your account) so we can:
-1. **Link** to specific Drive files from site pages (e.g., intake PDF, resource handouts)
-2. **Import** Drive doc content into pages (e.g., turn a Google Doc into a blog post / resource page)
+### 1. Fetch & parse
+For each of the 7 `.md` Google Docs in Drive, fetch via the Google Docs connector and parse YAML frontmatter (`meta_title`, `meta_description`, `slug`, `keywords`, `canonical`, `category`, `read_time`, `publish_date`) plus the markdown body. Render markdown body to HTML.
 
-## Steps
+### 2. Add to `src/lib/posts.ts`
+Append the 7 posts using each post's `slug` for the URL (e.g. `/resources/finding-a-trauma-therapist-in-austin`). Store metadata + rendered HTML. Keep the 4 existing starter posts. The "first therapy session" post will coexist with the existing `/first-therapy-session` route under its own `/resources/...` slug.
 
-1. **Connect Google Drive** via the connector picker (`standard_connectors--connect` with `google_drive`). You authorize once with your Google account.
-   - Also connect **Google Docs** so we can read Doc content as structured JSON for imports.
+### 3. Resources index (`src/routes/resources.tsx`)
+List all posts sorted by `publish_date` desc, showing category badge + read time.
 
-2. **Add a small server helper** `src/lib/gdrive.functions.ts`:
-   - `listDriveFiles({ query })` — search your Drive by name/type, returns `{id, name, mimeType, webViewLink}`.
-   - `getDocContent({ documentId })` — fetches a Google Doc and converts it to clean HTML/markdown for rendering.
-   - Both call the Lovable connector gateway server-side (keys stay on server).
+### 4. Post route (`src/routes/resources.$slug.tsx`)
+Pull `meta_title` / `meta_description` from frontmatter into the route's `head()` for `<title>`, description, og:*, and canonical.
 
-3. **Linking flow** (no UI build needed beyond what exists):
-   - For any page where you want to attach a Drive file, paste the Drive share URL and I'll wire it into the page as a button/link (e.g., "Download intake form"). Make sure the file's Drive sharing is set to "Anyone with the link".
+### 5. Sitemap & llms.txt
+- Add the 7 new slugs to `src/routes/sitemap[.]xml.ts`.
+- Add the 7 posts under Resources in `public/llms.txt`.
 
-4. **Import flow** for a Doc → page:
-   - You give me the Doc URL.
-   - I run `getDocContent` once, save the rendered content into the existing `src/lib/posts.ts` (or a new resource route), and commit it as static content. This keeps the published site fast and avoids per-request Drive calls.
-   - To refresh later, just ask me to re-import.
-
-## What I won't build (unless you ask)
-- A live admin UI that browses your Drive in the browser
-- Visitor-facing uploads to your Drive
-- Auto-sync (changes in Drive auto-updating the site) — imports are on-demand
-
-## After you approve
-First action will be to prompt the Google Drive + Google Docs connection. Then tell me which file(s) to link or which Doc to import first.
+### Out of scope
+- No staggered publishing (all 7 go live at once).
+- No per-post `og:image` (root fallback).
+- No `/insurance` page or `LocalBusiness` JSON-LD.
