@@ -9,15 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChristianCounselingRouteImport } from './routes/christian-counseling'
+import { Route as AustinTraumaTherapistRouteImport } from './routes/austin-trauma-therapist'
+import { Route as AustinTherapyRouteImport } from './routes/austin-therapy'
+import { Route as AustinTherapistRouteImport } from './routes/austin-therapist'
+import { Route as AustinChristianTherapistRouteImport } from './routes/austin-christian-therapist'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -43,6 +53,27 @@ const ChristianCounselingRoute = ChristianCounselingRouteImport.update({
   path: '/christian-counseling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AustinTraumaTherapistRoute = AustinTraumaTherapistRouteImport.update({
+  id: '/austin-trauma-therapist',
+  path: '/austin-trauma-therapist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AustinTherapyRoute = AustinTherapyRouteImport.update({
+  id: '/austin-therapy',
+  path: '/austin-therapy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AustinTherapistRoute = AustinTherapistRouteImport.update({
+  id: '/austin-therapist',
+  path: '/austin-therapist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AustinChristianTherapistRoute =
+  AustinChristianTherapistRouteImport.update({
+    id: '/austin-christian-therapist',
+    path: '/austin-christian-therapist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApproachRoute = ApproachRouteImport.update({
   id: '/approach',
   path: '/approach',
@@ -63,32 +94,47 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
+  '/austin-christian-therapist': typeof AustinChristianTherapistRoute
+  '/austin-therapist': typeof AustinTherapistRoute
+  '/austin-therapy': typeof AustinTherapyRoute
+  '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
+  '/austin-christian-therapist': typeof AustinChristianTherapistRoute
+  '/austin-therapist': typeof AustinTherapistRoute
+  '/austin-therapy': typeof AustinTherapyRoute
+  '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
+  '/austin-christian-therapist': typeof AustinChristianTherapistRoute
+  '/austin-therapist': typeof AustinTherapistRoute
+  '/austin-therapy': typeof AustinTherapyRoute
+  '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/resources': typeof ResourcesRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,46 +142,73 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
+    | '/austin-christian-therapist'
+    | '/austin-therapist'
+    | '/austin-therapy'
+    | '/austin-trauma-therapist'
     | '/christian-counseling'
     | '/contact'
     | '/faq'
     | '/resources'
     | '/services'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/approach'
+    | '/austin-christian-therapist'
+    | '/austin-therapist'
+    | '/austin-therapy'
+    | '/austin-trauma-therapist'
     | '/christian-counseling'
     | '/contact'
     | '/faq'
     | '/resources'
     | '/services'
+    | '/sitemap.xml'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/approach'
+    | '/austin-christian-therapist'
+    | '/austin-therapist'
+    | '/austin-therapy'
+    | '/austin-trauma-therapist'
     | '/christian-counseling'
     | '/contact'
     | '/faq'
     | '/resources'
     | '/services'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApproachRoute: typeof ApproachRoute
+  AustinChristianTherapistRoute: typeof AustinChristianTherapistRoute
+  AustinTherapistRoute: typeof AustinTherapistRoute
+  AustinTherapyRoute: typeof AustinTherapyRoute
+  AustinTraumaTherapistRoute: typeof AustinTraumaTherapistRoute
   ChristianCounselingRoute: typeof ChristianCounselingRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   ResourcesRoute: typeof ResourcesRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -171,6 +244,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChristianCounselingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/austin-trauma-therapist': {
+      id: '/austin-trauma-therapist'
+      path: '/austin-trauma-therapist'
+      fullPath: '/austin-trauma-therapist'
+      preLoaderRoute: typeof AustinTraumaTherapistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/austin-therapy': {
+      id: '/austin-therapy'
+      path: '/austin-therapy'
+      fullPath: '/austin-therapy'
+      preLoaderRoute: typeof AustinTherapyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/austin-therapist': {
+      id: '/austin-therapist'
+      path: '/austin-therapist'
+      fullPath: '/austin-therapist'
+      preLoaderRoute: typeof AustinTherapistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/austin-christian-therapist': {
+      id: '/austin-christian-therapist'
+      path: '/austin-christian-therapist'
+      fullPath: '/austin-christian-therapist'
+      preLoaderRoute: typeof AustinChristianTherapistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/approach': {
       id: '/approach'
       path: '/approach'
@@ -199,11 +300,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApproachRoute: ApproachRoute,
+  AustinChristianTherapistRoute: AustinChristianTherapistRoute,
+  AustinTherapistRoute: AustinTherapistRoute,
+  AustinTherapyRoute: AustinTherapyRoute,
+  AustinTraumaTherapistRoute: AustinTraumaTherapistRoute,
   ChristianCounselingRoute: ChristianCounselingRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   ResourcesRoute: ResourcesRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
