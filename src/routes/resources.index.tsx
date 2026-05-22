@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { posts } from "@/lib/posts";
 
-export const Route = createFileRoute("/resources")({
+export const Route = createFileRoute("/resources/")({
   head: () => ({
     meta: [
       { title: "Resources & Journal — Haven & Harbor Counseling | Austin" },
