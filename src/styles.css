@@ -85,7 +85,7 @@
   --secondary-foreground: var(--ink);
 
   --muted: var(--cream-deep);
-  --muted-foreground: oklch(0.42 0.022 140);
+  --muted-foreground: oklch(0.35 0.022 140);
 
   --accent: var(--sage);
   --accent-foreground: var(--ink);
