@@ -27,6 +27,7 @@ import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesMediaRouteImport } from './routes/resources.media'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 
 const WhatIsIfsTherapyRoute = WhatIsIfsTherapyRouteImport.update({
@@ -120,6 +121,11 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesMediaRoute = ResourcesMediaRouteImport.update({
+  id: '/resources/media',
+  path: '/resources/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
   id: '/resources/$slug',
   path: '/resources/$slug',
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/media': typeof ResourcesMediaRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/media': typeof ResourcesMediaRoute
   '/resources': typeof ResourcesIndexRoute
 }
 export interface FileRoutesById {
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/media': typeof ResourcesMediaRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRouteTypes {
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
     | '/resources/$slug'
+    | '/resources/media'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
     | '/resources/$slug'
+    | '/resources/media'
     | '/resources'
   id:
     | '__root__'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
     | '/resources/$slug'
+    | '/resources/media'
     | '/resources/'
   fileRoutesById: FileRoutesById
 }
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   WhatIsEmdrRoute: typeof WhatIsEmdrRoute
   WhatIsIfsTherapyRoute: typeof WhatIsIfsTherapyRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
+  ResourcesMediaRoute: typeof ResourcesMediaRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
@@ -406,6 +419,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/media': {
+      id: '/resources/media'
+      path: '/resources/media'
+      fullPath: '/resources/media'
+      preLoaderRoute: typeof ResourcesMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/$slug': {
       id: '/resources/$slug'
       path: '/resources/$slug'
@@ -435,18 +455,9 @@ const rootRouteChildren: RootRouteChildren = {
   WhatIsEmdrRoute: WhatIsEmdrRoute,
   WhatIsIfsTherapyRoute: WhatIsIfsTherapyRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
+  ResourcesMediaRoute: ResourcesMediaRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

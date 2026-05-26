@@ -1,7 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { CtaBanner } from "@/components/site/CtaBanner";
+import { MediaEmbed } from "@/components/site/MediaEmbed";
 import { findPost, posts, type BlogPost } from "@/lib/posts";
+import { media } from "@/lib/media";
 
 export const Route = createFileRoute("/resources/$slug")({
   loader: ({ params }): BlogPost => {
@@ -140,6 +142,12 @@ function renderBlock(block: string, key: number) {
         ))}
       </ul>
     );
+  }
+  if (block.startsWith("embed: ")) {
+    const id = block.slice(7).trim();
+    const item = media.find((m) => m.id === id);
+    if (!item) return null;
+    return <MediaEmbed key={key} item={item} bare />;
   }
   return <p key={key}>{block}</p>;
 }

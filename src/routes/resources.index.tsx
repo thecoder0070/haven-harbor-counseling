@@ -51,6 +51,24 @@ function ResourcesPage() {
         </div>
       </section>
 
+      <section className="container-prose pt-4">
+        <Link
+          to="/resources/media"
+          className="group flex flex-col items-start gap-3 rounded-3xl border border-border/60 bg-gradient-to-br from-secondary/60 to-card p-8 transition hover:-translate-y-1 hover:shadow-lift md:flex-row md:items-center md:justify-between md:p-10"
+        >
+          <div>
+            <p className="eyebrow">New</p>
+            <h2 className="display mt-2 text-3xl md:text-4xl">Media Library</h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Recommended podcasts and creators on relationships, trauma, and faith — searchable and embedded right here.
+            </p>
+          </div>
+          <span className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">
+            Explore media →
+          </span>
+        </Link>
+      </section>
+
       <section className="container-prose py-16">
         <h2 className="display text-3xl">Journal</h2>
         <div className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
