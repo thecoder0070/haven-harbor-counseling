@@ -50,6 +50,13 @@ function AustinTraumaPage() {
             you that learned to keep you safe. Somatic skills for a nervous system that's been
             on high alert too long. None of it is rushed.
           </p>
+          <p className="pt-2">
+            Want the full picture first?{" "}
+            <Link to="/trauma-therapy-austin-guide" className="text-primary underline-offset-4 hover:underline">
+              Read our complete guide to EMDR &amp; complex trauma therapy in Austin
+            </Link>
+            .
+          </p>
           <div className="pt-2">
             <Link
               to="/contact"
