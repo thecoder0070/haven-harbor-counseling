@@ -108,8 +108,10 @@ function EmdrPage() {
           </p>
           <p>
             Curious whether EMDR is the right fit for you?{" "}
-            <Link to="/schedule" className="text-primary underline-offset-4 hover:underline">Book a free 15-minute consult</Link>{" "}
-            or read about <Link to="/what-is-ifs-therapy" className="text-primary underline-offset-4 hover:underline">IFS, the other modality we use</Link>.
+            <Link to="/schedule" className="text-primary underline-offset-4 hover:underline">Book a free 15-minute consult</Link>,{" "}
+            read our full{" "}
+            <Link to="/trauma-therapy-austin-guide" className="text-primary underline-offset-4 hover:underline">guide to EMDR &amp; complex trauma therapy in Austin</Link>,{" "}
+            or learn about <Link to="/what-is-ifs-therapy" className="text-primary underline-offset-4 hover:underline">IFS, the other modality we use</Link>.
           </p>
         </div>
       </section>
