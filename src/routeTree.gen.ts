@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatIsIfsTherapyRouteImport } from './routes/what-is-ifs-therapy'
 import { Route as WhatIsEmdrRouteImport } from './routes/what-is-emdr'
+import { Route as TraumaTherapyAustinGuideRouteImport } from './routes/trauma-therapy-austin-guide'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ScheduleRouteImport } from './routes/schedule'
@@ -40,6 +41,12 @@ const WhatIsEmdrRoute = WhatIsEmdrRouteImport.update({
   path: '/what-is-emdr',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TraumaTherapyAustinGuideRoute =
+  TraumaTherapyAustinGuideRouteImport.update({
+    id: '/trauma-therapy-austin-guide',
+    path: '/trauma-therapy-austin-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -148,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -170,6 +178,7 @@ export interface FileRoutesByTo {
   '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -193,6 +202,7 @@ export interface FileRoutesById {
   '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
     | '/resources/$slug'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
     | '/resources/$slug'
@@ -261,6 +273,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
     | '/resources/$slug'
@@ -284,6 +297,7 @@ export interface RootRouteChildren {
   ScheduleRoute: typeof ScheduleRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TraumaTherapyAustinGuideRoute: typeof TraumaTherapyAustinGuideRoute
   WhatIsEmdrRoute: typeof WhatIsEmdrRoute
   WhatIsIfsTherapyRoute: typeof WhatIsIfsTherapyRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
@@ -305,6 +319,13 @@ declare module '@tanstack/react-router' {
       path: '/what-is-emdr'
       fullPath: '/what-is-emdr'
       preLoaderRoute: typeof WhatIsEmdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trauma-therapy-austin-guide': {
+      id: '/trauma-therapy-austin-guide'
+      path: '/trauma-therapy-austin-guide'
+      fullPath: '/trauma-therapy-austin-guide'
+      preLoaderRoute: typeof TraumaTherapyAustinGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -452,6 +473,7 @@ const rootRouteChildren: RootRouteChildren = {
   ScheduleRoute: ScheduleRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TraumaTherapyAustinGuideRoute: TraumaTherapyAustinGuideRoute,
   WhatIsEmdrRoute: WhatIsEmdrRoute,
   WhatIsIfsTherapyRoute: WhatIsIfsTherapyRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
