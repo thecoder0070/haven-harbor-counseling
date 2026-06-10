@@ -23,7 +23,10 @@ function getEmbedUrl(item: MediaItem): string {
     case "spotify-show":
       return `https://open.spotify.com/embed/show/${item.embedRef}?utm_source=generator&theme=0`;
     case "apple-podcast":
-      return item.embedRef.replace("https://podcasts.apple.com", "https://embed.podcasts.apple.com");
+      return item.embedRef.replace(
+        "https://podcasts.apple.com",
+        "https://embed.podcasts.apple.com",
+      );
     case "youtube":
       return `https://www.youtube-nocookie.com/embed/${item.embedRef}`;
     case "instagram":
@@ -65,7 +68,8 @@ function ProfileCard({ item }: { item: MediaItem }) {
         <p className="mt-1 text-sm text-muted-foreground">Instagram profile</p>
       </div>
       <p className="max-w-sm text-sm text-foreground/70">
-        Instagram only allows individual reels and posts to embed. Open the profile to see {item.creator}'s latest.
+        Instagram only allows individual reels and posts to embed. Open the profile to see{" "}
+        {item.creator}'s latest.
       </p>
     </div>
   );
@@ -79,7 +83,9 @@ export function MediaEmbed({ item, bare = false }: MediaEmbedProps) {
   const frame = isProfile ? (
     <ProfileCard item={item} />
   ) : (
-    <div className={`w-full overflow-hidden rounded-xl bg-secondary/40 ${isAspect ? heightClass : ""}`}>
+    <div
+      className={`w-full overflow-hidden rounded-xl bg-secondary/40 ${isAspect ? heightClass : ""}`}
+    >
       <iframe
         src={getEmbedUrl(item)}
         title={`${item.title} — ${item.creator}`}
@@ -117,6 +123,14 @@ interface PlatformLink {
   href: string;
 }
 
+function opensBestAsTopNavigation(href: string): boolean {
+  try {
+    return /(^|\.)youtube\.com|(^|\.)youtu\.be|(^|\.)instagram\.com/.test(new URL(href).hostname);
+  } catch {
+    return false;
+  }
+}
+
 function getPlatformLinks(item: MediaItem): PlatformLink[] {
   const links: PlatformLink[] = [];
   if (item.spotifyUrl) links.push({ label: "Open Spotify", href: item.spotifyUrl });
@@ -138,18 +152,8 @@ function MediaLinks({ item }: { item: MediaItem }) {
         <a
           key={l.href}
           href={l.href}
-          target="_blank"
+          target={opensBestAsTopNavigation(l.href) ? "_top" : "_blank"}
           rel="noopener noreferrer external"
-          onClick={(e) => {
-            // Escape sandboxed preview iframes (Lovable preview) that block target=_blank
-            // and end up navigating the iframe itself into youtube/instagram, which
-            // refuse framing (ERR_BLOCKED_BY_RESPONSE). On a normal published page this
-            // is a no-op because the default anchor behavior already opens a new tab.
-            if (typeof window !== "undefined" && window.top !== window.self) {
-              e.preventDefault();
-              window.open(l.href, "_blank", "noopener,noreferrer");
-            }
-          }}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
         >
           {l.label} <ExternalLink className="h-3.5 w-3.5" />
