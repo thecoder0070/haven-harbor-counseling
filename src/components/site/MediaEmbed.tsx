@@ -68,8 +68,8 @@ function ProfileCard({ item }: { item: MediaItem }) {
         <p className="mt-1 text-sm text-muted-foreground">Instagram profile</p>
       </div>
       <p className="max-w-sm text-sm text-foreground/70">
-        Instagram only allows individual reels and posts to embed. Open the profile to see {item.creator}'s{" "}
-        latest.
+        Instagram only allows individual reels and posts to embed. Open the profile to see{" "}
+        {item.creator}'s latest.
       </p>
     </div>
   );
