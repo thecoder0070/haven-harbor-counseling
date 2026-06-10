@@ -402,7 +402,49 @@ export const media: MediaItem[] = [
     description: "A licensed marriage & family therapist sharing relational and nervous-system wisdom.",
     instagramUrl: "https://www.instagram.com/mindfulmft",
   },
+  // ——— Instagram reels added from the curated sheet ———
+  ...([
+    { kind: "reel", id: "DZVDE4SCodw" },
+    { kind: "reel", id: "DX8-Np2MiGd" },
+    { kind: "reel", id: "DXI0W8ajLlG" },
+    { kind: "reel", id: "DWy7WFJDjed" },
+    { kind: "p", id: "DW6lB63CUrA" },
+    { kind: "p", id: "DWOdo1SD0iq" },
+    { kind: "reel", id: "DRS8KrkDHbN" },
+    { kind: "p", id: "DVy5vsCFt8N" },
+    { kind: "p", id: "DWE7S3zlvrX" },
+    { kind: "p", id: "DVgkHI3kqAK" },
+    { kind: "reel", id: "DWEOD9_uLa_" },
+    { kind: "reel", id: "DVmq9FAER7G" },
+    { kind: "p", id: "DVhwOYmkb0Y" },
+    { kind: "reel", id: "DVojvBsDxM2" },
+    { kind: "p", id: "DVkzNwsCsC1" },
+    { kind: "reel", id: "DTcmnryjJJ0" },
+    { kind: "reel", id: "DUZ3nlNCNMZ" },
+    { kind: "reel", id: "DVJf2jWESqC" },
+    { kind: "p", id: "DUik3EbjmpZ" },
+    { kind: "p", id: "DUGj6MFDuZq" },
+    { kind: "reel", id: "DUJi2gqD1Dq" },
+    { kind: "reel", id: "DTHqe_nkfCh" },
+    { kind: "reel", id: "DTd4KqNCQGM" },
+    { kind: "p", id: "DSmwYs6EiUR" },
+    { kind: "reel", id: "DS1wMZODCZZ" },
+    { kind: "reel", id: "DSitN8ajOjD" },
+  ] as const).map(({ kind, id }) => {
+    const url = `https://www.instagram.com/${kind}/${id}/`;
+    return {
+      id: `ig-${kind}-${id.toLowerCase()}`,
+      title: kind === "reel" ? "Instagram Reel" : "Instagram Post",
+      creator: "Saved to the library",
+      category: "Mental Health",
+      type: "instagram" as const,
+      embedRef: url,
+      description: "A short clip worth a minute of your attention.",
+      instagramUrl: url,
+    };
+  }),
 ];
+
 
 export function getMediaCategories(): string[] {
   const set = new Set<string>(["All"]);
