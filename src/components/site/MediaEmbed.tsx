@@ -83,16 +83,45 @@ export function MediaEmbed({ item, bare = false }: MediaEmbedProps) {
       <p className="mt-1 text-sm text-muted-foreground">{item.creator}</p>
       <p className="mt-3 text-sm leading-relaxed text-foreground/80">{item.description}</p>
       <div className="mt-5">{frame}</div>
-      {item.externalUrl && (
-        <a
-          href={item.externalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
-        >
-          Open original <ExternalLink className="h-3.5 w-3.5" />
-        </a>
-      )}
+      <MediaLinks item={item} />
     </article>
   );
 }
+
+interface PlatformLink {
+  label: string;
+  href: string;
+}
+
+function getPlatformLinks(item: MediaItem): PlatformLink[] {
+  const links: PlatformLink[] = [];
+  if (item.spotifyUrl) links.push({ label: "Open Spotify", href: item.spotifyUrl });
+  if (item.youtubeUrl) links.push({ label: "Open YouTube", href: item.youtubeUrl });
+  if (item.instagramUrl) links.push({ label: "Open Instagram", href: item.instagramUrl });
+  if (item.tiktokUrl) links.push({ label: "Open TikTok", href: item.tiktokUrl });
+  if (links.length === 0 && item.externalUrl) {
+    links.push({ label: "Open original", href: item.externalUrl });
+  }
+  return links;
+}
+
+function MediaLinks({ item }: { item: MediaItem }) {
+  const links = getPlatformLinks(item);
+  if (links.length === 0) return null;
+  return (
+    <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+      {links.map((l) => (
+        <a
+          key={l.href}
+          href={l.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+        >
+          {l.label} <ExternalLink className="h-3.5 w-3.5" />
+        </a>
+      ))}
+    </div>
+  );
+}
+
