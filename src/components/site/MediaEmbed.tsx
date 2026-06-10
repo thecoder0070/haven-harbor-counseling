@@ -123,14 +123,6 @@ interface PlatformLink {
   href: string;
 }
 
-function opensBestAsTopNavigation(href: string): boolean {
-  try {
-    return /(^|\.)youtube\.com|(^|\.)youtu\.be|(^|\.)instagram\.com/.test(new URL(href).hostname);
-  } catch {
-    return false;
-  }
-}
-
 function getPlatformLinks(item: MediaItem): PlatformLink[] {
   const links: PlatformLink[] = [];
   if (item.spotifyUrl) links.push({ label: "Open Spotify", href: item.spotifyUrl });
@@ -143,6 +135,23 @@ function getPlatformLinks(item: MediaItem): PlatformLink[] {
   return links;
 }
 
+function handleExternalClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  // In sandboxed preview iframes (Lovable), target="_blank" and target="_top"
+  // are blocked by YouTube/Instagram via X-Frame-Options. Force a true new
+  // top-level tab via window.open on the top window when accessible.
+  if (typeof window === "undefined") return;
+  const inIframe = window.top !== window.self;
+  if (!inIframe) return; // normal anchor behavior on the published site
+  e.preventDefault();
+  try {
+    const top = window.top ?? window;
+    const opened = top.open(href, "_blank", "noopener,noreferrer");
+    if (!opened) window.open(href, "_blank", "noopener,noreferrer");
+  } catch {
+    window.open(href, "_blank", "noopener,noreferrer");
+  }
+}
+
 function MediaLinks({ item }: { item: MediaItem }) {
   const links = getPlatformLinks(item);
   if (links.length === 0) return null;
@@ -152,8 +161,9 @@ function MediaLinks({ item }: { item: MediaItem }) {
         <a
           key={l.href}
           href={l.href}
-          target={opensBestAsTopNavigation(l.href) ? "_top" : "_blank"}
+          target="_blank"
           rel="noopener noreferrer external"
+          onClick={(e) => handleExternalClick(e, l.href)}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
         >
           {l.label} <ExternalLink className="h-3.5 w-3.5" />
