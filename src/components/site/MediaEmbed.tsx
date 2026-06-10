@@ -23,7 +23,10 @@ function getEmbedUrl(item: MediaItem): string {
     case "spotify-show":
       return `https://open.spotify.com/embed/show/${item.embedRef}?utm_source=generator&theme=0`;
     case "apple-podcast":
-      return item.embedRef.replace("https://podcasts.apple.com", "https://embed.podcasts.apple.com");
+      return item.embedRef.replace(
+        "https://podcasts.apple.com",
+        "https://embed.podcasts.apple.com",
+      );
     case "youtube":
       return `https://www.youtube-nocookie.com/embed/${item.embedRef}`;
     case "instagram":
@@ -65,7 +68,8 @@ function ProfileCard({ item }: { item: MediaItem }) {
         <p className="mt-1 text-sm text-muted-foreground">Instagram profile</p>
       </div>
       <p className="max-w-sm text-sm text-foreground/70">
-        Instagram only allows individual reels and posts to embed. Open the profile to see {item.creator}'s latest.
+        Instagram only allows individual reels and posts to embed. Open the profile to see {item.creator}'s{" "}
+        latest.
       </p>
     </div>
   );
@@ -79,7 +83,9 @@ export function MediaEmbed({ item, bare = false }: MediaEmbedProps) {
   const frame = isProfile ? (
     <ProfileCard item={item} />
   ) : (
-    <div className={`w-full overflow-hidden rounded-xl bg-secondary/40 ${isAspect ? heightClass : ""}`}>
+    <div
+      className={`w-full overflow-hidden rounded-xl bg-secondary/40 ${isAspect ? heightClass : ""}`}
+    >
       <iframe
         src={getEmbedUrl(item)}
         title={`${item.title} — ${item.creator}`}
