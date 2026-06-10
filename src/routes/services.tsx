@@ -84,13 +84,13 @@ function ServicesPage() {
             <p className="eyebrow">Investment</p>
             <h2 className="display mt-4 text-4xl">Fees &amp; Insurance</h2>
             <p className="mt-5 text-foreground/80">
-              Individual sessions are 50 minutes. Haven &amp; Harbor is an out-of-network
-              provider; superbills are provided each month for clients who would like to submit
-              for partial reimbursement through their insurance.
+              Individual sessions are 50 minutes. Haven &amp; Harbor accepts most major
+              insurance plans. If your plan doesn&apos;t cover therapy — or you&apos;d prefer
+              to pay directly — the out-of-pocket rate is $120 per session.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-foreground/80">
-              <li>• 50-min individual session — $165</li>
-              <li>• 80-min extended/EMDR session — $245</li>
+              <li>• Insurance — Most major plans accepted</li>
+              <li>• Out-of-pocket / self-pay — $120 per 50-min session</li>
               <li>• 15-min consult — Free</li>
             </ul>
           </div>

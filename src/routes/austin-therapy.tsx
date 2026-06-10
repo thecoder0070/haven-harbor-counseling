@@ -57,7 +57,7 @@ function AustinTherapyPage() {
                 <li><strong>Telehealth:</strong> Anywhere in Texas</li>
                 <li><strong>Ages:</strong> Adults 18+</li>
                 <li><strong>Specialties:</strong> Trauma, anxiety, grief, faith</li>
-                <li><strong>Insurance:</strong> Out-of-network, superbills provided</li>
+                <li><strong>Insurance:</strong> Most major plans accepted; $120 out-of-pocket</li>
               </ul>
               <Link
                 to="/contact"

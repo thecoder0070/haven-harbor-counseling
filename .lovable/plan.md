@@ -1,51 +1,94 @@
 
-## Goal
+## 1. Pricing & insurance copy (site-wide)
 
-Grow `src/lib/media.ts` so the `/resources/media` page shows the new shows the user listens to, fix the 3 existing Spotify IDs that returned 404, and make sure one-off Instagram Reels and TikTok videos can be embedded the same way podcasts already are.
+Current copy says Haven & Harbor is **out-of-network only** with **$165 / $245** session fees. New truth: **insurance is accepted**, and the **out-of-pocket / uncovered rate is $120** per 50-minute session.
 
-## 1. Add 10 new podcasts
+Consistent wording: *"Haven & Harbor accepts most major insurance plans. If your plan doesn't cover therapy, the out-of-pocket rate is $120 per 50-minute session."*
 
-For each show below, add **three** entries to `media.ts` — one Spotify show, one YouTube channel/show, one Instagram profile — so the user can pick the format they like best on the media page. Categories drawn from the existing set (`Self-Knowledge`, `Relationships`, `Mental Health`, `Trauma & Healing`, `Faith & Identity`).
+Files to update:
+- `src/routes/faq.tsx` — "Do you take insurance?" + "What are your fees?"
+- `src/routes/services.tsx` — "Fees & Insurance" block (drop $165/$245 bullets, out-of-network paragraph)
+- `src/routes/cost-of-therapy-austin.tsx` — insurance Q, superbill Q (reframe as backup for plans we're not in-network with), $175 reference in body copy
+- `src/routes/austin-therapy.tsx` — "Insurance: Out-of-network…" bullet
+- `src/routes/trauma-therapy-austin-guide.tsx` — soften Haven & Harbor self-reference in the EMDR/insurance Q
+- `src/lib/posts.ts` — Christian-counseling insurance snippet if it asserts out-of-network
+
+Will ask after approval: which insurance networks to name (Aetna, BCBS, Cigna, United…) vs. keep generic.
+
+## 2. Media library: data-model upgrade
+
+Today each `MediaItem` = one platform (single "Open original" link). New requirement: each podcast card shows **Open Spotify** and **Open YouTube** side by side.
+
+Update `src/lib/media.ts`:
+
+```ts
+export interface MediaItem {
+  id: string;
+  title: string;
+  creator: string;
+  category: string;
+  type: MediaType;       // drives the embed
+  embedRef: string;
+  description: string;
+  spotifyUrl?: string;   // NEW
+  youtubeUrl?: string;   // NEW
+  instagramUrl?: string; // NEW (optional)
+  tiktokUrl?: string;    // NEW (optional)
+  externalUrl?: string;  // kept as fallback for one-off Reels/TikToks
+}
+```
+
+Collapse current "one show, three entries" pattern into **one entry per podcast** — Spotify embed by default + populated `spotifyUrl` + `youtubeUrl` (+ optional Instagram).
+
+Update `src/components/site/MediaEmbed.tsx` footer: replace the single "Open original" link with a row of links — Spotify → YouTube → Instagram → TikTok → externalUrl, rendering only the ones present. Same underlined-link styling + `ExternalLink` icon. For one-off Reels/TikToks (no Spotify/YouTube), the row collapses to a single "Open Instagram" / "Open TikTok" link.
+
+## 3. Fix broken Spotify entries
+
+- **Motion (JB Copeland)** — re-search Spotify, swap the current `apple-podcast` entry for `type: "spotify-show"` with the correct show id.
+- **Modern Wisdom** — already on Spotify (`4DDsabHrM9BcEgsXMrtTBu`); re-verify and add `youtubeUrl` for the new dual-link row.
+
+## 4. Add 5 new podcasts
 
 | Show | Host | Category |
 |---|---|---|
-| The Daily Stoic | Ryan Holiday | Self-Knowledge |
-| The Daily Motivation | Lewis Howes | Self-Knowledge |
-| ReThinking | Adam Grant | Self-Knowledge |
-| On Purpose | Jay Shetty | Self-Knowledge |
-| Jillian on Love | Jillian Turecki | Relationships |
-| The Mel Robbins Podcast | Mel Robbins | Mental Health |
-| The Sabrina Zohar Show | Sabrina Zohar | Relationships |
-| Solved | Mark Manson | Self-Knowledge |
-| Motion | JB Copeland | Self-Knowledge |
-| The Pocket | Chris Griffin | Self-Knowledge |
+| Your World Within | Eddie Pinero | Self-Knowledge |
+| The Mindset Mentor | Rob Dial | Self-Knowledge |
+| Joel Osteen Podcast | Joel Osteen | Faith & Identity |
+| A Bit of Optimism | Simon Sinek | Self-Knowledge |
+| Know Thyself | André Duqum | Self-Knowledge |
 
-Lookup approach (build mode): use `websearch--web_search` for each show's official Spotify show URL, YouTube channel/@handle, and Instagram handle, then extract the canonical IDs (`spotify.com/show/<id>`, `youtube.com/@<handle>` or video id, `instagram.com/<handle>`). If a show is missing one platform, skip that single entry rather than guessing.
+Each entry: Spotify embed + `spotifyUrl` + `youtubeUrl` (+ Instagram URL if official). If a Spotify show id can't be confirmed, fall back to `apple-podcast` for that single entry and still populate `youtubeUrl`.
 
-## 2. Re-verify 3 broken Spotify shows
+## 5. One-off Instagram Reels from the Google Sheet
 
-Re-search for the correct Spotify show IDs for:
-- Where Should We Begin? with Esther Perel
-- Therapy Chat (Laura Reagan)
-- The Holy Post (Phil Vischer & Skye Jethani)
+Pulled from the linked sheet (`1-2Cew3h5So7AQRitiIkf8JP94MqRJEp0_ShcrKeunCE`). Add 6 individual-post items + 2 creator-profile items to `media`:
 
-Replace the existing `embedRef` values in `src/lib/media.ts` and update `externalUrl` to match.
+Individual reels/posts (`type: "instagram"`, `embedRef` = full URL, `category` = TBD via lookup — likely Relationships / Mental Health / Trauma & Healing based on each creator):
+1. `https://www.instagram.com/reel/DZL1oF4hV8G/`
+2. `https://www.instagram.com/p/DYGUyIZDN4X/`
+3. `https://www.instagram.com/reel/DXMij-JGnrl/`
+4. `https://www.instagram.com/reel/DXR5jDtjNVd/`
+5. `https://www.instagram.com/p/DXAnymPD4Jo/`
+6. `https://www.instagram.com/reel/DYS9KbAANG8/`
 
-## 3. One-off Reels and TikToks
+Creator profiles (also `type: "instagram"`; embed renders the profile's recent reel grid):
+7. `@prestonrack` → `https://www.instagram.com/prestonrack`
+8. `@mindfulmft` → `https://www.instagram.com/mindfulmft`
 
-`MediaEmbed.tsx` already handles Instagram and TikTok embeds from either a full URL or a shortcode/id — no component changes needed. To make this usable:
+**Per-reel lookup:** For each of the 6 individual URLs, fetch the post page to read creator handle + caption snippet so the card has a meaningful title/description/category, rather than guessing. If a post is private/unavailable, skip that one and note it.
 
-- Add a short comment block in `src/lib/media.ts` documenting how to add a single Reel or TikTok (paste the full URL into `embedRef`; set `type: "instagram"` or `"tiktok"`; category and creator drive filtering).
-- Seed 2 example items (one Reel, one TikTok) from creators already in the library (e.g. Jay Shetty Reel, Mel Robbins TikTok) so the grid demonstrates the format and the user has a template to copy.
+## 6. Alphabetical order
 
-## 4. Verify
+After consolidation, sort the `media` array alphabetically by `title`, ignoring leading "The " / "A " (library convention). Encode as a one-time manual reorder in source so the file reads alphabetically; no runtime sort. Instagram reels grouped together at the bottom (or sorted by creator handle) so the alphabetized podcast list stays clean — will confirm placement during build.
 
-After edits:
-- Run a quick build check.
-- Open `/resources/media` in the preview, confirm new cards render, the Spotify iframes for the 3 fixed shows load, and the Reel/TikTok examples appear under the Instagram/TikTok type filters.
+## 7. Verify
+
+- Open `/resources/media` — confirm cards render alphabetically, each podcast shows both "Open Spotify" + "Open YouTube", the Motion and Modern Wisdom Spotify iframes load, and the 8 Instagram items appear under the Instagram type filter.
+- Spot-check `/faq`, `/services`, `/cost-of-therapy-austin`, `/austin-therapy` for consistent $120 / insurance wording.
 
 ## Technical notes
 
-- All changes are confined to `src/lib/media.ts` (data only) plus a brief comment; no schema, route, or component changes required.
-- `MediaItem.embedRef` semantics by type are already defined in `src/lib/media.ts` — Spotify uses the bare id, YouTube uses the video id, Instagram/TikTok/Apple accept a full URL.
-- For YouTube, prefer a representative recent episode video id over a channel link (the embed renderer expects a video id, not a channel).
+- Pricing change is copy-only.
+- Media model change is additive (new optional fields) — existing one-off Reel/TikTok seeds continue to work via `externalUrl`.
+- No new routes / components — edits land in `src/lib/media.ts`, `src/components/site/MediaEmbed.tsx`, and the listed route/copy files.
+- Google Sheets connector is now linked; reading the reels sheet works through the gateway and needs no further setup.
