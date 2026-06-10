@@ -6,19 +6,19 @@ import { CtaBanner } from "@/components/site/CtaBanner";
 const faqs = [
   {
     q: "How much does therapy cost in Austin, TX?",
-    a: "In Austin, individual therapy with a licensed therapist typically ranges from $120 to $250 per 50-minute session. Specialized trauma work (EMDR, IFS) and therapists with advanced training often sit at the higher end of that range. At Haven & Harbor, the standard fee for a 50-minute session is $175.",
+    a: "In Austin, individual therapy with a licensed therapist typically ranges from $120 to $250 per 50-minute session. Specialized trauma work (EMDR, IFS) and therapists with advanced training often sit at the higher end of that range. At Haven & Harbor, we accept most major insurance plans, and the out-of-pocket rate (for clients without coverage) is $120 per 50-minute session.",
   },
   {
     q: "Do you take insurance?",
-    a: "Haven & Harbor is an out-of-network (private-pay) practice. This lets us protect your privacy, avoid restrictive diagnoses on your medical record, and give you longer, less rushed sessions. We provide a monthly superbill you can submit to your insurance for possible reimbursement.",
+    a: "Yes. Haven & Harbor accepts most major insurance plans. If you're using insurance, your cost depends on your plan's copay or coinsurance. If your plan doesn't cover therapy or you prefer to pay directly, the out-of-pocket rate is $120 per 50-minute session.",
   },
   {
     q: "What is a superbill and how does it work?",
-    a: "A superbill is a detailed receipt with the diagnostic and procedure codes your insurance company needs. You pay at the time of session, then submit the superbill to your insurer. If you have out-of-network mental health benefits, they reimburse you directly — often 40–80% of the session fee after your deductible.",
+    a: "If we aren't in-network with your specific plan, we can provide a monthly superbill — a detailed receipt with the diagnostic and procedure codes your insurance company needs for out-of-network reimbursement. You pay at the time of session, then submit the superbill to your insurer. If you have out-of-network mental health benefits, they typically reimburse 40–80% of the session fee after your deductible.",
   },
   {
-    q: "How do I check my out-of-network benefits?",
-    a: "Call the member services number on the back of your insurance card and ask: (1) Do I have out-of-network outpatient mental health benefits? (2) What is my out-of-network deductible, and how much have I met? (3) What percentage do you reimburse per session after the deductible? (4) Is pre-authorization required?",
+    q: "How do I check my insurance benefits?",
+    a: "Call the member services number on the back of your insurance card and ask: (1) Is Haven & Harbor in-network with my plan? (2) What is my copay or coinsurance for outpatient mental health? (3) Do I have a deductible to meet first? If we're out-of-network, also ask about out-of-network outpatient mental health benefits and the reimbursement percentage.",
   },
   {
     q: "Do you offer sliding-scale fees?",
@@ -84,32 +84,38 @@ function CostPage() {
           <p>
             In Austin, expect to pay <strong>$120–$250 per 50-minute session</strong> with a
             licensed therapist. Specialized trauma work (EMDR, IFS, somatic) and clinicians with
-            advanced training generally fall toward the higher end of that range. At Haven &amp;
-            Harbor, our standard rate is <strong>$175 per session</strong>. Free 15-minute
-            consultations are always available before you book.
+            advanced training generally fall toward the higher end of that range. Haven &amp;
+            Harbor accepts most major insurance plans; if your plan doesn&apos;t cover therapy
+            (or you&apos;d rather pay directly), our <strong>out-of-pocket rate is $120 per
+            session</strong>. Free 15-minute consultations are always available before you book.
           </p>
 
-          <h2>Why so many Austin therapists are private-pay</h2>
+          <h2>Insurance, out-of-pocket, and what it actually costs you</h2>
           <p>
-            Most trauma-focused practices in Austin (including ours) are out-of-network. There are
-            a few reasons for that:
+            Most clients at Haven &amp; Harbor use insurance to keep ongoing therapy affordable.
+            If we&apos;re in-network with your plan, your cost is just your plan&apos;s copay or
+            coinsurance per session. If we aren&apos;t in-network — or if you&apos;d prefer to
+            keep insurance out of the picture entirely — the out-of-pocket rate is a flat
+            <strong> $120 per 50-minute session</strong>.
           </p>
+          <p>Reasons some clients choose to pay out of pocket even when they have coverage:</p>
           <ul>
-            <li><strong>Your privacy.</strong> Insurance requires a mental-health diagnosis to be added to your medical record. Private pay keeps your story between you and your therapist.</li>
-            <li><strong>Better care.</strong> Insurance often dictates how many sessions you can have and what counts as "medically necessary." Trauma work doesn't always fit those boxes.</li>
-            <li><strong>Therapist availability.</strong> Reimbursement rates are so low that most experienced trauma clinicians can't sustain a practice on insurance alone.</li>
+            <li><strong>Privacy.</strong> Using insurance requires a mental-health diagnosis to be added to your medical record. Paying directly keeps your story between you and your therapist.</li>
+            <li><strong>Flexibility.</strong> Insurance sometimes dictates how many sessions you can have and what counts as &quot;medically necessary&quot; — frames that don&apos;t always fit trauma or relationship work.</li>
+            <li><strong>Simplicity.</strong> No coordination of benefits, no waiting for reimbursement, no paperwork beyond a receipt.</li>
           </ul>
 
-          <h2>Using your insurance through a superbill</h2>
+          <h2>Using out-of-network benefits through a superbill</h2>
           <p>
-            If you have out-of-network mental health benefits, you can often get reimbursed for a
-            meaningful portion of what you pay. Here's how it works:
+            If we aren&apos;t in-network with your specific plan but you have out-of-network
+            mental health benefits, you can often still get reimbursed for a meaningful portion of
+            what you pay. Here&apos;s how it works:
           </p>
           <ol>
             <li>You pay your therapist directly at the time of session.</li>
             <li>At the end of each month, you receive a <strong>superbill</strong> — an itemized receipt with the codes your insurance company needs.</li>
             <li>You submit the superbill to your insurance (most have an app or online portal).</li>
-            <li>Once your deductible is met, your insurer reimburses you directly, typically 40–80% of the session fee.</li>
+            <li>Once your out-of-network deductible is met, your insurer reimburses you directly, typically 40–80% of the session fee.</li>
           </ol>
 
           <h2>Five questions to ask your insurance</h2>

@@ -14,11 +14,11 @@ const faqs = [
   },
   {
     q: "Do you take insurance?",
-    a: "Haven & Harbor is an out-of-network provider, which means payment is due at the time of session. I provide a monthly superbill that many clients submit to their insurance for partial reimbursement. Call your insurance and ask about 'out-of-network outpatient mental health' coverage.",
+    a: "Yes — Haven & Harbor accepts most major insurance plans. If your plan doesn't cover therapy (or you'd prefer to pay out of pocket), the self-pay rate is $120 per 50-minute session. For plans we aren't in-network with, we can also provide a monthly superbill you can submit for possible out-of-network reimbursement.",
   },
   {
     q: "How much does a session cost?",
-    a: "Individual 50-minute sessions are $165. Extended 80-minute sessions (often used for EMDR) are $245. The initial 15-minute consultation is free.",
+    a: "If you're using insurance, your cost depends on your plan's copay or coinsurance. The out-of-pocket rate (for clients without coverage or who prefer to pay directly) is $120 per 50-minute session. The initial 15-minute consultation is always free.",
   },
   {
     q: "How long is therapy?",

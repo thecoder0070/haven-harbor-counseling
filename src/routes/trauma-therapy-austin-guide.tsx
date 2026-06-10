@@ -20,7 +20,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Is EMDR covered by insurance in Texas?",
-    a: "EMDR is a billing-neutral modality — it's billed as a standard psychotherapy session (CPT 90837), so most Texas insurance plans that cover therapy cover EMDR. Many trauma specialists in Austin (including Haven & Harbor) are out-of-network and provide superbills you can submit to your insurer for partial reimbursement.",
+    a: "EMDR is a billing-neutral modality — it's billed as a standard psychotherapy session (CPT 90837), so most Texas insurance plans that cover therapy cover EMDR. Haven & Harbor accepts most major insurance plans; if your plan doesn't cover therapy, the out-of-pocket rate is $120 per session. For plans we aren't in-network with, we provide superbills for out-of-network reimbursement.",
   },
   {
     q: "What's somatic trauma therapy?",
