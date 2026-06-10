@@ -1,51 +1,51 @@
+
 ## Goal
 
-Create a long-form, in-depth guide page targeting long-tail trauma keywords (KD low-to-mid) where a real Austin specialist can outrank directories and Facebook listings.
+Grow `src/lib/media.ts` so the `/resources/media` page shows the new shows the user listens to, fix the 3 existing Spotify IDs that returned 404, and make sure one-off Instagram Reels and TikTok videos can be embedded the same way podcasts already are.
 
-## Target keywords
+## 1. Add 10 new podcasts
 
-- Primary: "EMDR trauma therapist Austin"
-- Secondary: "complex trauma therapy Austin", "C-PTSD therapist Austin", "somatic trauma therapy Austin", "childhood trauma therapy Austin"
-- Question variants: "how does EMDR work", "EMDR vs talk therapy", "how long does trauma therapy take", "is EMDR covered by insurance in Texas"
+For each show below, add **three** entries to `media.ts` — one Spotify show, one YouTube channel/show, one Instagram profile — so the user can pick the format they like best on the media page. Categories drawn from the existing set (`Self-Knowledge`, `Relationships`, `Mental Health`, `Trauma & Healing`, `Faith & Identity`).
 
-## New route
+| Show | Host | Category |
+|---|---|---|
+| The Daily Stoic | Ryan Holiday | Self-Knowledge |
+| The Daily Motivation | Lewis Howes | Self-Knowledge |
+| ReThinking | Adam Grant | Self-Knowledge |
+| On Purpose | Jay Shetty | Self-Knowledge |
+| Jillian on Love | Jillian Turecki | Relationships |
+| The Mel Robbins Podcast | Mel Robbins | Mental Health |
+| The Sabrina Zohar Show | Sabrina Zohar | Relationships |
+| Solved | Mark Manson | Self-Knowledge |
+| Motion | JB Copeland | Self-Knowledge |
+| The Pocket | Chris Griffin | Self-Knowledge |
 
-`src/routes/trauma-therapy-austin-guide.tsx` → URL `/trauma-therapy-austin-guide`
+Lookup approach (build mode): use `websearch--web_search` for each show's official Spotify show URL, YouTube channel/@handle, and Instagram handle, then extract the canonical IDs (`spotify.com/show/<id>`, `youtube.com/@<handle>` or video id, `instagram.com/<handle>`). If a show is missing one platform, skip that single entry rather than guessing.
 
-Why a new page (not edits to `/austin-trauma-therapist`): the existing page is a short service page optimized for the head term. The guide is a separate long-form asset (~2,000–2,500 words) targeting long-tail informational queries, internally linking back to the service page and `/contact`.
+## 2. Re-verify 3 broken Spotify shows
 
-## Page structure (sections)
+Re-search for the correct Spotify show IDs for:
+- Where Should We Begin? with Esther Perel
+- Therapy Chat (Laura Reagan)
+- The Holy Post (Phil Vischer & Skye Jethani)
 
-1. Hero / PageHeader — H1: "EMDR & Complex Trauma Therapy in Austin: A Complete Guide"
-2. TL;DR summary box (3–4 bullets, scannable)
-3. What counts as trauma (single-incident vs complex/C-PTSD vs attachment)
-4. EMDR explained — 8 phases, what a session looks like, who it helps
-5. Complex trauma (C-PTSD) — why standard talk therapy often stalls, phased approach (stabilization → processing → integration)
-6. Other modalities used alongside — IFS, somatic experiencing, parts work
-7. What to expect: first session, timeline, typical length of treatment
-8. How to choose an Austin trauma therapist (credentials, training, fit) — with subtle differentiation
-9. Cost, insurance, and superbills in Texas (link to `/cost-of-therapy-austin`)
-10. FAQ (8–10 questions, marked up with FAQPage JSON-LD)
-11. Related reading — internal links to `/austin-trauma-therapist`, `/what-is-emdr`, `/what-is-ifs-therapy`, `/first-therapy-session`
-12. CTA banner
+Replace the existing `embedRef` values in `src/lib/media.ts` and update `externalUrl` to match.
 
-## SEO wiring
+## 3. One-off Reels and TikToks
 
-- `head()` with unique title (~58 chars), meta description (~155 chars), canonical, og:title/description/url
-- JSON-LD: `Article` + `FAQPage` (inline `<script type="application/ld+json">` in head meta)
-- Add the new URL to `src/routes/sitemap[.]xml.ts`
-- Internal links from `/austin-trauma-therapist`, `/what-is-emdr`, `/resources` index pointing to the guide
-- Use existing `SiteLayout`, `PageHeader`, `CtaBanner` for visual consistency — no new components
+`MediaEmbed.tsx` already handles Instagram and TikTok embeds from either a full URL or a shortcode/id — no component changes needed. To make this usable:
 
-## Files to change
+- Add a short comment block in `src/lib/media.ts` documenting how to add a single Reel or TikTok (paste the full URL into `embedRef`; set `type: "instagram"` or `"tiktok"`; category and creator drive filtering).
+- Seed 2 example items (one Reel, one TikTok) from creators already in the library (e.g. Jay Shetty Reel, Mel Robbins TikTok) so the grid demonstrates the format and the user has a template to copy.
 
-- **Create** `src/routes/trauma-therapy-austin-guide.tsx`
-- **Edit** `src/routes/sitemap[.]xml.ts` (add new URL)
-- **Edit** `src/routes/austin-trauma-therapist.tsx` (add "Read the full guide" link)
-- **Edit** `src/routes/what-is-emdr.tsx` (add contextual link to guide)
+## 4. Verify
 
-## Out of scope
+After edits:
+- Run a quick build check.
+- Open `/resources/media` in the preview, confirm new cards render, the Spotify iframes for the 3 fixed shows load, and the Reel/TikTok examples appear under the Instagram/TikTok type filters.
 
-- No new shared components or design system changes
-- No backend / database work
-- Copy will be drafted by me as a strong first pass; you can edit anything that doesn't sound like you before publishing
+## Technical notes
+
+- All changes are confined to `src/lib/media.ts` (data only) plus a brief comment; no schema, route, or component changes required.
+- `MediaItem.embedRef` semantics by type are already defined in `src/lib/media.ts` — Spotify uses the bare id, YouTube uses the video id, Instagram/TikTok/Apple accept a full URL.
+- For YouTube, prefer a representative recent episode video id over a channel link (the embed renderer expects a video id, not a channel).
