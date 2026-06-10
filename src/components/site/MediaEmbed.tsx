@@ -118,7 +118,11 @@ interface PlatformLink {
 }
 
 function opensBestAsTopNavigation(href: string): boolean {
-  return /(^|\.)youtube\.com|(^|\.)youtu\.be|(^|\.)instagram\.com/.test(new URL(href).hostname);
+  try {
+    return /(^|\.)youtube\.com|(^|\.)youtu\.be|(^|\.)instagram\.com/.test(new URL(href).hostname);
+  } catch {
+    return false;
+  }
 }
 
 function getPlatformLinks(item: MediaItem): PlatformLink[] {
