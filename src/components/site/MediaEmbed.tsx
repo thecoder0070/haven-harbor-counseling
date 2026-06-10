@@ -117,6 +117,10 @@ interface PlatformLink {
   href: string;
 }
 
+function opensBestAsTopNavigation(href: string): boolean {
+  return /(^|\.)youtube\.com|(^|\.)youtu\.be|(^|\.)instagram\.com/.test(new URL(href).hostname);
+}
+
 function getPlatformLinks(item: MediaItem): PlatformLink[] {
   const links: PlatformLink[] = [];
   if (item.spotifyUrl) links.push({ label: "Open Spotify", href: item.spotifyUrl });
@@ -138,18 +142,8 @@ function MediaLinks({ item }: { item: MediaItem }) {
         <a
           key={l.href}
           href={l.href}
-          target="_blank"
+          target={opensBestAsTopNavigation(l.href) ? "_top" : "_blank"}
           rel="noopener noreferrer external"
-          onClick={(e) => {
-            // Escape sandboxed preview iframes (Lovable preview) that block target=_blank
-            // and end up navigating the iframe itself into youtube/instagram, which
-            // refuse framing (ERR_BLOCKED_BY_RESPONSE). On a normal published page this
-            // is a no-op because the default anchor behavior already opens a new tab.
-            if (typeof window !== "undefined" && window.top !== window.self) {
-              e.preventDefault();
-              window.open(l.href, "_blank", "noopener,noreferrer");
-            }
-          }}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
         >
           {l.label} <ExternalLink className="h-3.5 w-3.5" />
