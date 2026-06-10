@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Instagram } from "lucide-react";
 import type { MediaItem } from "@/lib/media";
 import { MEDIA_TYPE_LABELS } from "@/lib/media";
 
@@ -8,6 +8,14 @@ interface MediaEmbedProps {
   bare?: boolean;
 }
 
+/** Instagram only allows iframing /p/<id>/embed and /reel/<id>/embed — not profile pages. */
+function isInstagramProfile(item: MediaItem): boolean {
+  if (item.type !== "instagram") return false;
+  const ref = item.embedRef;
+  if (!ref.startsWith("http")) return false;
+  return !/\/(p|reel|tv)\//.test(ref);
+}
+
 function getEmbedUrl(item: MediaItem): string {
   switch (item.type) {
     case "spotify-episode":
@@ -15,19 +23,16 @@ function getEmbedUrl(item: MediaItem): string {
     case "spotify-show":
       return `https://open.spotify.com/embed/show/${item.embedRef}?utm_source=generator&theme=0`;
     case "apple-podcast":
-      // embedRef is a full URL like https://podcasts.apple.com/us/podcast/.../id123?i=456
       return item.embedRef.replace("https://podcasts.apple.com", "https://embed.podcasts.apple.com");
     case "youtube":
-      return `https://www.youtube.com/embed/${item.embedRef}`;
+      return `https://www.youtube-nocookie.com/embed/${item.embedRef}`;
     case "instagram":
-      // embedRef can be full URL or shortcode
       if (item.embedRef.startsWith("http")) {
         const clean = item.embedRef.replace(/\/$/, "");
         return `${clean}/embed`;
       }
       return `https://www.instagram.com/p/${item.embedRef}/embed`;
     case "tiktok":
-      // embedRef is the video id
       if (item.embedRef.startsWith("http")) return item.embedRef;
       return `https://www.tiktok.com/embed/v2/${item.embedRef}`;
   }
@@ -49,15 +54,34 @@ function getFrameHeight(type: MediaItem["type"]): string {
   }
 }
 
+function ProfileCard({ item }: { item: MediaItem }) {
+  return (
+    <div className="flex h-[320px] w-full flex-col items-center justify-center gap-4 rounded-xl bg-gradient-to-br from-secondary/60 to-secondary/20 p-8 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-background/70 text-foreground">
+        <Instagram className="h-8 w-8" />
+      </div>
+      <div>
+        <p className="font-serif text-xl">{item.title}</p>
+        <p className="mt-1 text-sm text-muted-foreground">Instagram profile</p>
+      </div>
+      <p className="max-w-sm text-sm text-foreground/70">
+        Instagram only allows individual reels and posts to embed. Open the profile to see {item.creator}'s latest.
+      </p>
+    </div>
+  );
+}
+
 export function MediaEmbed({ item, bare = false }: MediaEmbedProps) {
-  const src = getEmbedUrl(item);
   const heightClass = getFrameHeight(item.type);
   const isAspect = heightClass.startsWith("aspect");
+  const isProfile = isInstagramProfile(item);
 
-  const frame = (
+  const frame = isProfile ? (
+    <ProfileCard item={item} />
+  ) : (
     <div className={`w-full overflow-hidden rounded-xl bg-secondary/40 ${isAspect ? heightClass : ""}`}>
       <iframe
-        src={src}
+        src={getEmbedUrl(item)}
         title={`${item.title} — ${item.creator}`}
         loading="lazy"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -115,7 +139,17 @@ function MediaLinks({ item }: { item: MediaItem }) {
           key={l.href}
           href={l.href}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer external"
+          onClick={(e) => {
+            // Escape sandboxed preview iframes (Lovable preview) that block target=_blank
+            // and end up navigating the iframe itself into youtube/instagram, which
+            // refuse framing (ERR_BLOCKED_BY_RESPONSE). On a normal published page this
+            // is a no-op because the default anchor behavior already opens a new tab.
+            if (typeof window !== "undefined" && window.top !== window.self) {
+              e.preventDefault();
+              window.open(l.href, "_blank", "noopener,noreferrer");
+            }
+          }}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
         >
           {l.label} <ExternalLink className="h-3.5 w-3.5" />
@@ -124,4 +158,3 @@ function MediaLinks({ item }: { item: MediaItem }) {
     </div>
   );
 }
-
