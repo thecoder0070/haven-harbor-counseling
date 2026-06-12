@@ -115,7 +115,7 @@ function IfsPage() {
           <h2>Trying IFS in Austin</h2>
           <p>
             If any of this sounds like what you've been looking for,{" "}
-            <Link to="/schedule" className="text-primary underline-offset-4 hover:underline">book a free 15-minute consult</Link>{" "}
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">book a free 15-minute consult</a>{" "}
             or learn about <Link to="/first-therapy-session" className="text-primary underline-offset-4 hover:underline">what to expect in your first session</Link>.
           </p>
         </div>

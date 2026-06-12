@@ -69,12 +69,11 @@ function HomePage() {
               when you want it.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                to="/schedule"
+              <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
                 className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lift transition hover:bg-primary/90"
               >
                 Book a Free Consult
-              </Link>
+              </a>
               <Link
                 to="/approach"
                 className="rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-muted"

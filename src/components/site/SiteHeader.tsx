@@ -39,12 +39,11 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
-          <Link
-            to="/schedule"
+          <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition hover:bg-primary/90"
           >
             Book a Consult
-          </Link>
+          </a>
         </nav>
 
         <button
@@ -69,13 +68,12 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
-            <Link
-              to="/schedule"
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
             >
               Book a Consult
-            </Link>
+            </a>
           </div>
         </div>
       )}
