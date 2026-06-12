@@ -201,19 +201,20 @@ function HomePage() {
           <div className="md:col-span-7">
             <p className="eyebrow">Meet your therapist</p>
             <h2 className="display mt-4 text-4xl md:text-5xl">
-              Warm, honest, and steady.
+              Brittany Zientek, LPC
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-foreground/80">
-              I'm a licensed counselor in Austin who specializes in trauma. My work is rooted in
-              evidence-based modalities — and shaped by a deep respect for each person's story,
-              body, and beliefs. For clients who want it, I integrate Christian faith with care
-              and gentleness; for those who don't, the work is just as welcoming.
+              I'm a Licensed Professional Counselor in Austin with 8 years of experience
+              supporting clients through anxiety, trauma, PTSD, and relationship concerns.
+              My approach is warm, collaborative, and tailored to your unique needs and
+              goals — drawing on evidence-based methods including CBT, Trauma-Focused CBT,
+              MBCT, and Solution-Focused Brief Therapy.
             </p>
             <Link
               to="/about"
               className="mt-8 inline-flex rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold transition hover:bg-muted"
             >
-              About the practice
+              More about Brittany
             </Link>
           </div>
         </div>
