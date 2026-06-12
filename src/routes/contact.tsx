@@ -52,7 +52,7 @@ function ContactPage() {
             {[
               { icon: Mail, label: "Email", value: "hello@havenandharborcounseling.com" },
               { icon: Phone, label: "Phone", value: "(512) 555-0140" },
-              { icon: MapPin, label: "Office", value: "South Austin · 78704" },
+              { icon: MapPin, label: "Office", value: "6448 E Hwy 290, Ste E108 · Austin, TX 78723" },
               { icon: Clock, label: "Hours", value: "Mon–Thu · 9am–6pm CT" },
             ].map((it) => (
               <div key={it.label} className="flex items-start gap-4">
