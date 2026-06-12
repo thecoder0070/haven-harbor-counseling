@@ -55,12 +55,11 @@ export function SiteFooter() {
               <span>6448 East Hwy 290, Ste E108<br />Austin, TX 78723</span>
             </li>
           </ul>
-          <Link
-            to="/schedule"
+          <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
             className="mt-5 inline-flex rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground"
           >
             Book a Consult
-          </Link>
+          </a>
         </div>
       </div>
       <div className="border-t border-border/60 py-6">

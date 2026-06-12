@@ -96,12 +96,11 @@ function PostPage() {
         <div className="mt-16 rounded-3xl border border-border/60 bg-secondary/40 p-8 text-center">
           <p className="font-serif text-2xl">Want to talk it through?</p>
           <p className="mt-3 text-sm text-muted-foreground">A free 15-minute consult is the simplest first step.</p>
-          <Link
-            to="/schedule"
+          <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
             className="mt-6 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lift transition hover:bg-primary/90"
           >
             Book a Free Consult
-          </Link>
+          </a>
         </div>
       </article>
 

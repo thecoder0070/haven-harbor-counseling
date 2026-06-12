@@ -16,12 +16,11 @@ export function CtaBanner() {
             No pressure, no commitment — just a conversation.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/schedule"
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
               className="rounded-full bg-cream px-6 py-3 text-sm font-semibold text-ink shadow-lift transition hover:bg-cream-deep"
             >
               Book a Free Consult
-            </Link>
+            </a>
             <Link
               to="/services"
               className="rounded-full border border-primary-foreground/40 px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-foreground/10"

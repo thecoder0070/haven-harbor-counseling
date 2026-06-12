@@ -35,10 +35,10 @@ function ContactPage() {
             Prefer to book directly? Use online scheduling or start the secure intake form.
           </p>
           <div className="flex gap-2">
-            <a href="/schedule" className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">
               Book online
             </a>
-            <a href="/schedule" className="rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold">
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold">
               Intake form
             </a>
           </div>

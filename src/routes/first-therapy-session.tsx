@@ -130,7 +130,7 @@ function FirstSessionPage() {
 
           <h2>Ready when you are</h2>
           <p>
-            <Link to="/schedule" className="text-primary underline-offset-4 hover:underline">Book a free 15-minute consult</Link>{" "}
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">Book a free 15-minute consult</a>{" "}
             and we'll figure out the rest together. Curious about{" "}
             <Link to="/cost-of-therapy-austin" className="text-primary underline-offset-4 hover:underline">cost and insurance</Link>?
           </p>

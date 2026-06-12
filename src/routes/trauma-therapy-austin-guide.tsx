@@ -290,9 +290,9 @@ function TraumaGuidePage() {
           <p>
             Haven &amp; Harbor specializes in EMDR and complex trauma for adults — in
             South Austin and via telehealth across Texas.{" "}
-            <Link to="/schedule" className="text-primary underline-offset-4 hover:underline">
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">
               Book a free 15-minute consult
-            </Link>{" "}
+            </a>{" "}
             or read more about our{" "}
             <Link to="/austin-trauma-therapist" className="text-primary underline-offset-4 hover:underline">
               Austin trauma therapy services

@@ -152,7 +152,7 @@ function CostPage() {
           <p>
             The best way to get personalized cost info — including whether your insurance is likely
             to reimburse — is a free 15-minute consult.{" "}
-            <Link to="/schedule" className="text-primary underline-offset-4 hover:underline">Book yours here</Link>{" "}
+            <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">Book yours here</a>{" "}
             or read about <Link to="/first-therapy-session" className="text-primary underline-offset-4 hover:underline">what to expect in your first session</Link>.
           </p>
         </div>
