@@ -52,7 +52,7 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-              <span>Austin, TX 78704</span>
+              <span>6448 East Hwy 290, Ste E108<br />Austin, TX 78723</span>
             </li>
           </ul>
           <Link
