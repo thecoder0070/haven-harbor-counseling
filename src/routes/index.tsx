@@ -178,6 +178,9 @@ function HomePage() {
             <Link to="/austin-trauma-therapy" className="font-semibold text-primary underline-offset-4 hover:underline">
               Trauma therapy in Austin →
             </Link>
+            <Link to="/christian-counseling" className="font-semibold text-primary underline-offset-4 hover:underline">
+              Christian counseling in Austin →
+            </Link>
             <Link to="/services" className="font-semibold text-primary underline-offset-4 hover:underline">
               See all services →
             </Link>
