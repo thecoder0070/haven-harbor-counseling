@@ -9,11 +9,11 @@ import office from "@/assets/office.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Haven & Harbor Counseling — Austin Trauma Therapy" },
+      { title: "Trauma Counseling & Therapy in Austin, TX | Haven & Harbor" },
       {
         name: "description",
         content:
-          "Compassionate, trauma-informed counseling in Austin, Texas. Faith-friendly therapy for individuals navigating trauma, anxiety, grief, and life transitions.",
+          "Trauma counseling and therapy in Austin, TX. EMDR, IFS, and faith-friendly care for PTSD, complex trauma, anxiety, and grief. In-person & telehealth.",
       },
       { property: "og:title", content: "Haven & Harbor Counseling — Austin, TX" },
       { property: "og:description", content: "Trauma-informed, faith-friendly therapy in Austin, Texas." },
