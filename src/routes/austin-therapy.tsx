@@ -6,14 +6,14 @@ import { CtaBanner } from "@/components/site/CtaBanner";
 export const Route = createFileRoute("/austin-therapy")({
   head: () => ({
     meta: [
-      { title: "Therapy in Austin, TX — Trauma, Anxiety & Faith-Friendly Counseling" },
+      { title: "Austin Therapy & Counseling — Faith-Friendly, EMDR & IFS" },
       {
         name: "description",
         content:
-          "Therapy in Austin, Texas focused on trauma, anxiety, and faith-friendly counseling. Evidence-based modalities including EMDR, IFS, and somatic work.",
+          "Therapy and counseling in Austin, TX for adults — anxiety, grief, faith, and life transitions. EMDR, IFS, and faith-friendly care with Brittany Zientek, LPC.",
       },
-      { property: "og:title", content: "Therapy in Austin, TX — Haven & Harbor" },
-      { property: "og:description", content: "Trauma-informed therapy in Austin." },
+      { property: "og:title", content: "Austin Therapy & Counseling — Haven & Harbor" },
+      { property: "og:description", content: "Therapy & counseling in Austin for anxiety, grief, and faith." },
       { property: "og:url", content: "/austin-therapy" },
     ],
     links: [{ rel: "canonical", href: "/austin-therapy" }],
