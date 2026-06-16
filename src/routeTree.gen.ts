@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatIsIfsTherapyRouteImport } from './routes/what-is-ifs-therapy'
 import { Route as WhatIsEmdrRouteImport } from './routes/what-is-emdr'
 import { Route as TraumaTherapyAustinGuideRouteImport } from './routes/trauma-therapy-austin-guide'
+import { Route as TraumaCounselingAustinRouteImport } from './routes/trauma-counseling-austin'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ScheduleRouteImport } from './routes/schedule'
@@ -47,6 +48,11 @@ const TraumaTherapyAustinGuideRoute =
     path: '/trauma-therapy-austin-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const TraumaCounselingAustinRoute = TraumaCounselingAustinRouteImport.update({
+  id: '/trauma-counseling-austin',
+  path: '/trauma-counseling-austin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -155,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/trauma-counseling-austin': typeof TraumaCounselingAustinRoute
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
@@ -178,6 +185,7 @@ export interface FileRoutesByTo {
   '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/trauma-counseling-austin': typeof TraumaCounselingAustinRoute
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
@@ -202,6 +210,7 @@ export interface FileRoutesById {
   '/schedule': typeof ScheduleRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/trauma-counseling-austin': typeof TraumaCounselingAustinRoute
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
@@ -227,6 +236,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/trauma-counseling-austin'
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/trauma-counseling-austin'
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
@@ -273,6 +284,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/services'
     | '/sitemap.xml'
+    | '/trauma-counseling-austin'
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
@@ -297,6 +309,7 @@ export interface RootRouteChildren {
   ScheduleRoute: typeof ScheduleRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TraumaCounselingAustinRoute: typeof TraumaCounselingAustinRoute
   TraumaTherapyAustinGuideRoute: typeof TraumaTherapyAustinGuideRoute
   WhatIsEmdrRoute: typeof WhatIsEmdrRoute
   WhatIsIfsTherapyRoute: typeof WhatIsIfsTherapyRoute
@@ -326,6 +339,13 @@ declare module '@tanstack/react-router' {
       path: '/trauma-therapy-austin-guide'
       fullPath: '/trauma-therapy-austin-guide'
       preLoaderRoute: typeof TraumaTherapyAustinGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trauma-counseling-austin': {
+      id: '/trauma-counseling-austin'
+      path: '/trauma-counseling-austin'
+      fullPath: '/trauma-counseling-austin'
+      preLoaderRoute: typeof TraumaCounselingAustinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -473,6 +493,7 @@ const rootRouteChildren: RootRouteChildren = {
   ScheduleRoute: ScheduleRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TraumaCounselingAustinRoute: TraumaCounselingAustinRoute,
   TraumaTherapyAustinGuideRoute: TraumaTherapyAustinGuideRoute,
   WhatIsEmdrRoute: WhatIsEmdrRoute,
   WhatIsIfsTherapyRoute: WhatIsIfsTherapyRoute,
