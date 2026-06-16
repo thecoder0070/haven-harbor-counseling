@@ -1,50 +1,42 @@
-# Rank for the four target phrases
+## Target keywords
 
-## Status check
-
-| Keyword | Volume | Difficulty | Current coverage |
+| Phrase | Volume | KD | Current page |
 |---|---|---|---|
-| trauma therapy austin | 140/mo | 28 | ✅ `/austin-trauma-therapy` (shipped last turn) |
-| austin trauma therapy | 90/mo | 25 | ✅ same page |
-| trauma counseling austin | 70/mo | 12 | ✅ `/trauma-counseling-austin` (shipped earlier) |
-| austin trauma counseling | 20/mo | 0 | ✅ same page |
-| christian counseling austin | 210/mo | 28 | ⚠️ `/christian-counseling` exists but thin, no schema |
-| austin christian therapist | 70/mo | 26 | ⚠️ `/austin-christian-therapist` exists but short, no schema |
-| austin christian counseling | 30/mo | 0 | ⚠️ same as above |
-| austin christian therapy | <10/mo | 0 | ⚠️ same as above |
+| austin therapy | 1,300/mo | 62 | `/austin-therapy` (exists) |
+| austin therapist | 320/mo | 56 | `/austin-therapist` (exists) |
+| austin counseling | 140/mo | 52 | none — gap |
+| austin counselor | 40/mo | 52 | none — gap |
 
-**Trauma side is done.** This plan upgrades the Christian-counseling side to match.
+Heads-up: these are head terms (KD 52-62) — harder than the niche pages we built. Realistic timeline is 3-6 months, and ranking depends as much on backlinks and Google Business Profile as on-page work. The niche pages (trauma/Christian) will rank faster.
 
 ## Plan
 
-### 1. Upgrade `/christian-counseling` (primary money page — 210/mo head term)
-- Retitle: "Christian Counseling in Austin, TX | Haven & Harbor" (<60 chars, head term first).
-- Tighten meta description to include "Christian counseling in Austin" exactly.
-- Switch canonical + og:url to absolute URLs.
-- Add **MedicalBusiness JSON-LD** (street address, price range, area served — same shape used on the trauma pages).
-- Add **FAQPage JSON-LD** + a visible FAQ section with 5–6 Qs: *Is this Christian counseling or pastoral counseling? Will you use scripture and prayer? Are you a Christian therapist? Do you take insurance? In-person or telehealth? What if I'm deconstructing?*
-- Add internal links to `/austin-christian-therapist`, `/trauma-counseling-austin`, `/about`, `/cost-of-therapy-austin`.
+1. **Upgrade `/austin-therapy`** (biggest prize, 1,300/mo)
+   - Retitle to lead with head term: "Austin Therapy — Trauma, Anxiety & Faith-Friendly | Haven & Harbor"
+   - Add absolute canonical/og:url
+   - Add `MedicalBusiness` + `FAQPage` JSON-LD (5–6 Qs: cost, insurance, in-person vs telehealth, modalities, how to start)
+   - Add visible FAQ section
+   - Add cross-links to `/austin-therapist`, `/trauma-counseling-austin`, `/christian-counseling`, `/cost-of-therapy-austin`
 
-### 2. Upgrade `/austin-christian-therapist` (secondary — 70/mo)
-- Retitle: "Christian Therapist in Austin, TX | Haven & Harbor".
-- Switch canonical + og:url to absolute URLs.
-- Add MedicalBusiness + FAQPage JSON-LD (3–4 therapist-specific Qs).
-- Cross-link to `/christian-counseling` so Google treats them as a cluster, not duplicates.
+2. **Upgrade `/austin-therapist`** (320/mo)
+   - Retitle: "Austin Therapist — Trauma, Anxiety & Christian Counseling"
+   - Absolute canonical/og:url, MedicalBusiness + FAQPage JSON-LD (4 Qs: credentials, what I treat, insurance, how to book)
+   - Cross-link to `/austin-therapy`, niche pages
 
-### 3. Homepage internal-link boost
-The Specialties section already has a "Faith & Identity" card. Add a contextual "Christian counseling in Austin →" link beside the existing "Trauma therapy in Austin →" link below the cards, pointing to `/christian-counseling`. Homepage authority is the strongest internal lever.
+3. **Create `/austin-counseling`** (new page, owns "austin counseling" + "austin counselor")
+   - Title: "Austin Counseling — Trauma, Anxiety, Grief & Faith | Haven & Harbor"
+   - Same structure as the trauma/Christian pages: hero, what we help with, approach (EMDR/IFS), about Brittany, FAQ, CTA
+   - MedicalBusiness + FAQPage JSON-LD
+   - Body copy uses both "counseling" and "counselor" naturally
+   - Cross-links to `/austin-therapy`, `/austin-therapist`, niche pages
+   - Add to `sitemap.xml.ts`
 
-### 4. Sitemap
-Both pages are already in `sitemap[.]xml.ts`. No change.
+4. **Homepage** — Add "Austin counseling →" link to the Specialties section alongside the existing trauma/Christian links.
+
+5. **Anti-cannibalization** — Each page owns one head term:
+   - `/austin-therapy` → "austin therapy"
+   - `/austin-therapist` → "austin therapist"
+   - `/austin-counseling` → "austin counseling" + "austin counselor"
 
 ## Out of scope
-- Building backlinks (off-site)
-- Custom domain (your highest non-code lever — flagged before)
-- Google Business Profile (required for the local map pack — flagged before)
-- New blog posts
-
-## Technical notes
-- Same per-route `head()` pattern with absolute canonical/og:url.
-- Reuse `MedicalBusiness` + `FAQPage` JSON-LD shapes from the trauma pages.
-- Additive content edits — no layout/component changes, no new deps.
-- Keep titles distinct (`/christian-counseling` owns "counseling", `/austin-christian-therapist` owns "therapist") to avoid cannibalization.
+Backlinks, Google Business Profile setup, custom domain, new blog content — these matter more than on-page for head-term ranking, but you'd handle them outside the app.

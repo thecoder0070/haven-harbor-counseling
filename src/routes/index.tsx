@@ -181,6 +181,9 @@ function HomePage() {
             <Link to="/christian-counseling" className="font-semibold text-primary underline-offset-4 hover:underline">
               Christian counseling in Austin →
             </Link>
+            <Link to="/austin-counseling" className="font-semibold text-primary underline-offset-4 hover:underline">
+              Austin counseling →
+            </Link>
             <Link to="/services" className="font-semibold text-primary underline-offset-4 hover:underline">
               See all services →
             </Link>
