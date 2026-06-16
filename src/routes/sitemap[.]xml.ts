@@ -48,6 +48,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/austin-trauma-therapist", changefreq: "monthly", priority: "0.9" },
           { path: "/trauma-therapy-austin-guide", changefreq: "monthly", priority: "0.9" },
           { path: "/trauma-counseling-austin", changefreq: "monthly", priority: "0.9" },
+          { path: "/austin-trauma-therapy", changefreq: "monthly", priority: "0.9" },
           ...BLOG_SLUGS.map((slug) => ({
             path: `/resources/${slug}`,
             changefreq: "monthly" as const,

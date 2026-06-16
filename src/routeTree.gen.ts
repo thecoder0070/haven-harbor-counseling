@@ -21,6 +21,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CostOfTherapyAustinRouteImport } from './routes/cost-of-therapy-austin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChristianCounselingRouteImport } from './routes/christian-counseling'
+import { Route as AustinTraumaTherapyRouteImport } from './routes/austin-trauma-therapy'
 import { Route as AustinTraumaTherapistRouteImport } from './routes/austin-trauma-therapist'
 import { Route as AustinTherapyRouteImport } from './routes/austin-therapy'
 import { Route as AustinTherapistRouteImport } from './routes/austin-therapist'
@@ -93,6 +94,11 @@ const ChristianCounselingRoute = ChristianCounselingRouteImport.update({
   path: '/christian-counseling',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AustinTraumaTherapyRoute = AustinTraumaTherapyRouteImport.update({
+  id: '/austin-trauma-therapy',
+  path: '/austin-trauma-therapy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AustinTraumaTherapistRoute = AustinTraumaTherapistRouteImport.update({
   id: '/austin-trauma-therapist',
   path: '/austin-trauma-therapist',
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/austin-therapist': typeof AustinTherapistRoute
   '/austin-therapy': typeof AustinTherapyRoute
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
+  '/austin-trauma-therapy': typeof AustinTraumaTherapyRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
   '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
@@ -177,6 +184,7 @@ export interface FileRoutesByTo {
   '/austin-therapist': typeof AustinTherapistRoute
   '/austin-therapy': typeof AustinTherapyRoute
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
+  '/austin-trauma-therapy': typeof AustinTraumaTherapyRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
   '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
@@ -202,6 +210,7 @@ export interface FileRoutesById {
   '/austin-therapist': typeof AustinTherapistRoute
   '/austin-therapy': typeof AustinTherapyRoute
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
+  '/austin-trauma-therapy': typeof AustinTraumaTherapyRoute
   '/christian-counseling': typeof ChristianCounselingRoute
   '/contact': typeof ContactRoute
   '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
@@ -228,6 +237,7 @@ export interface FileRouteTypes {
     | '/austin-therapist'
     | '/austin-therapy'
     | '/austin-trauma-therapist'
+    | '/austin-trauma-therapy'
     | '/christian-counseling'
     | '/contact'
     | '/cost-of-therapy-austin'
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/austin-therapist'
     | '/austin-therapy'
     | '/austin-trauma-therapist'
+    | '/austin-trauma-therapy'
     | '/christian-counseling'
     | '/contact'
     | '/cost-of-therapy-austin'
@@ -276,6 +287,7 @@ export interface FileRouteTypes {
     | '/austin-therapist'
     | '/austin-therapy'
     | '/austin-trauma-therapist'
+    | '/austin-trauma-therapy'
     | '/christian-counseling'
     | '/contact'
     | '/cost-of-therapy-austin'
@@ -301,6 +313,7 @@ export interface RootRouteChildren {
   AustinTherapistRoute: typeof AustinTherapistRoute
   AustinTherapyRoute: typeof AustinTherapyRoute
   AustinTraumaTherapistRoute: typeof AustinTraumaTherapistRoute
+  AustinTraumaTherapyRoute: typeof AustinTraumaTherapyRoute
   ChristianCounselingRoute: typeof ChristianCounselingRoute
   ContactRoute: typeof ContactRoute
   CostOfTherapyAustinRoute: typeof CostOfTherapyAustinRoute
@@ -404,6 +417,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChristianCounselingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/austin-trauma-therapy': {
+      id: '/austin-trauma-therapy'
+      path: '/austin-trauma-therapy'
+      fullPath: '/austin-trauma-therapy'
+      preLoaderRoute: typeof AustinTraumaTherapyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/austin-trauma-therapist': {
       id: '/austin-trauma-therapist'
       path: '/austin-trauma-therapist'
@@ -485,6 +505,7 @@ const rootRouteChildren: RootRouteChildren = {
   AustinTherapistRoute: AustinTherapistRoute,
   AustinTherapyRoute: AustinTherapyRoute,
   AustinTraumaTherapistRoute: AustinTraumaTherapistRoute,
+  AustinTraumaTherapyRoute: AustinTraumaTherapyRoute,
   ChristianCounselingRoute: ChristianCounselingRoute,
   ContactRoute: ContactRoute,
   CostOfTherapyAustinRoute: CostOfTherapyAustinRoute,
