@@ -1,24 +1,97 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import journal from "@/assets/journal.jpg";
 
+const URL = "https://haven-harbor-counseling.lovable.app/christian-counseling";
+const HEADWAY = "https://care.headway.co/providers/brittany-zientek";
+
+const FAQ = [
+  {
+    q: "What is Christian counseling?",
+    a: "Christian counseling is licensed, evidence-based therapy provided by a clinician who can integrate Christian faith into the work when the client wants it. At Haven & Harbor it's not pastoral counseling or a Bible study — it's professional therapy with room for scripture, prayer, and theology when those are helpful to you.",
+  },
+  {
+    q: "Is this pastoral counseling or licensed therapy?",
+    a: "Licensed therapy. Brittany Zientek is a Licensed Professional Counselor (LPC) in Texas with 8 years of clinical experience. Sessions are confidential, insurance-billable, and use evidence-based modalities (EMDR, IFS, Trauma-Focused CBT).",
+  },
+  {
+    q: "Will you use scripture and prayer in sessions?",
+    a: "Only if you want us to. You set the spiritual temperature of the room every week. Some sessions include prayer or sitting with a scripture; others never mention faith. Both are full therapy.",
+  },
+  {
+    q: "Do you take insurance?",
+    a: "Yes. Through Headway, Brittany is in-network with Aetna, Cigna, United Healthcare, Oscar, Oxford, and Anthem. Self-pay sessions are $130–$225, and superbills are available for out-of-network reimbursement.",
+  },
+  {
+    q: "Do you offer in-person or online Christian counseling?",
+    a: "Both. The Austin office is at 6448 E Hwy 290, Ste E108. Telehealth is available across Texas.",
+  },
+  {
+    q: "What if I'm deconstructing or unsure about my faith?",
+    a: "You're welcome here. Many clients come in the middle of deconstruction, church hurt, or a 'dark night of the soul.' The work is to help you heal — not to defend a particular theology or rush you back to certainty.",
+  },
+];
+
 export const Route = createFileRoute("/christian-counseling")({
   head: () => ({
     meta: [
-      { title: "Christian Counseling in Austin, TX — Faith-Integrated Therapy" },
+      { title: "Christian Counseling in Austin, TX | Haven & Harbor" },
       {
         name: "description",
         content:
-          "Christian counseling in Austin, Texas. Faith-integrated therapy for trauma, anxiety, and spiritual struggle with a licensed Christian therapist.",
+          "Christian counseling in Austin, TX. Licensed, faith-integrated therapy for trauma, anxiety, church hurt, and spiritual seasons. In-person & telehealth.",
       },
-      { property: "og:title", content: "Christian Counseling in Austin — Haven & Harbor" },
-      { property: "og:description", content: "Faith-integrated Christian therapy in Austin, TX." },
-      { property: "og:url", content: "/christian-counseling" },
+      { property: "og:title", content: "Christian Counseling in Austin, TX | Haven & Harbor" },
+      {
+        property: "og:description",
+        content:
+          "Licensed Christian counseling in Austin with Brittany Zientek, LPC. EMDR, IFS, and faith-integrated therapy. In-person & telehealth.",
+      },
+      { property: "og:url", content: URL },
       { property: "og:image", content: journal },
     ],
-    links: [{ rel: "canonical", href: "/christian-counseling" }],
+    links: [{ rel: "canonical", href: URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          name: "Haven & Harbor Counseling",
+          url: URL,
+          description:
+            "Christian counseling in Austin, TX. Licensed, faith-integrated therapy with Brittany Zientek, LPC.",
+          medicalSpecialty: "Psychiatric",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "6448 E Hwy 290, Ste E108",
+            addressLocality: "Austin",
+            addressRegion: "TX",
+            postalCode: "78723",
+            addressCountry: "US",
+          },
+          areaServed: [
+            { "@type": "City", name: "Austin" },
+            { "@type": "State", name: "Texas" },
+          ],
+          priceRange: "$130–$225",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
   }),
   component: ChristianPage,
 });
