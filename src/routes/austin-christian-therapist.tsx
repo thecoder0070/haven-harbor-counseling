@@ -3,20 +3,81 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
 
+const URL = "https://haven-harbor-counseling.lovable.app/austin-christian-therapist";
+const HEADWAY = "https://care.headway.co/providers/brittany-zientek";
+
+const FAQ = [
+  {
+    q: "Are you a licensed Christian therapist in Austin?",
+    a: "Yes. Brittany Zientek is a Licensed Professional Counselor (LPC) in Texas with 8 years of clinical experience. She integrates Christian faith into the work for clients who want it — never required, never assumed.",
+  },
+  {
+    q: "What kind of clients do you work with?",
+    a: "Adults navigating trauma, anxiety, church hurt, deconstruction, grief, and life transitions — both inside and outside a Christian framework. You don't need to pass a faith test to work with Brittany.",
+  },
+  {
+    q: "Do you take insurance?",
+    a: "Yes — Aetna, Cigna, United Healthcare, Oscar, Oxford, and Anthem through Headway. Self-pay sessions are $130–$225.",
+  },
+  {
+    q: "How is this different from pastoral counseling?",
+    a: "Pastoral counseling is offered by clergy and centers on spiritual guidance. This is licensed psychotherapy — clinical training, evidence-based modalities (EMDR, IFS, Trauma-Focused CBT), confidentiality, and insurance-billable. Faith is welcome, not the curriculum.",
+  },
+];
+
 export const Route = createFileRoute("/austin-christian-therapist")({
   head: () => ({
     meta: [
-      { title: "Austin Christian Therapist — Haven & Harbor" },
+      { title: "Christian Therapist in Austin, TX | Haven & Harbor" },
       {
         name: "description",
         content:
-          "Christian therapist in Austin, TX offering faith-integrated counseling for trauma, anxiety, church hurt, and spiritual seasons — gentle, evidence-based, and on your terms.",
+          "Licensed Christian therapist in Austin, TX. Faith-integrated counseling for trauma, anxiety, church hurt, and deconstruction — with Brittany Zientek, LPC.",
       },
-      { property: "og:title", content: "Austin Christian Therapist — Haven & Harbor" },
-      { property: "og:description", content: "Faith-integrated Christian therapy in Austin, TX." },
-      { property: "og:url", content: "/austin-christian-therapist" },
+      { property: "og:title", content: "Christian Therapist in Austin, TX | Haven & Harbor" },
+      { property: "og:description", content: "Licensed, faith-integrated therapy in Austin with Brittany Zientek, LPC." },
+      { property: "og:url", content: URL },
     ],
-    links: [{ rel: "canonical", href: "/austin-christian-therapist" }],
+    links: [{ rel: "canonical", href: URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          name: "Haven & Harbor Counseling",
+          url: URL,
+          description:
+            "Christian therapist in Austin, TX. Licensed, faith-integrated therapy with Brittany Zientek, LPC.",
+          medicalSpecialty: "Psychiatric",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "6448 E Hwy 290, Ste E108",
+            addressLocality: "Austin",
+            addressRegion: "TX",
+            postalCode: "78723",
+            addressCountry: "US",
+          },
+          areaServed: [
+            { "@type": "City", name: "Austin" },
+            { "@type": "State", name: "Texas" },
+          ],
+          priceRange: "$130–$225",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
   }),
   component: AustinChristianPage,
 });
