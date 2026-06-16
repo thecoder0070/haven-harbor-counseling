@@ -1,35 +1,51 @@
-## Goal
-Make every "Book a Consult / Schedule" CTA across the site open `https://care.headway.co/providers/brittany-zientek` in a new tab.
+# Rank for "trauma counseling Austin"
 
-## Approach
-Centralize the URL in `src/lib/booking.ts`, then replace internal `<Link to="/schedule">` and `<a href="/schedule">` booking CTAs with external anchors that open Headway in a new tab. Leave the `/schedule` route in place but repoint its primary scheduler button to Headway as well (in case anyone reaches it via old links). Intake button on `/schedule` stays as-is (still placeholder).
+## Where you stand
 
-## Changes
+- Semrush has **no data** for haven-harbor-counseling.lovable.app — Google likely hasn't indexed the site yet (or only barely). That's the root cause of "doesn't pop up at all," not weak content.
+- "trauma counseling austin" — 70 searches/mo, **KD 12 (very easy)**. Top results (austincts.com, atxtraumatherapycenter.com, Psychology Today) are beatable with focused on-page SEO + indexing.
+- Broader nearby terms worth capturing: *trauma therapy austin*, *trauma therapy near me*, *ptsd counseling*, *emdr therapists austin*.
+- You have landing pages for "austin trauma therapist" and "trauma therapy austin guide" — but **none targeting "trauma counseling austin"** specifically, and the homepage title doesn't include the phrase.
 
-1. **`src/lib/booking.ts`** — set `SCHEDULE_URL = "https://care.headway.co/providers/brittany-zientek"` and `SCHEDULE_IS_PLACEHOLDER = false`.
+## Plan
 
-2. **Header / Footer / CTA banner** (always go external, new tab):
-   - `src/components/site/SiteHeader.tsx` (2 CTAs — desktop + mobile)
-   - `src/components/site/SiteFooter.tsx`
-   - `src/components/site/CtaBanner.tsx`
+### 1. Get indexed (highest priority — nothing else matters until this is done)
+- Verify the site in Google Search Console (use the existing `google-site-verification` meta in `__root.tsx`).
+- Submit `https://haven-harbor-counseling.lovable.app/sitemap.xml` in GSC.
+- Use GSC "URL Inspection → Request Indexing" on the homepage and the 4–5 key landing pages.
+- Recommend (for after this plan): point a real custom domain (e.g. havenandharborcounseling.com) at the site. `.lovable.app` subdomains rank poorly vs. a branded domain. I'll flag this but not act on it.
 
-3. **Page-level booking buttons / links** — swap `<Link to="/schedule">` or `<a href="/schedule">` for `<a href={SCHEDULE_URL} target="_blank" rel="noopener noreferrer">`:
-   - `src/routes/index.tsx`
-   - `src/routes/contact.tsx` (both "Book online" and the second `/schedule` anchor)
-   - `src/routes/resources.$slug.tsx`
-   - `src/routes/what-is-ifs-therapy.tsx`
-   - `src/routes/what-is-emdr.tsx`
-   - `src/routes/cost-of-therapy-austin.tsx`
-   - `src/routes/trauma-therapy-austin-guide.tsx`
-   - `src/routes/first-therapy-session.tsx`
-   - `src/routes/austin-trauma-therapist.tsx`
-   - `src/routes/austin-therapist.tsx`
-   - `src/routes/austin-therapy.tsx`
-   - `src/routes/austin-christian-therapist.tsx` (if it has a `/schedule` link)
+### 2. Create a dedicated `/trauma-counseling-austin` page
+New route `src/routes/trauma-counseling-austin.tsx` targeting the exact phrase:
+- H1: "Trauma Counseling in Austin, TX"
+- Title: "Trauma Counseling in Austin, TX | Haven & Harbor Counseling" (<60 chars)
+- Meta description with phrase + value prop (<160 chars)
+- Sections: What is trauma counseling · Who it helps (PTSD, C-PTSD, religious trauma) · Modalities (EMDR, IFS, TF-CBT) · What to expect · About Brittany · Insurance & cost · FAQ · CTA to Headway
+- Internal links to `/what-is-emdr`, `/what-is-ifs-therapy`, `/trauma-therapy-austin-guide`, `/about`, `/cost-of-therapy-austin`
+- LocalBusiness + FAQPage JSON-LD
+- Canonical + og:url self-referencing
+- Add to `sitemap[.]xml.ts`
 
-4. **`src/routes/schedule.tsx`** — the "Open scheduler" button already reads `SCHEDULE_URL`, so updating the constant in step 1 fixes it automatically. No structural changes; keep the page reachable.
+### 3. Tighten on-page SEO across existing pages
+- **Homepage title** → "Trauma Counseling & Therapy in Austin, TX | Haven & Harbor" (currently "Austin Trauma Therapy" — add "counseling" variant)
+- **Homepage H1** stays brand-forward, but add an H2 containing "Trauma counseling in Austin"
+- **`austin-trauma-therapist.tsx`** — route path has a typo (`/aAustin_trauma-therapist`). Fix to `/austin-trauma-therapist` so the URL matches the intent and the existing sitemap entry.
+- Ensure every landing page has a unique, keyword-targeted title + meta description (audit `austin-therapy`, `austin-therapist`, `trauma-therapy-austin-guide`).
+- Add internal links from homepage "Specialties" → Trauma & PTSD card to the new `/trauma-counseling-austin` page.
+
+### 4. LocalBusiness schema upgrade (in `__root.tsx`)
+Current JSON-LD is missing key local-SEO signals. Add: full street address (6448 E Hwy 290, Ste E108, Austin TX 78723), telephone, geo coordinates, `priceRange`, `image`, `url`, `sameAs` (Headway profile, any social), and `openingHours`. Local pack ranking depends heavily on this + a Google Business Profile.
+
+### 5. Google Business Profile (recommend — out of code scope)
+The Austin "map pack" for trauma counseling is dominated by GBP listings. I can't create that for you, but it's the single biggest off-site lever. I'll note this in the closing message.
 
 ## Out of scope
-- Intake URL (still placeholder)
-- Removing the `/schedule` page entirely
-- Copy edits beyond URL changes
+- Building backlinks (off-site work)
+- Switching to a custom domain (your decision — I'll flag the SEO benefit)
+- Blog content beyond what already exists in `/resources`
+- Paid ads
+
+## Technical notes
+- Sitemap is a server route at `src/routes/sitemap[.]xml.ts` — add the new path there.
+- All new head tags follow the existing per-route `head()` pattern; canonical only on the leaf route.
+- JSON-LD via the `scripts` array, as you already do elsewhere.
