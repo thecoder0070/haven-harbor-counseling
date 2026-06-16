@@ -44,6 +44,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/first-therapy-session", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-therapist", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-therapy", changefreq: "monthly", priority: "0.9" },
+          { path: "/austin-counseling", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-christian-therapist", changefreq: "monthly", priority: "0.9" },
           { path: "/austin-trauma-therapist", changefreq: "monthly", priority: "0.9" },
           { path: "/trauma-therapy-austin-guide", changefreq: "monthly", priority: "0.9" },
