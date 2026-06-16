@@ -126,6 +126,38 @@ function AustinChristianPage() {
         </div>
       </section>
 
+      <section className="bg-secondary/40 py-20">
+        <div className="container-prose">
+          <p className="eyebrow">FAQ</p>
+          <h2 className="display mt-3 text-4xl">Common questions</h2>
+          <div className="mt-10 space-y-6">
+            {FAQ.map((f) => (
+              <div key={f.q} className="rounded-2xl border border-border/60 bg-card p-6">
+                <h3 className="font-serif text-xl">{f.q}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 text-base text-foreground/80">
+            For more on the practice, see our{" "}
+            <Link to="/christian-counseling" className="text-primary underline-offset-4 hover:underline">
+              Christian counseling in Austin
+            </Link>{" "}
+            page.
+          </p>
+          <div className="mt-8">
+            <a
+              href={HEADWAY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lift"
+            >
+              Book a free consult
+            </a>
+          </div>
+        </div>
+      </section>
+
       <CtaBanner />
     </SiteLayout>
   );
