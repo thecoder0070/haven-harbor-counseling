@@ -83,17 +83,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "MedicalBusiness",
+          "@id": "https://haven-harbor-counseling.lovable.app/#business",
           name: "Haven & Harbor Counseling",
+          url: "https://haven-harbor-counseling.lovable.app",
           description:
-            "Trauma-informed, faith-friendly counseling and therapy in Austin, Texas.",
-          areaServed: "Austin, TX",
+            "Trauma counseling and therapy in Austin, Texas. EMDR, IFS, and Trauma-Focused CBT with Brittany Zientek, LPC.",
+          image:
+            "https://storage.googleapis.com/gpt-engineer-file-uploads/As3tevxj29Yaj3OMHYixZlaQ7ct1/social-images/social-1779481632573-Haven_and_harbor_logo.webp",
+          priceRange: "$130–$225",
+          medicalSpecialty: "Psychiatric",
           address: {
             "@type": "PostalAddress",
+            streetAddress: "6448 E Hwy 290, Ste E108",
             addressLocality: "Austin",
             addressRegion: "TX",
+            postalCode: "78723",
             addressCountry: "US",
           },
-          medicalSpecialty: "Psychiatric",
+          areaServed: [
+            { "@type": "City", name: "Austin" },
+            { "@type": "State", name: "Texas" },
+          ],
+          sameAs: ["https://care.headway.co/providers/brittany-zientek"],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              opens: "09:00",
+              closes: "17:00",
+            },
+          ],
         }),
       },
     ],
