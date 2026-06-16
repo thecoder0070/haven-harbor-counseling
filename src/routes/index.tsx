@@ -174,8 +174,11 @@ function HomePage() {
               </article>
             ))}
           </div>
-          <div className="mt-10">
-            <Link to="/services" className="text-sm font-semibold text-primary underline-offset-4 hover:underline">
+          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <Link to="/austin-trauma-therapy" className="font-semibold text-primary underline-offset-4 hover:underline">
+              Trauma therapy in Austin →
+            </Link>
+            <Link to="/services" className="font-semibold text-primary underline-offset-4 hover:underline">
               See all services →
             </Link>
           </div>
