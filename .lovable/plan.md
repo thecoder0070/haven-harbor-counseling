@@ -1,54 +1,50 @@
-# Rank for "Austin trauma therapy" and "Austin trauma counseling"
+# Rank for the four target phrases
 
-## Landscape
+## Status check
 
-| Keyword | Volume | Difficulty | Status |
+| Keyword | Volume | Difficulty | Current coverage |
 |---|---|---|---|
-| trauma therapy austin | 140/mo | 28 (easy) | No exact-match page |
-| austin trauma therapy | 90/mo | 25 (easy) | No exact-match page |
-| trauma counseling austin | 70/mo | 12 | Covered by `/trauma-counseling-austin` (just shipped) |
-| austin trauma counseling | 20/mo | 0 | Same page covers it |
+| trauma therapy austin | 140/mo | 28 | ✅ `/austin-trauma-therapy` (shipped last turn) |
+| austin trauma therapy | 90/mo | 25 | ✅ same page |
+| trauma counseling austin | 70/mo | 12 | ✅ `/trauma-counseling-austin` (shipped earlier) |
+| austin trauma counseling | 20/mo | 0 | ✅ same page |
+| christian counseling austin | 210/mo | 28 | ⚠️ `/christian-counseling` exists but thin, no schema |
+| austin christian therapist | 70/mo | 26 | ⚠️ `/austin-christian-therapist` exists but short, no schema |
+| austin christian counseling | 30/mo | 0 | ⚠️ same as above |
+| austin christian therapy | <10/mo | 0 | ⚠️ same as above |
 
-Top of SERP for "austin trauma therapy" is atxtraumatherapycenter.com (exact-match domain) and Psychology Today. Beatable with a dedicated, content-rich page + the indexing work you still need to do in GSC.
-
-The existing `/trauma-therapy-austin-guide` already targets nearby long-tail terms and ranks well as a guide — don't repoint it. We need a separate **service page** that owns the head term head-on.
+**Trauma side is done.** This plan upgrades the Christian-counseling side to match.
 
 ## Plan
 
-### 1. New page: `/austin-trauma-therapy`
-A service page (not a guide) targeting the highest-volume phrase. Distinct from both `/austin-trauma-therapist` (about the therapist) and `/trauma-therapy-austin-guide` (long-form educational).
+### 1. Upgrade `/christian-counseling` (primary money page — 210/mo head term)
+- Retitle: "Christian Counseling in Austin, TX | Haven & Harbor" (<60 chars, head term first).
+- Tighten meta description to include "Christian counseling in Austin" exactly.
+- Switch canonical + og:url to absolute URLs.
+- Add **MedicalBusiness JSON-LD** (street address, price range, area served — same shape used on the trauma pages).
+- Add **FAQPage JSON-LD** + a visible FAQ section with 5–6 Qs: *Is this Christian counseling or pastoral counseling? Will you use scripture and prayer? Are you a Christian therapist? Do you take insurance? In-person or telehealth? What if I'm deconstructing?*
+- Add internal links to `/austin-christian-therapist`, `/trauma-counseling-austin`, `/about`, `/cost-of-therapy-austin`.
 
-- H1: "Trauma Therapy in Austin, TX"
-- Title: "Trauma Therapy in Austin, TX | Haven & Harbor" (<60 chars)
-- Meta description leading with "Trauma therapy in Austin" + value prop
-- Sections: Intro · Types of trauma we treat · Modalities (EMDR/IFS/TF-CBT) · What sessions look like · Insurance & cost · About Brittany · FAQ · CTA to Headway
-- LocalBusiness + FAQPage JSON-LD; canonical and og:url self-referencing
-- Internal links: `/trauma-therapy-austin-guide` (deep dive), `/what-is-emdr`, `/what-is-ifs-therapy`, `/about`, `/cost-of-therapy-austin`, and cross-link to `/trauma-counseling-austin`
-- Add to `sitemap[.]xml.ts`
+### 2. Upgrade `/austin-christian-therapist` (secondary — 70/mo)
+- Retitle: "Christian Therapist in Austin, TX | Haven & Harbor".
+- Switch canonical + og:url to absolute URLs.
+- Add MedicalBusiness + FAQPage JSON-LD (3–4 therapist-specific Qs).
+- Cross-link to `/christian-counseling` so Google treats them as a cluster, not duplicates.
 
-### 2. Strengthen `/trauma-counseling-austin` cross-linking
-Add a clear in-content link from `/trauma-counseling-austin` → `/austin-trauma-therapy` (and vice versa) so Google sees them as a connected service cluster, not duplicates.
+### 3. Homepage internal-link boost
+The Specialties section already has a "Faith & Identity" card. Add a contextual "Christian counseling in Austin →" link beside the existing "Trauma therapy in Austin →" link below the cards, pointing to `/christian-counseling`. Homepage authority is the strongest internal lever.
 
-### 3. Tighten titles & meta on adjacent pages
-- `/austin-therapy` — broaden title to include "Austin Therapy & Counseling" so it stops competing on "trauma therapy" head term (let the new page own that).
-- `/austin-trauma-therapist` — already good; leave alone.
-- `/trauma-therapy-austin-guide` — change title to make its "guide" intent clearer (e.g. "Trauma Therapy in Austin: Complete Guide to EMDR, IFS & C-PTSD"). Prevents it from cannibalizing the new service page.
-
-### 4. Homepage internal-link boost
-Add a contextual link from the homepage Trauma & PTSD specialty card → `/austin-trauma-therapy`. Homepage has the most internal authority; one solid link there moves the needle.
-
-### 5. Sitemap + indexing reminder
-- Add `/austin-trauma-therapy` to `sitemap[.]xml.ts`.
-- Remind you to "Request Indexing" on the new URL in Google Search Console (and resubmit the sitemap).
+### 4. Sitemap
+Both pages are already in `sitemap[.]xml.ts`. No change.
 
 ## Out of scope
 - Building backlinks (off-site)
-- Custom domain switch (flagged previously — still your highest non-code lever)
-- Google Business Profile setup (flagged previously)
-- Blog content beyond `/resources`
+- Custom domain (your highest non-code lever — flagged before)
+- Google Business Profile (required for the local map pack — flagged before)
+- New blog posts
 
 ## Technical notes
-- Same per-route `head()` pattern, canonical/og:url self-reference.
-- Reuse `SiteLayout`, `PageHeader`, `CtaBanner`.
-- All booking CTAs go to the Headway URL (existing convention).
-- No new dependencies.
+- Same per-route `head()` pattern with absolute canonical/og:url.
+- Reuse `MedicalBusiness` + `FAQPage` JSON-LD shapes from the trauma pages.
+- Additive content edits — no layout/component changes, no new deps.
+- Keep titles distinct (`/christian-counseling` owns "counseling", `/austin-christian-therapist` owns "therapist") to avoid cannibalization.
