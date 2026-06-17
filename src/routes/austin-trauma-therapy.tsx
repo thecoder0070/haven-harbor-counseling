@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
+import { Testimonials } from "@/components/site/Testimonials";
+
 import { Brain, Heart, Shield, Sparkles } from "lucide-react";
 
 const URL = "https://haven-harbor-counseling.lovable.app/austin-trauma-therapy";
@@ -317,7 +319,9 @@ function AustinTraumaTherapyPage() {
         </div>
       </section>
 
+      <Testimonials />
       <CtaBanner />
+
     </SiteLayout>
   );
 }

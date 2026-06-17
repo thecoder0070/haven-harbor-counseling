@@ -15,13 +15,45 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:title", content: "About Brittany Zientek, LPC — Haven & Harbor Counseling" },
       { property: "og:description", content: "An Austin-based LPC specializing in anxiety, trauma, and relationship issues." },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: "https://haven-harbor-counseling.lovable.app/about" },
       { property: "og:image", content: brittany },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://haven-harbor-counseling.lovable.app/about" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Brittany Zientek",
+          honorificSuffix: "LPC",
+          jobTitle: "Licensed Professional Counselor",
+          description:
+            "Licensed Professional Counselor in Austin, TX with 8 years of experience in trauma, anxiety, PTSD, and relationship concerns. Trained in EMDR, IFS, Trauma-Focused CBT, MBCT, and SFBT.",
+          url: "https://haven-harbor-counseling.lovable.app/about",
+          image: "https://haven-harbor-counseling.lovable.app/brittany.jpg",
+          alumniOf: {
+            "@type": "CollegeOrUniversity",
+            name: "Dallas Baptist University",
+          },
+          knowsAbout: [
+            "EMDR",
+            "Internal Family Systems",
+            "Trauma-Focused CBT",
+            "Christian counseling",
+            "Anxiety",
+            "PTSD",
+            "Complex trauma",
+          ],
+          worksFor: { "@id": "https://haven-harbor-counseling.lovable.app/#business" },
+          sameAs: ["https://care.headway.co/providers/brittany-zientek"],
+        }),
+      },
+    ],
   }),
   component: AboutPage,
 });
+
 
 function AboutPage() {
   return (

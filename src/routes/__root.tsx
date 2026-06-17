@@ -88,8 +88,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           url: "https://haven-harbor-counseling.lovable.app",
           description:
             "Trauma counseling and therapy in Austin, Texas. EMDR, IFS, and Trauma-Focused CBT with Brittany Zientek, LPC.",
-          image:
+          image: [
             "https://storage.googleapis.com/gpt-engineer-file-uploads/As3tevxj29Yaj3OMHYixZlaQ7ct1/social-images/social-1779481632573-Haven_and_harbor_logo.webp",
+          ],
+          logo: "https://storage.googleapis.com/gpt-engineer-file-uploads/As3tevxj29Yaj3OMHYixZlaQ7ct1/social-images/social-1779481632573-Haven_and_harbor_logo.webp",
           priceRange: "$130–$225",
           medicalSpecialty: "Psychiatric",
           address: {
@@ -100,9 +102,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             postalCode: "78723",
             addressCountry: "US",
           },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 30.3076,
+            longitude: -97.6717,
+          },
+          hasMap:
+            "https://www.google.com/maps/search/?api=1&query=Haven+%26+Harbor+Counseling+6448+E+Hwy+290+Austin+TX+78723",
           areaServed: [
             { "@type": "City", name: "Austin" },
             { "@type": "State", name: "Texas" },
+          ],
+          knowsAbout: [
+            "EMDR therapy",
+            "Internal Family Systems (IFS) therapy",
+            "Trauma-Focused CBT",
+            "Trauma and PTSD",
+            "Complex trauma",
+            "Anxiety therapy",
+            "Christian counseling",
+            "Faith-integrated therapy",
+            "Grief counseling",
           ],
           sameAs: ["https://care.headway.co/providers/brittany-zientek"],
           openingHoursSpecification: [
@@ -116,6 +136,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         }),
       },
     ],
+
   }),
   shellComponent: RootShell,
   component: RootComponent,
