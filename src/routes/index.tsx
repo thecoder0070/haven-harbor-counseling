@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { CtaBanner } from "@/components/site/CtaBanner";
+import { Testimonials } from "@/components/site/Testimonials";
+
 import { Heart, Compass, Anchor, Sparkles, Quote } from "lucide-react";
 import hero from "@/assets/hero-harbor.jpg";
 import journal from "@/assets/journal.jpg";
@@ -292,7 +294,9 @@ function HomePage() {
         </div>
       </section>
 
+      <Testimonials />
       <CtaBanner />
+
     </SiteLayout>
   );
 }
