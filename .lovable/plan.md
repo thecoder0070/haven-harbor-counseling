@@ -1,42 +1,75 @@
-## Target keywords
+## Goal
+Move beyond on-page tweaks. Build the on-site infrastructure that compounds rankings (content, reviews, schema) and hand you a focused off-site checklist for the work that has to happen outside Lovable (GBP, directories, links).
 
-| Phrase | Volume | KD | Current page |
-|---|---|---|---|
-| austin therapy | 1,300/mo | 62 | `/austin-therapy` (exists) |
-| austin therapist | 320/mo | 56 | `/austin-therapist` (exists) |
-| austin counseling | 140/mo | 52 | none — gap |
-| austin counselor | 40/mo | 52 | none — gap |
+## What I'll build
 
-Heads-up: these are head terms (KD 52-62) — harder than the niche pages we built. Realistic timeline is 3-6 months, and ranking depends as much on backlinks and Google Business Profile as on-page work. The niche pages (trauma/Christian) will rank faster.
+### 1. Blog engine (`/blog`, `/blog/$slug`)
+File-based posts in `src/content/blog/*.mdx` (or `.md`) with frontmatter (title, description, date, tags, ogImage). Loader reads filesystem at build time.
+- `/blog` index — list of posts, grouped/filterable by tag
+- `/blog/$slug` — Article JSON-LD, BreadcrumbList, author byline (Brittany), TOC, related posts, CTA to consult
+- Each post: self-referencing canonical + og:url, Article schema with `datePublished`/`dateModified`/`author`/`publisher`
+- Added to `sitemap.xml.ts` dynamically
 
-## Plan
+**Seed with 6 starter posts** (drafts you can edit):
+1. EMDR vs IFS for trauma — which is right for you
+2. What to expect in your first trauma therapy session in Austin
+3. How to find a Christian therapist in Austin (without the red flags)
+4. Faith deconstruction and therapy — a non-judgmental guide
+5. Does insurance cover trauma therapy in Austin? (Headway + out-of-network)
+6. Signs you're carrying unprocessed trauma (and what helps)
 
-1. **Upgrade `/austin-therapy`** (biggest prize, 1,300/mo)
-   - Retitle to lead with head term: "Austin Therapy — Trauma, Anxiety & Faith-Friendly | Haven & Harbor"
-   - Add absolute canonical/og:url
-   - Add `MedicalBusiness` + `FAQPage` JSON-LD (5–6 Qs: cost, insurance, in-person vs telehealth, modalities, how to start)
-   - Add visible FAQ section
-   - Add cross-links to `/austin-therapist`, `/trauma-counseling-austin`, `/christian-counseling`, `/cost-of-therapy-austin`
+Each ~800–1,200 words, internally linked to the matching money page.
 
-2. **Upgrade `/austin-therapist`** (320/mo)
-   - Retitle: "Austin Therapist — Trauma, Anxiety & Christian Counseling"
-   - Absolute canonical/og:url, MedicalBusiness + FAQPage JSON-LD (4 Qs: credentials, what I treat, insurance, how to book)
-   - Cross-link to `/austin-therapy`, niche pages
+### 2. Reviews / testimonials section + AggregateRating schema
+- New `<Testimonials />` component on home + each money page
+- Static testimonial data file (`src/lib/testimonials.ts`) — you fill in real Google/Headway quotes
+- `AggregateRating` added to the `MedicalBusiness` JSON-LD in `__root.tsx` (driven by the same data)
+- Note: AggregateRating requires real reviews to be ethical/compliant — I'll leave it commented until you confirm you have ≥5
 
-3. **Create `/austin-counseling`** (new page, owns "austin counseling" + "austin counselor")
-   - Title: "Austin Counseling — Trauma, Anxiety, Grief & Faith | Haven & Harbor"
-   - Same structure as the trauma/Christian pages: hero, what we help with, approach (EMDR/IFS), about Brittany, FAQ, CTA
-   - MedicalBusiness + FAQPage JSON-LD
-   - Body copy uses both "counseling" and "counselor" naturally
-   - Cross-links to `/austin-therapy`, `/austin-therapist`, niche pages
-   - Add to `sitemap.xml.ts`
+### 3. LocalBusiness schema upgrade
+Current `MedicalBusiness` is good but missing fields Google's local algorithm reads:
+- `geo` (lat/lng for 6448 E Hwy 290)
+- `hasMap` (Google Maps URL)
+- `telephone`
+- `image` array (interior, exterior, headshot — uses existing assets)
+- `knowsAbout` (EMDR, IFS, TF-CBT, trauma, anxiety, Christian counseling)
 
-4. **Homepage** — Add "Austin counseling →" link to the Specialties section alongside the existing trauma/Christian links.
+### 4. Internal linking hub
+Add a contextual "Related" block component used at the bottom of every money page, pointing across the trauma ↔ Christian ↔ generic clusters. Better internal PageRank flow.
 
-5. **Anti-cannibalization** — Each page owns one head term:
-   - `/austin-therapy` → "austin therapy"
-   - `/austin-therapist` → "austin therapist"
-   - `/austin-counseling` → "austin counseling" + "austin counselor"
+### 5. Author / E-E-A-T page
+New `/about/brittany-zientek` route with full bio, license number, education, modalities, schema.org `Person` JSON-LD with `sameAs` (Headway, LinkedIn if you have one). Every blog post bylines to this page.
 
-## Out of scope
-Backlinks, Google Business Profile setup, custom domain, new blog content — these matter more than on-page for head-term ranking, but you'd handle them outside the app.
+## Off-site playbook (delivered as `SEO-PLAYBOOK.md` in the repo)
+
+The on-site work above gets you ranking-ready. These are the actual needles for "austin therapy/counselor" head terms:
+
+**Google Business Profile (biggest single lever)**
+- Claim/verify at business.google.com
+- Exact NAP: Haven & Harbor Counseling / 6448 E Hwy 290, Ste E108, Austin, TX 78723 / phone
+- Primary category: "Counselor" + secondaries (Mental Health Service, Psychotherapist, Family Counselor)
+- Service areas: Austin + surrounding ZIPs
+- 10+ photos (interior, exterior, headshot, logo)
+- Weekly "Google Posts" (can be reposts of blog content)
+- Request reviews from every past client — target 25+ to break into the map pack
+
+**Citations / directories (free, ~2 hrs of work)**
+Target list with exact URLs: Psychology Today, TherapyDen, GoodTherapy, Inclusive Therapists, Open Path Collective, Mental Health Match, Zencare, Yelp, BBB, Bing Places, Apple Maps, Nextdoor Business. NAP must match GBP exactly.
+
+**Backlinks (the real KD-50+ unlock)**
+- Austin church directories (your niche): list of 15 Austin churches with "counseling resources" pages to pitch
+- Local press: Austin Woman, Austinot, Austin Monthly — pitch angles
+- Guest posts: Headway provider blog, Faithful Counseling, Christian therapist podcasts
+- HARO / Qwoted / Featured.com: daily mental-health queries from journalists
+
+**Reviews flywheel**
+- Email template to send 1 week post-session asking for a Google review
+- Link shortener pointing to your GBP review URL
+
+## Out of scope (this round)
+- Writing all 6 blog posts to publishable quality (I'll seed drafts; you/an editor polish)
+- Actually claiming GBP, submitting to directories, sending outreach — those need your credentials and voice
+- Paid ads, custom domain
+
+## Honest expectation
+On-site changes ship today. GBP + 10 reviews + 5 directory listings is what moves "austin counselor"/"austin therapist" in 60–90 days. Blog content compounds over 3–6 months. Backlinks are the slowest but highest-ceiling lever.
