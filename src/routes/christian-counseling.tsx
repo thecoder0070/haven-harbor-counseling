@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
+import { Testimonials } from "@/components/site/Testimonials";
+
 import journal from "@/assets/journal.jpg";
 
 const URL = "https://haven-harbor-counseling.lovable.app/christian-counseling";
@@ -226,7 +228,9 @@ function ChristianPage() {
         </div>
       </section>
 
+      <Testimonials />
       <CtaBanner />
+
     </SiteLayout>
   );
 }
