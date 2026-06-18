@@ -34,6 +34,7 @@ import { Route as AnxietyTherapyAustinRouteImport } from './routes/anxiety-thera
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ResourcesMediaRouteImport } from './routes/resources.media'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -166,6 +167,11 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesMediaRoute = ResourcesMediaRouteImport.update({
   id: '/resources/media',
   path: '/resources/media',
@@ -210,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/media': typeof ResourcesMediaRoute
+  '/blog/': typeof BlogIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -240,6 +247,7 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/media': typeof ResourcesMediaRoute
+  '/blog': typeof BlogIndexRoute
   '/resources': typeof ResourcesIndexRoute
 }
 export interface FileRoutesById {
@@ -271,6 +279,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/media': typeof ResourcesMediaRoute
+  '/blog/': typeof BlogIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRouteTypes {
@@ -303,6 +312,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/resources/$slug'
     | '/resources/media'
+    | '/blog/'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -333,6 +343,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/resources/$slug'
     | '/resources/media'
+    | '/blog'
     | '/resources'
   id:
     | '__root__'
@@ -363,6 +374,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/resources/$slug'
     | '/resources/media'
+    | '/blog/'
     | '/resources/'
   fileRoutesById: FileRoutesById
 }
@@ -394,6 +406,7 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesMediaRoute: typeof ResourcesMediaRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
@@ -574,6 +587,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/media': {
       id: '/resources/media'
       path: '/resources/media'
@@ -626,6 +646,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
   ResourcesMediaRoute: ResourcesMediaRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
