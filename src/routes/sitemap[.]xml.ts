@@ -32,7 +32,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/about", changefreq: "monthly", priority: "0.8" },
           { path: "/services", changefreq: "monthly", priority: "0.9" },
           { path: "/approach", changefreq: "monthly", priority: "0.8" },
-          { path: "/christian-counseling", changefreq: "monthly", priority: "0.9" },
+          { path: "/trauma-therapy-austin", changefreq: "monthly", priority: "0.9" },
+          { path: "/anxiety-therapy-austin", changefreq: "monthly", priority: "0.9" },
+          { path: "/christian-counseling-austin", changefreq: "monthly", priority: "0.9" },
           { path: "/faq", changefreq: "monthly", priority: "0.7" },
           { path: "/resources", changefreq: "weekly", priority: "0.7" },
           { path: "/resources/media", changefreq: "weekly", priority: "0.7" },
@@ -42,20 +44,13 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/what-is-emdr", changefreq: "monthly", priority: "0.9" },
           { path: "/what-is-ifs-therapy", changefreq: "monthly", priority: "0.9" },
           { path: "/first-therapy-session", changefreq: "monthly", priority: "0.9" },
-          { path: "/austin-therapist", changefreq: "monthly", priority: "0.9" },
-          { path: "/austin-therapy", changefreq: "monthly", priority: "0.9" },
-          { path: "/austin-counseling", changefreq: "monthly", priority: "0.9" },
-          { path: "/austin-christian-therapist", changefreq: "monthly", priority: "0.9" },
-          { path: "/austin-trauma-therapist", changefreq: "monthly", priority: "0.9" },
-          { path: "/trauma-therapy-austin-guide", changefreq: "monthly", priority: "0.9" },
-          { path: "/trauma-counseling-austin", changefreq: "monthly", priority: "0.9" },
-          { path: "/austin-trauma-therapy", changefreq: "monthly", priority: "0.9" },
           ...BLOG_SLUGS.map((slug) => ({
             path: `/resources/${slug}`,
             changefreq: "monthly" as const,
             priority: "0.7",
           })),
         ];
+
 
         const urls = entries.map((e) => {
           const path = e.path === "/" ? "/" : e.path;
