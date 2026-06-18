@@ -3,34 +3,16 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { Testimonials } from "@/components/site/Testimonials";
+import { PillarLongForm } from "@/components/site/PillarLongForm";
+import { traumaTherapy } from "@/lib/pillars";
 
 import { Brain, Heart, Shield, Sparkles } from "lucide-react";
 
 const URL = "https://haven-harbor-counseling.lovable.app/trauma-therapy-austin";
 const HEADWAY = "https://care.headway.co/providers/brittany-zientek";
 
-const FAQ = [
-  {
-    q: "What kind of trauma therapy do you offer in Austin?",
-    a: "Brittany is trained in EMDR, IFS (Internal Family Systems), and Trauma-Focused CBT, with CBT, MBCT, and Solution-Focused Brief Therapy as supporting modalities. She tailors the approach to your nervous system and your goals — not to a fixed protocol.",
-  },
-  {
-    q: "Is trauma therapy in Austin covered by insurance?",
-    a: "Yes. Through Headway, Brittany is in-network with Aetna, Cigna, United Healthcare, Oscar, Oxford, and Anthem. Self-pay sessions are also available, and superbills can be provided for out-of-network reimbursement.",
-  },
-  {
-    q: "How long does trauma therapy take?",
-    a: "Single-incident trauma often improves in 8–12 sessions. Complex or developmental trauma typically takes longer — several months of stabilization before deeper reprocessing, often a year or more of overall work.",
-  },
-  {
-    q: "Do you offer in-person and online trauma therapy?",
-    a: "Both. The Austin office is at 6448 E Hwy 290, Ste E108, Austin, TX 78723. Telehealth is available across Texas, and EMDR works well online with small adjustments.",
-  },
-  {
-    q: "How is trauma therapy different from regular talk therapy?",
-    a: "Trauma-focused therapy goes beyond talking about what happened. EMDR helps the brain finish processing memories that still feel raw. IFS works with the protective parts of you that learned to keep you safe. Both move at your pace — you stay in control of what you share.",
-  },
-];
+const FAQ = traumaTherapy.faqs;
+
 
 export const Route = createFileRoute("/trauma-therapy-austin")({
   head: () => ({
@@ -291,7 +273,10 @@ function TraumaTherapyAustinPage() {
         </div>
       </section>
 
+      <PillarLongForm body={traumaTherapy.body} />
+
       <Testimonials />
+
       <CtaBanner />
     </SiteLayout>
   );
