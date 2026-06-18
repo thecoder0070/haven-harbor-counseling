@@ -4,49 +4,66 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import brittany from "@/assets/brittany-zientek.jpg";
 
+const URL = "https://haven-harbor-counseling.lovable.app/about";
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Brittany Zientek, LPC — Haven & Harbor Counseling | Austin Therapist" },
+      { title: "About Brittany Zientek, LPC | Trauma Therapist in Austin, TX" },
       {
         name: "description",
         content:
-          "Meet Brittany Zientek, LPC — a Licensed Professional Counselor in Austin, TX with 8 years of experience supporting clients with anxiety, trauma, PTSD, and relationship concerns.",
+          "Brittany Zientek is a Licensed Professional Counselor in Austin specializing in trauma, anxiety, and Christian counseling. EMDR, IFS, and Trauma-Focused CBT.",
       },
-      { property: "og:title", content: "About Brittany Zientek, LPC — Haven & Harbor Counseling" },
-      { property: "og:description", content: "An Austin-based LPC specializing in anxiety, trauma, and relationship issues." },
-      { property: "og:url", content: "https://haven-harbor-counseling.lovable.app/about" },
+      { property: "og:title", content: "About Brittany Zientek, LPC | Haven & Harbor Counseling" },
+      { property: "og:description", content: "An Austin-based LPC specializing in trauma, anxiety, and Christian counseling." },
+      { property: "og:url", content: URL },
       { property: "og:image", content: brittany },
     ],
-    links: [{ rel: "canonical", href: "https://haven-harbor-counseling.lovable.app/about" }],
+    links: [{ rel: "canonical", href: URL }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Brittany Zientek",
-          honorificSuffix: "LPC",
+          name: "Brittany Zientek, LPC",
           jobTitle: "Licensed Professional Counselor",
           description:
-            "Licensed Professional Counselor in Austin, TX with 8 years of experience in trauma, anxiety, PTSD, and relationship concerns. Trained in EMDR, IFS, Trauma-Focused CBT, MBCT, and SFBT.",
-          url: "https://haven-harbor-counseling.lovable.app/about",
+            "Licensed Professional Counselor in Austin, TX specializing in trauma, anxiety, and Christian counseling. Trained in EMDR, IFS, and Trauma-Focused CBT.",
           image: "https://haven-harbor-counseling.lovable.app/brittany.jpg",
-          alumniOf: {
-            "@type": "CollegeOrUniversity",
-            name: "Dallas Baptist University",
-          },
+          url: URL,
+          worksFor: { "@type": "Organization", name: "Haven & Harbor Counseling" },
+          hasCredential: [
+            {
+              "@type": "EducationalOccupationalCredential",
+              credentialCategory: "License",
+              name: "Licensed Professional Counselor (LPC) - State of Texas",
+            },
+          ],
+          alumniOf: [{ "@type": "EducationalOrganization", name: "Dallas Baptist University" }],
           knowsAbout: [
+            "Trauma Therapy",
+            "PTSD Treatment",
+            "Complex PTSD",
             "EMDR",
             "Internal Family Systems",
-            "Trauma-Focused CBT",
-            "Christian counseling",
-            "Anxiety",
-            "PTSD",
-            "Complex trauma",
+            "Christian Counseling",
+            "Religious Trauma",
+            "Anxiety Therapy",
           ],
-          worksFor: { "@id": "https://haven-harbor-counseling.lovable.app/#business" },
           sameAs: ["https://care.headway.co/providers/brittany-zientek"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://haven-harbor-counseling.lovable.app" },
+            { "@type": "ListItem", position: 2, name: "About", item: URL },
+          ],
         }),
       },
     ],
@@ -54,14 +71,13 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-
 function AboutPage() {
   return (
     <SiteLayout>
       <PageHeader
         eyebrow="About"
         title="Brittany Zientek, LPC"
-        subtitle="A Licensed Professional Counselor in Austin, Texas — warm, collaborative, and committed to helping you create positive change."
+        subtitle="Trauma therapist · Anxiety counselor · Christian therapist · Austin, TX"
       />
 
       <section className="container-prose grid gap-12 py-20 md:grid-cols-12">
@@ -77,77 +93,90 @@ function AboutPage() {
         </div>
         <div className="space-y-6 text-lg leading-relaxed text-foreground/80 md:col-span-7">
           <p>
-            Hi, I'm Brittany — a Licensed Professional Counselor based in Austin, Texas with
-            8 years of experience. I understand that life can sometimes feel overwhelming, and
-            asking for help can feel impossible at times.
+            I'm Brittany — a Licensed Professional Counselor in Texas with eight years of clinical
+            experience supporting adults through trauma, anxiety, and the deeper questions that
+            bring people to therapy.
           </p>
           <p>
-            My approach is warm, collaborative, and tailored to your unique needs and goals.
-            I specialize in supporting clients navigating anxiety, trauma, and relationship
-            concerns, drawing from a variety of evidence-based approaches to provide
-            personalized care.
-          </p>
-          <p>
-            In our first session, we'll spend time getting to know one another and talking
-            about what has been going on in your life recently. We'll discuss your goals for
-            counseling and work together to develop a plan that feels supportive, meaningful,
-            and personalized to you. I'm committed to helping clients gain insight, build
-            confidence, and create positive changes that support their overall well-being.
+            I founded Haven &amp; Harbor because I wanted to build a small, intentional practice
+            where the work could be unhurried, where clients didn't feel rushed through their own
+            healing, and where faith could be welcome when wanted — and quietly held when not. The
+            practice has grown around that intention.
           </p>
         </div>
       </section>
 
       <section className="bg-secondary/40 py-20">
-        <div className="container-prose grid gap-10 md:grid-cols-3">
-          {[
-            { k: "Training", v: "M.A. in Counseling, Dallas Baptist University" },
-            { k: "License", v: "Licensed Professional Counselor (Texas)" },
-            { k: "Experience", v: "8 years of clinical experience" },
-            { k: "Methods", v: "CBT, Trauma-Focused CBT, MBCT, SFBT" },
-            { k: "Population", v: "Adolescents & Adults · Individual therapy" },
-            { k: "Setting", v: "In-person in East Austin · Virtual across Texas" },
-          ].map((d) => (
-            <div key={d.k} className="rounded-2xl border border-border/60 bg-card p-6">
-              <p className="eyebrow">{d.k}</p>
-              <p className="mt-3 font-serif text-xl">{d.v}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="container-prose py-20">
-        <div className="container-narrow space-y-10">
-          <div>
-            <p className="eyebrow">Specialties</p>
-            <h2 className="display mt-4 text-3xl md:text-4xl">What I help with</h2>
-            <p className="mt-6 text-lg leading-relaxed text-foreground/80">
-              Top specialties include <strong>anxiety, relationship issues, trauma, and PTSD</strong>.
-              I also work with ADHD, depression, OCD, grief and loss, maternal mental health,
-              eating disorders, bipolar disorder, panic, stress and anger management, family
-              issues, women's issues, and identity concerns.
-            </p>
-          </div>
-          <div>
-            <p className="eyebrow">Insurance accepted</p>
-            <p className="mt-4 text-lg leading-relaxed text-foreground/80">
-              Aetna, Ascension, Carelon Behavioral Health, and Cigna.
-            </p>
+        <div className="container-prose">
+          <p className="eyebrow">My approach</p>
+          <h2 className="display mt-4 text-4xl">Three commitments shape everything I do.</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                k: "Unhurried",
+                v: "Trauma cannot be rushed. Anxiety quiets when the nervous system feels safe, not when it's pressured. I work at your pace. You decide what to share and when.",
+              },
+              {
+                k: "Integrative",
+                v: "I draw on EMDR, IFS, Trauma-Focused CBT, CBT, MBCT, and SFBT depending on what your nervous system needs. The right combination matters more than dogmatic adherence to one school.",
+              },
+              {
+                k: "Faith-friendly",
+                v: "I'm a Christian, and many of my clients share that frame. The integration is real, not bolted on. But you set the spiritual temperature of every session, and many of my clients are not Christian.",
+              },
+            ].map((d) => (
+              <div key={d.k} className="rounded-2xl border border-border/60 bg-card p-7">
+                <p className="eyebrow">{d.k}</p>
+                <p className="mt-3 text-base leading-relaxed text-foreground/80">{d.v}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="container-prose py-20">
-        <div className="container-narrow">
-          <p className="eyebrow text-center">Why Haven &amp; Harbor</p>
-          <h2 className="display mt-4 text-center text-4xl md:text-5xl">
-            A name with a promise.
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-foreground/80">
-            A <em>haven</em> is a place of refuge — somewhere safe enough to set things down.
-            A <em>harbor</em> is where the work happens: where ships are repaired, restocked,
-            and sent back out, stronger. This practice tries to be both. A quiet place to be
-            honest about what hurts, and a steady place to grow into who you're meant to be.
-          </p>
+        <div className="container-narrow space-y-12">
+          <div>
+            <p className="eyebrow">Training and credentials</p>
+            <ul className="mt-5 space-y-2 text-base leading-relaxed text-foreground/80">
+              <li>• Licensed Professional Counselor (LPC) in the State of Texas — License number [to be added]</li>
+              <li>• Master's degree in counseling — Dallas Baptist University</li>
+              <li>• EMDR-trained</li>
+              <li>• IFS-trained</li>
+              <li>• Trauma-Focused CBT</li>
+              <li>• Continuing education in CBT, MBCT, and Solution-Focused Brief Therapy</li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow">What I work with most</p>
+            <ul className="mt-5 grid gap-2 text-base text-foreground/80 md:grid-cols-2">
+              <li>• PTSD and complex trauma</li>
+              <li>• Religious trauma and church hurt</li>
+              <li>• Anxiety, panic, and high-functioning worry</li>
+              <li>• Grief and complicated loss</li>
+              <li>• Christian clients integrating faith into the work</li>
+              <li>• Adults in seasons of transition or deconstruction</li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow">What I don't work with</p>
+            <p className="mt-4 text-base leading-relaxed text-foreground/80">
+              To protect the quality of care, there are areas I refer out:
+            </p>
+            <ul className="mt-3 space-y-2 text-base text-foreground/80">
+              <li>• Couples therapy (I refer to trusted Austin couples therapists)</li>
+              <li>• Children and adolescents</li>
+              <li>• Active substance-use disorder requiring specialized treatment</li>
+              <li>• Severe eating disorders requiring medical oversight</li>
+              <li>• Acute crises requiring inpatient care</li>
+            </ul>
+            <p className="mt-4 text-sm text-muted-foreground">
+              If you reach out with one of these, I'll do my best to point you to someone in
+              Austin who can help.
+            </p>
+          </div>
         </div>
       </section>
 

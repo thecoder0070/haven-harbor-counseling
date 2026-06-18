@@ -4,19 +4,35 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
+const URL = "https://haven-harbor-counseling.lovable.app/contact";
+
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Haven & Harbor Counseling | Austin Therapist" },
+      { title: "Contact — Haven & Harbor Counseling | Austin, TX" },
       { name: "description", content: "Reach out to schedule a free 15-minute consultation with an Austin trauma therapist at Haven & Harbor Counseling." },
       { property: "og:title", content: "Contact — Haven & Harbor Counseling" },
       { property: "og:description", content: "Book a free 15-minute consult with an Austin therapist." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: URL },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://haven-harbor-counseling.lovable.app" },
+            { "@type": "ListItem", position: 2, name: "Contact", item: URL },
+          ],
+        }),
+      },
+    ],
   }),
   component: ContactPage,
 });
+
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
@@ -53,9 +69,11 @@ function ContactPage() {
               { icon: Mail, label: "Email", value: "hello@havenandharborcounseling.com" },
               { icon: Phone, label: "Phone", value: "(512) 555-0140" },
               { icon: MapPin, label: "Office", value: "6448 E Hwy 290, Ste E108 · Austin, TX 78723" },
-              { icon: Clock, label: "Hours", value: "Mon–Thu · 9am–6pm CT" },
+              { icon: Clock, label: "Hours", value: "Monday–Friday · 9:00 AM – 6:00 PM · By appointment only" },
+              { icon: MapPin, label: "Telehealth", value: "Available across the State of Texas" },
             ].map((it) => (
               <div key={it.label} className="flex items-start gap-4">
+
                 <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary">
                   <it.icon className="h-5 w-5" />
                 </div>
