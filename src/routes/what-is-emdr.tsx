@@ -96,7 +96,7 @@ function EmdrPage() {
             Yes. EMDR is a clinical method, not a worldview. For Christian clients who want it, we
             can integrate prayer, scripture, and a felt sense of God's presence into EMDR
             resourcing and reprocessing — without forcing it on anyone who doesn't.{" "}
-            <Link to="/christian-counseling" className="text-primary underline-offset-4 hover:underline">More on Christian counseling here</Link>.
+            <Link to="/christian-counseling-austin" className="text-primary underline-offset-4 hover:underline">More on Christian counseling here</Link>.
           </p>
 
           <h2>Finding an EMDR therapist in Austin</h2>
@@ -110,7 +110,7 @@ function EmdrPage() {
             Curious whether EMDR is the right fit for you?{" "}
             <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">Book a free 15-minute consult</a>,{" "}
             read our full{" "}
-            <Link to="/trauma-therapy-austin-guide" className="text-primary underline-offset-4 hover:underline">guide to EMDR &amp; complex trauma therapy in Austin</Link>,{" "}
+            <Link to="/trauma-therapy-austin" className="text-primary underline-offset-4 hover:underline">guide to trauma therapy in Austin</Link>,{" "}
             or learn about <Link to="/what-is-ifs-therapy" className="text-primary underline-offset-4 hover:underline">IFS, the other modality we use</Link>.
           </p>
         </div>

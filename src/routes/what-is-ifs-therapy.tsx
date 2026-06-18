@@ -93,7 +93,7 @@ function IfsPage() {
             The idea of an undamaged Self underneath the noise resonates with what scripture
             describes about being made in the image of God. IFS doesn't require Christian framing
             — and it doesn't conflict with it.{" "}
-            <Link to="/christian-counseling" className="text-primary underline-offset-4 hover:underline">More on integrating faith in therapy</Link>.
+            <Link to="/christian-counseling-austin" className="text-primary underline-offset-4 hover:underline">More on integrating faith in therapy</Link>.
           </p>
 
           <h2>Is IFS evidence-based?</h2>

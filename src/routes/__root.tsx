@@ -82,18 +82,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "MedicalBusiness",
+          "@type": ["LocalBusiness", "MedicalBusiness", "Psychologist"],
           "@id": "https://haven-harbor-counseling.lovable.app/#business",
           name: "Haven & Harbor Counseling",
           url: "https://haven-harbor-counseling.lovable.app",
+          telephone: "+1-512-555-0140",
+          email: "hello@havenandharborcounseling.com",
           description:
-            "Trauma counseling and therapy in Austin, Texas. EMDR, IFS, and Trauma-Focused CBT with Brittany Zientek, LPC.",
+            "Trauma therapy, anxiety counseling, and Christian counseling in Austin, TX. EMDR, IFS, and Trauma-Focused CBT. In-person and telehealth.",
           image: [
             "https://storage.googleapis.com/gpt-engineer-file-uploads/As3tevxj29Yaj3OMHYixZlaQ7ct1/social-images/social-1779481632573-Haven_and_harbor_logo.webp",
           ],
           logo: "https://storage.googleapis.com/gpt-engineer-file-uploads/As3tevxj29Yaj3OMHYixZlaQ7ct1/social-images/social-1779481632573-Haven_and_harbor_logo.webp",
-          priceRange: "$130–$225",
-          medicalSpecialty: "Psychiatric",
+          priceRange: "$130-$225",
+          medicalSpecialty: ["Psychotherapy", "Trauma Therapy", "Christian Counseling"],
           address: {
             "@type": "PostalAddress",
             streetAddress: "6448 E Hwy 290, Ste E108",
@@ -104,8 +106,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           },
           geo: {
             "@type": "GeoCoordinates",
-            latitude: 30.3076,
-            longitude: -97.6717,
+            latitude: 30.3284,
+            longitude: -97.6818,
           },
           hasMap:
             "https://www.google.com/maps/search/?api=1&query=Haven+%26+Harbor+Counseling+6448+E+Hwy+290+Austin+TX+78723",
@@ -119,10 +121,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "Trauma-Focused CBT",
             "Trauma and PTSD",
             "Complex trauma",
+            "Religious trauma",
             "Anxiety therapy",
             "Christian counseling",
             "Faith-integrated therapy",
             "Grief counseling",
+          ],
+          availableService: [
+            { "@type": "MedicalTherapy", name: "EMDR Therapy" },
+            { "@type": "MedicalTherapy", name: "Internal Family Systems (IFS)" },
+            { "@type": "MedicalTherapy", name: "Trauma-Focused CBT" },
+            { "@type": "MedicalTherapy", name: "Christian Counseling" },
+            { "@type": "MedicalTherapy", name: "Anxiety Therapy" },
           ],
           sameAs: ["https://care.headway.co/providers/brittany-zientek"],
           openingHoursSpecification: [
@@ -130,12 +140,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@type": "OpeningHoursSpecification",
               dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
               opens: "09:00",
-              closes: "17:00",
+              closes: "18:00",
             },
           ],
         }),
       },
     ],
+
 
   }),
   shellComponent: RootShell,

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatIsIfsTherapyRouteImport } from './routes/what-is-ifs-therapy'
 import { Route as WhatIsEmdrRouteImport } from './routes/what-is-emdr'
 import { Route as TraumaTherapyAustinGuideRouteImport } from './routes/trauma-therapy-austin-guide'
+import { Route as TraumaTherapyAustinRouteImport } from './routes/trauma-therapy-austin'
 import { Route as TraumaCounselingAustinRouteImport } from './routes/trauma-counseling-austin'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -20,6 +21,7 @@ import { Route as FirstTherapySessionRouteImport } from './routes/first-therapy-
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CostOfTherapyAustinRouteImport } from './routes/cost-of-therapy-austin'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ChristianCounselingAustinRouteImport } from './routes/christian-counseling-austin'
 import { Route as ChristianCounselingRouteImport } from './routes/christian-counseling'
 import { Route as AustinTraumaTherapyRouteImport } from './routes/austin-trauma-therapy'
 import { Route as AustinTraumaTherapistRouteImport } from './routes/austin-trauma-therapist'
@@ -28,6 +30,7 @@ import { Route as AustinTherapistRouteImport } from './routes/austin-therapist'
 import { Route as AustinCounselingRouteImport } from './routes/austin-counseling'
 import { Route as AustinChristianTherapistRouteImport } from './routes/austin-christian-therapist'
 import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as AnxietyTherapyAustinRouteImport } from './routes/anxiety-therapy-austin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
@@ -50,6 +53,11 @@ const TraumaTherapyAustinGuideRoute =
     path: '/trauma-therapy-austin-guide',
     getParentRoute: () => rootRouteImport,
   } as any)
+const TraumaTherapyAustinRoute = TraumaTherapyAustinRouteImport.update({
+  id: '/trauma-therapy-austin',
+  path: '/trauma-therapy-austin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TraumaCounselingAustinRoute = TraumaCounselingAustinRouteImport.update({
   id: '/trauma-counseling-austin',
   path: '/trauma-counseling-austin',
@@ -90,6 +98,12 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChristianCounselingAustinRoute =
+  ChristianCounselingAustinRouteImport.update({
+    id: '/christian-counseling-austin',
+    path: '/christian-counseling-austin',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ChristianCounselingRoute = ChristianCounselingRouteImport.update({
   id: '/christian-counseling',
   path: '/christian-counseling',
@@ -131,6 +145,11 @@ const ApproachRoute = ApproachRouteImport.update({
   path: '/approach',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnxietyTherapyAustinRoute = AnxietyTherapyAustinRouteImport.update({
+  id: '/anxiety-therapy-austin',
+  path: '/anxiety-therapy-austin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -160,6 +179,7 @@ const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/anxiety-therapy-austin': typeof AnxietyTherapyAustinRoute
   '/approach': typeof ApproachRoute
   '/austin-christian-therapist': typeof AustinChristianTherapistRoute
   '/austin-counseling': typeof AustinCounselingRoute
@@ -168,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/austin-trauma-therapy': typeof AustinTraumaTherapyRoute
   '/christian-counseling': typeof ChristianCounselingRoute
+  '/christian-counseling-austin': typeof ChristianCounselingAustinRoute
   '/contact': typeof ContactRoute
   '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
   '/faq': typeof FaqRoute
@@ -176,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/trauma-counseling-austin': typeof TraumaCounselingAustinRoute
+  '/trauma-therapy-austin': typeof TraumaTherapyAustinRoute
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
@@ -186,6 +208,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/anxiety-therapy-austin': typeof AnxietyTherapyAustinRoute
   '/approach': typeof ApproachRoute
   '/austin-christian-therapist': typeof AustinChristianTherapistRoute
   '/austin-counseling': typeof AustinCounselingRoute
@@ -194,6 +217,7 @@ export interface FileRoutesByTo {
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/austin-trauma-therapy': typeof AustinTraumaTherapyRoute
   '/christian-counseling': typeof ChristianCounselingRoute
+  '/christian-counseling-austin': typeof ChristianCounselingAustinRoute
   '/contact': typeof ContactRoute
   '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
   '/faq': typeof FaqRoute
@@ -202,6 +226,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/trauma-counseling-austin': typeof TraumaCounselingAustinRoute
+  '/trauma-therapy-austin': typeof TraumaTherapyAustinRoute
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
@@ -213,6 +238,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/anxiety-therapy-austin': typeof AnxietyTherapyAustinRoute
   '/approach': typeof ApproachRoute
   '/austin-christian-therapist': typeof AustinChristianTherapistRoute
   '/austin-counseling': typeof AustinCounselingRoute
@@ -221,6 +247,7 @@ export interface FileRoutesById {
   '/austin-trauma-therapist': typeof AustinTraumaTherapistRoute
   '/austin-trauma-therapy': typeof AustinTraumaTherapyRoute
   '/christian-counseling': typeof ChristianCounselingRoute
+  '/christian-counseling-austin': typeof ChristianCounselingAustinRoute
   '/contact': typeof ContactRoute
   '/cost-of-therapy-austin': typeof CostOfTherapyAustinRoute
   '/faq': typeof FaqRoute
@@ -229,6 +256,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/trauma-counseling-austin': typeof TraumaCounselingAustinRoute
+  '/trauma-therapy-austin': typeof TraumaTherapyAustinRoute
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
@@ -241,6 +269,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/anxiety-therapy-austin'
     | '/approach'
     | '/austin-christian-therapist'
     | '/austin-counseling'
@@ -249,6 +278,7 @@ export interface FileRouteTypes {
     | '/austin-trauma-therapist'
     | '/austin-trauma-therapy'
     | '/christian-counseling'
+    | '/christian-counseling-austin'
     | '/contact'
     | '/cost-of-therapy-austin'
     | '/faq'
@@ -257,6 +287,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/trauma-counseling-austin'
+    | '/trauma-therapy-austin'
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
@@ -267,6 +298,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/anxiety-therapy-austin'
     | '/approach'
     | '/austin-christian-therapist'
     | '/austin-counseling'
@@ -275,6 +307,7 @@ export interface FileRouteTypes {
     | '/austin-trauma-therapist'
     | '/austin-trauma-therapy'
     | '/christian-counseling'
+    | '/christian-counseling-austin'
     | '/contact'
     | '/cost-of-therapy-austin'
     | '/faq'
@@ -283,6 +316,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/trauma-counseling-austin'
+    | '/trauma-therapy-austin'
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
@@ -293,6 +327,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/anxiety-therapy-austin'
     | '/approach'
     | '/austin-christian-therapist'
     | '/austin-counseling'
@@ -301,6 +336,7 @@ export interface FileRouteTypes {
     | '/austin-trauma-therapist'
     | '/austin-trauma-therapy'
     | '/christian-counseling'
+    | '/christian-counseling-austin'
     | '/contact'
     | '/cost-of-therapy-austin'
     | '/faq'
@@ -309,6 +345,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/trauma-counseling-austin'
+    | '/trauma-therapy-austin'
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
@@ -320,6 +357,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AnxietyTherapyAustinRoute: typeof AnxietyTherapyAustinRoute
   ApproachRoute: typeof ApproachRoute
   AustinChristianTherapistRoute: typeof AustinChristianTherapistRoute
   AustinCounselingRoute: typeof AustinCounselingRoute
@@ -328,6 +366,7 @@ export interface RootRouteChildren {
   AustinTraumaTherapistRoute: typeof AustinTraumaTherapistRoute
   AustinTraumaTherapyRoute: typeof AustinTraumaTherapyRoute
   ChristianCounselingRoute: typeof ChristianCounselingRoute
+  ChristianCounselingAustinRoute: typeof ChristianCounselingAustinRoute
   ContactRoute: typeof ContactRoute
   CostOfTherapyAustinRoute: typeof CostOfTherapyAustinRoute
   FaqRoute: typeof FaqRoute
@@ -336,6 +375,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TraumaCounselingAustinRoute: typeof TraumaCounselingAustinRoute
+  TraumaTherapyAustinRoute: typeof TraumaTherapyAustinRoute
   TraumaTherapyAustinGuideRoute: typeof TraumaTherapyAustinGuideRoute
   WhatIsEmdrRoute: typeof WhatIsEmdrRoute
   WhatIsIfsTherapyRoute: typeof WhatIsIfsTherapyRoute
@@ -365,6 +405,13 @@ declare module '@tanstack/react-router' {
       path: '/trauma-therapy-austin-guide'
       fullPath: '/trauma-therapy-austin-guide'
       preLoaderRoute: typeof TraumaTherapyAustinGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trauma-therapy-austin': {
+      id: '/trauma-therapy-austin'
+      path: '/trauma-therapy-austin'
+      fullPath: '/trauma-therapy-austin'
+      preLoaderRoute: typeof TraumaTherapyAustinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/trauma-counseling-austin': {
@@ -423,6 +470,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/christian-counseling-austin': {
+      id: '/christian-counseling-austin'
+      path: '/christian-counseling-austin'
+      fullPath: '/christian-counseling-austin'
+      preLoaderRoute: typeof ChristianCounselingAustinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/christian-counseling': {
       id: '/christian-counseling'
       path: '/christian-counseling'
@@ -479,6 +533,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApproachRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anxiety-therapy-austin': {
+      id: '/anxiety-therapy-austin'
+      path: '/anxiety-therapy-austin'
+      fullPath: '/anxiety-therapy-austin'
+      preLoaderRoute: typeof AnxietyTherapyAustinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -520,6 +581,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AnxietyTherapyAustinRoute: AnxietyTherapyAustinRoute,
   ApproachRoute: ApproachRoute,
   AustinChristianTherapistRoute: AustinChristianTherapistRoute,
   AustinCounselingRoute: AustinCounselingRoute,
@@ -528,6 +590,7 @@ const rootRouteChildren: RootRouteChildren = {
   AustinTraumaTherapistRoute: AustinTraumaTherapistRoute,
   AustinTraumaTherapyRoute: AustinTraumaTherapyRoute,
   ChristianCounselingRoute: ChristianCounselingRoute,
+  ChristianCounselingAustinRoute: ChristianCounselingAustinRoute,
   ContactRoute: ContactRoute,
   CostOfTherapyAustinRoute: CostOfTherapyAustinRoute,
   FaqRoute: FaqRoute,
@@ -536,6 +599,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TraumaCounselingAustinRoute: TraumaCounselingAustinRoute,
+  TraumaTherapyAustinRoute: TraumaTherapyAustinRoute,
   TraumaTherapyAustinGuideRoute: TraumaTherapyAustinGuideRoute,
   WhatIsEmdrRoute: WhatIsEmdrRoute,
   WhatIsIfsTherapyRoute: WhatIsIfsTherapyRoute,
@@ -546,13 +610,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

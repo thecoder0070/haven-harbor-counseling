@@ -11,48 +11,27 @@ import office from "@/assets/office.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Trauma Counseling & Therapy in Austin, TX | Haven & Harbor" },
+      { title: "Austin Counseling — Trauma, Anxiety & Christian Therapy | Haven & Harbor" },
       {
         name: "description",
         content:
-          "Trauma counseling and therapy in Austin, TX. EMDR, IFS, and faith-friendly care for PTSD, complex trauma, anxiety, and grief. In-person & telehealth.",
+          "Haven & Harbor Counseling offers gentle, evidence-based trauma therapy, anxiety counseling, and Christian counseling in Austin, TX. EMDR, IFS, and Trauma-Focused CBT.",
       },
       { property: "og:title", content: "Haven & Harbor Counseling — Austin, TX" },
-      { property: "og:description", content: "Trauma-informed, faith-friendly therapy in Austin, Texas." },
-      { property: "og:url", content: "/" },
+      {
+        property: "og:description",
+        content:
+          "Trauma therapy, anxiety counseling, and Christian counseling in Austin. EMDR, IFS, and Trauma-Focused CBT. In-person & telehealth.",
+      },
+      { property: "og:url", content: "https://haven-harbor-counseling.lovable.app/" },
       { property: "og:image", content: hero },
       { property: "twitter:image", content: hero },
     ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "MedicalBusiness",
-          name: "Haven & Harbor Counseling",
-          url: "https://haven-harbor-counseling.lovable.app",
-          description:
-            "Trauma-informed, faith-friendly counseling practice in Austin, Texas. In-person sessions in Austin and telehealth across Texas.",
-          medicalSpecialty: "Psychiatric",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Austin",
-            addressRegion: "TX",
-            postalCode: "78704",
-            addressCountry: "US",
-          },
-          areaServed: [
-            { "@type": "City", name: "Austin" },
-            { "@type": "State", name: "Texas" },
-          ],
-          priceRange: "$130–$225",
-        }),
-      },
-    ],
+    links: [{ rel: "canonical", href: "https://haven-harbor-counseling.lovable.app/" }],
   }),
   component: HomePage,
 });
+
 
 function HomePage() {
   return (
@@ -66,10 +45,11 @@ function HomePage() {
               A safe harbor for healing.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Haven &amp; Harbor Counseling offers gentle, evidence-based therapy for people
-              carrying the weight of trauma, anxiety, and hard seasons — with space for faith
-              when you want it.
+              Haven &amp; Harbor Counseling offers gentle, evidence-based trauma therapy, anxiety
+              counseling, and Christian counseling in Austin — with space for faith when you want
+              it.
             </p>
+
             <div className="mt-9 flex flex-wrap gap-3">
               <a href="https://care.headway.co/providers/brittany-zientek" target="_blank" rel="noopener noreferrer"
                 className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lift transition hover:bg-primary/90"
@@ -88,8 +68,9 @@ function HomePage() {
               <span className="text-sage">•</span>
               <span>Faith-Friendly</span>
               <span className="text-sage">•</span>
-              <span>In-Person &amp; Telehealth</span>
+              <span>In-Person &amp; Telehealth Across Texas</span>
             </div>
+
           </div>
 
           <div className="relative lg:col-span-6">
@@ -150,48 +131,45 @@ function HomePage() {
             {[
               {
                 icon: Heart,
-                title: "Trauma & PTSD",
-                body: "Childhood wounds, single-incident trauma, complex PTSD, and the quiet kind that's hard to name.",
+                title: "Trauma therapy in Austin",
+                body: "EMDR, IFS, and Trauma-Focused CBT for PTSD, complex trauma, religious trauma, and the quiet kind that's hard to name.",
+                to: "/trauma-therapy-austin" as const,
               },
               {
                 icon: Compass,
-                title: "Anxiety & Overwhelm",
-                body: "When your mind won't slow down — chronic worry, panic, perfectionism, and the weight of always being 'on.'",
+                title: "Anxiety counseling in Austin",
+                body: "For chronic worry, panic, perfectionism, and the kind of high-functioning anxiety that nobody else sees.",
+                to: "/anxiety-therapy-austin" as const,
               },
               {
                 icon: Sparkles,
-                title: "Faith & Identity",
-                body: "Spiritual hurt, deconstruction, and integrating faith with the rest of who you are — at your own pace.",
+                title: "Christian counseling in Austin",
+                body: "Licensed, faith-integrated therapy for trauma, anxiety, church hurt, and spiritual seasons — on your terms.",
+                to: "/christian-counseling-austin" as const,
               },
             ].map((s) => (
-              <article
+              <Link
                 key={s.title}
+                to={s.to}
                 className="group rounded-2xl border border-border/60 bg-card p-8 transition hover:-translate-y-1 hover:shadow-lift"
               >
                 <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary">
                   <s.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-6 font-serif text-2xl">{s.title}</h3>
+                <h3 className="mt-6 font-serif text-2xl group-hover:text-primary">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-              </article>
+                <span className="mt-5 inline-block text-sm font-semibold text-primary">Learn more →</span>
+              </Link>
             ))}
           </div>
           <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <Link to="/austin-trauma-therapy" className="font-semibold text-primary underline-offset-4 hover:underline">
-              Trauma therapy in Austin →
-            </Link>
-            <Link to="/christian-counseling" className="font-semibold text-primary underline-offset-4 hover:underline">
-              Christian counseling in Austin →
-            </Link>
-            <Link to="/austin-counseling" className="font-semibold text-primary underline-offset-4 hover:underline">
-              Austin counseling →
-            </Link>
             <Link to="/services" className="font-semibold text-primary underline-offset-4 hover:underline">
               See all services →
             </Link>
           </div>
         </div>
       </section>
+
 
       {/* THERAPIST INTRO */}
       <section className="container-prose py-24">
@@ -214,12 +192,13 @@ function HomePage() {
               Brittany Zientek, LPC
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-foreground/80">
-              I'm a Licensed Professional Counselor in Austin with 8 years of experience
-              supporting clients through anxiety, trauma, PTSD, and relationship concerns.
-              My approach is warm, collaborative, and tailored to your unique needs and
-              goals — drawing on evidence-based methods including CBT, Trauma-Focused CBT,
-              MBCT, and Solution-Focused Brief Therapy.
+              I'm a Licensed Professional Counselor in Austin with eight years of experience
+              supporting clients through anxiety, trauma, PTSD, and relationship concerns. My
+              approach is warm, collaborative, and tailored to your unique needs and goals —
+              drawing on EMDR, Internal Family Systems (IFS), Trauma-Focused CBT, MBCT, and
+              Solution-Focused Brief Therapy.
             </p>
+
             <Link
               to="/about"
               className="mt-8 inline-flex rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold transition hover:bg-muted"

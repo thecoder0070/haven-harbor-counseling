@@ -7,10 +7,11 @@ const nav = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/approach", label: "Approach" },
-  { to: "/christian-counseling", label: "Christian" },
+  { to: "/christian-counseling-austin", label: "Christian" },
   { to: "/resources", label: "Resources" },
   { to: "/faq", label: "FAQ" },
 ];
+
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
