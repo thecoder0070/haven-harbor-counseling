@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { posts } from "@/lib/posts";
 
 const BASE_URL = "https://haven-harbor-counseling.lovable.app";
 
@@ -8,20 +9,6 @@ interface SitemapEntry {
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
 }
-
-const BLOG_SLUGS = [
-  "finding-a-trauma-therapist-in-austin",
-  "what-is-christian-counseling",
-  "emdr-cpt-trauma-therapy-modalities",
-  "religious-trauma-when-faith-hurts",
-  "complex-ptsd-vs-ptsd",
-  "what-to-expect-first-therapy-session",
-  "high-functioning-anxiety",
-  "signs-of-complex-trauma",
-  "christian-counseling-vs-secular-therapy",
-  "trauma-and-sleep",
-  "how-to-know-if-you-need-therapy",
-];
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -36,20 +23,22 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/anxiety-therapy-austin", changefreq: "monthly", priority: "0.9" },
           { path: "/christian-counseling-austin", changefreq: "monthly", priority: "0.9" },
           { path: "/faq", changefreq: "monthly", priority: "0.7" },
-          { path: "/resources", changefreq: "weekly", priority: "0.7" },
-          { path: "/resources/media", changefreq: "weekly", priority: "0.7" },
+          { path: "/blog", changefreq: "weekly", priority: "0.8" },
+          { path: "/resources/media", changefreq: "weekly", priority: "0.6" },
           { path: "/contact", changefreq: "monthly", priority: "0.9" },
           { path: "/schedule", changefreq: "monthly", priority: "0.9" },
           { path: "/cost-of-therapy-austin", changefreq: "monthly", priority: "0.9" },
           { path: "/what-is-emdr", changefreq: "monthly", priority: "0.9" },
           { path: "/what-is-ifs-therapy", changefreq: "monthly", priority: "0.9" },
           { path: "/first-therapy-session", changefreq: "monthly", priority: "0.9" },
-          ...BLOG_SLUGS.map((slug) => ({
-            path: `/resources/${slug}`,
+          ...posts.map((p) => ({
+            path: `/blog/${p.slug}`,
             changefreq: "monthly" as const,
             priority: "0.7",
           })),
         ];
+
+
 
 
         const urls = entries.map((e) => {

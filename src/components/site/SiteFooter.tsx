@@ -32,7 +32,7 @@ export function SiteFooter() {
             <li><Link to="/trauma-therapy-austin" className="hover:text-primary">Trauma Therapy in Austin</Link></li>
             <li><Link to="/anxiety-therapy-austin" className="hover:text-primary">Anxiety Therapy in Austin</Link></li>
             <li><Link to="/christian-counseling-austin" className="hover:text-primary">Christian Counseling in Austin</Link></li>
-            <li><Link to="/resources" className="hover:text-primary">Resources / Journal</Link></li>
+            <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
             <li><Link to="/faq" className="hover:text-primary">FAQ</Link></li>
             <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
           </ul>

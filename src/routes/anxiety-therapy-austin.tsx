@@ -3,29 +3,15 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { Testimonials } from "@/components/site/Testimonials";
+import { PillarLongForm } from "@/components/site/PillarLongForm";
+import { anxietyTherapy } from "@/lib/pillars";
 import { Brain, Heart, Activity, Sparkles } from "lucide-react";
 
 const URL = "https://haven-harbor-counseling.lovable.app/anxiety-therapy-austin";
 const HEADWAY = "https://care.headway.co/providers/brittany-zientek";
 
-const FAQ = [
-  {
-    q: "What kind of anxiety therapy do you offer in Austin?",
-    a: "CBT, MBCT (Mindfulness-Based Cognitive Therapy), IFS, and EMDR when trauma is underneath. We pay attention to both the thoughts and the body — because anxiety lives in both. The approach is shaped to your nervous system, not to a fixed protocol.",
-  },
-  {
-    q: "Is anxiety therapy in Austin covered by insurance?",
-    a: "Yes. Through Headway, Brittany is in-network with Aetna, Cigna, United Healthcare, Oscar, Oxford, and Anthem. Self-pay sessions are $130–$225, and superbills are available for out-of-network reimbursement.",
-  },
-  {
-    q: "Will I have to talk about everything in the first session?",
-    a: "No. We start where you're comfortable and build from there. You decide what to share and when. Most clients leave the first session feeling steadier, not more exposed.",
-  },
-  {
-    q: "Do you offer in-person and online anxiety therapy?",
-    a: "Both. The Austin office is at 6448 E Hwy 290, Ste E108, Austin, TX 78723. Telehealth is available across Texas — and works well for anxiety work.",
-  },
-];
+const FAQ = anxietyTherapy.faqs;
+
 
 export const Route = createFileRoute("/anxiety-therapy-austin")({
   head: () => ({
@@ -200,7 +186,10 @@ function AnxietyAustinPage() {
         </div>
       </section>
 
+      <PillarLongForm body={anxietyTherapy.body} />
+
       <Testimonials />
+
       <CtaBanner />
     </SiteLayout>
   );

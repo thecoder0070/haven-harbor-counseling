@@ -256,10 +256,10 @@ function HomePage() {
               real life, not the waiting room.
             </p>
             <Link
-              to="/resources"
+              to="/blog"
               className="mt-6 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             >
-              Read the journal
+              Read the blog
             </Link>
           </div>
           <img

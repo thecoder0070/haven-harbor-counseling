@@ -1,76 +1,68 @@
+# Apply Doc Content — Pillars + 26 Blog Posts
 
-# Haven & Harbor — Sitewide Upgrade from the Google Doc
+## Decisions confirmed
+- Blog URL: **/blog/{slug}** (canonical). Existing `/resources/{slug}` URLs 301 → `/blog/{slug}`.
+- Pillar pages: **full replace** of bodies with doc copy + FAQ schema + internal links.
+- Existing 11 posts: **replace overlapping bodies** with new doc copy at the new `/blog/` slug; keep non-overlapping ones (move them to `/blog/` too so all posts live under one path).
 
-Applying sections 1–5, 9, and the consolidation in section 10. Keeping the current lovable.app domain in all canonicals, OG URLs, and JSON-LD. Leaving phone, license number, and Master's-institution placeholders untouched (you can fill in later). Footer email/address copy is updated to match the doc.
+## Slug mapping (existing → new)
+Overlapping (replace body with doc version):
+- `finding-a-trauma-therapist-in-austin` → `/blog/finding-trauma-therapist-austin`
+- `what-to-expect-first-therapy-session` → `/blog/first-therapy-session-austin`
+- `high-functioning-anxiety` → `/blog/high-functioning-anxiety-austin`
+- `signs-of-complex-trauma` → `/blog/signs-of-complex-ptsd-austin`
+- (no exact doc match for `emdr-cpt-trauma-therapy-modalities`, `religious-trauma-when-faith-hurts`, `complex-ptsd-vs-ptsd`, `what-is-christian-counseling`, `christian-counseling-vs-secular-therapy`, `trauma-and-sleep`, `how-to-know-if-you-need-therapy` — keep as-is, just remount under `/blog/` with old slug)
 
-## 1. URL consolidation (canonical pattern: `[topic]-austin`)
+Final blog count: 26 new + 7 carry-over = **33 posts** under `/blog/`.
 
-Keepers (rewrite the existing files with the new copy where it applies):
-- `/trauma-therapy-austin` ← new pillar file (use the existing `austin-trauma-therapy.tsx` content as the starting body)
-- `/christian-counseling-austin` ← new pillar file (use `christian-counseling.tsx` body)
-- `/anxiety-therapy-austin` ← new pillar file (new content from the doc + existing anxiety copy)
-- `/services`, `/about`, `/contact`, `/`, `/faq`, `/resources`, `/what-is-emdr`, `/what-is-ifs-therapy`, `/cost-of-therapy-austin`, `/first-therapy-session`, `/schedule`, `/approach`, `/resources/media` — kept as is, copy refreshed where the doc provides it.
+## File changes
 
-301-redirect (server-side redirect via the route's `beforeLoad`) the duplicates:
+### 1. Posts data (`src/lib/posts.ts`)
+- Add 26 new posts parsed from the three blog Google Docs (title, slug, date, description, keywords, full body as markdown-ish blocks already supported by the existing renderer in `resources.$slug.tsx`).
+- Keep 7 non-overlapping existing posts; remove the 4 overlapping ones (their content is superseded).
+- Each post: `slug`, `title`, `description` (meta), `date` (use 2026-01-15 staggered weekly), `keywords[]`, `content` blocks.
 
-| From | → To |
-|---|---|
-| `/austin-trauma-therapy` | `/trauma-therapy-austin` |
-| `/austin-trauma-therapist` | `/trauma-therapy-austin` |
-| `/trauma-counseling-austin` | `/trauma-therapy-austin` |
-| `/trauma-therapy-austin-guide` | `/trauma-therapy-austin` |
-| `/austin-christian-therapist` | `/christian-counseling-austin` |
-| `/christian-counseling` | `/christian-counseling-austin` |
-| `/austin-counseling` | `/services` |
-| `/austin-therapy` | `/services` |
-| `/austin-therapist` | `/about` |
+### 2. New route: `/blog/{slug}` and `/blog`
+- Create `src/routes/blog.$slug.tsx` (copy of current `resources.$slug.tsx`, paths swapped to `/blog/$slug`, Article schema, breadcrumb, FAQPage when post has FAQ).
+- Create `src/routes/blog.index.tsx` (copy of `resources.index.tsx`, listing all posts at `/blog`).
+- Keep `resources.media.tsx` as-is (it's not a post).
 
-Each redirect file becomes a stub: `beforeLoad: () => { throw redirect({ to: '/...', statusCode: 301 }) }`. Internal `<Link>`s across the site are updated to point at the new canonical URLs.
+### 3. Redirect stubs (301 → `/blog/...`)
+- Convert `src/routes/resources.$slug.tsx` and `src/routes/resources.index.tsx` to `beforeLoad` redirect routes that throw `redirect({ to: '/blog/$slug' | '/blog', statusCode: 301 })`.
 
-Sitemap (`src/routes/sitemap[.]xml.ts`) is rewritten to list only the canonical keepers — redirect stubs are removed from the sitemap.
+### 4. Pillar pages — full replace
+Replace bodies of these 3 routes with doc copy verbatim, including:
+- Long-form sections (Who this is for, What we treat, Modalities, What sessions look like, Pricing, FAQ, internal links).
+- FAQPage JSON-LD in `head().scripts` built from each doc's FAQ block.
+- BreadcrumbList JSON-LD.
+- Internal links to the matching new `/blog/...` posts mentioned in the doc.
 
-## 2. Page copy refreshes (from the doc)
+Files:
+- `src/routes/trauma-therapy-austin.tsx`
+- `src/routes/christian-counseling-austin.tsx`
+- `src/routes/anxiety-therapy-austin.tsx`
 
-- **`src/routes/index.tsx`** — Hero, Welcome, Specialties, Therapist intro, "Starting is simple" 3-step, resources teaser, closing CTA — replaced with the doc's tightened wording. New `<title>` / meta description / OG tags from doc §1.
-- **`src/routes/services.tsx`** — Replaced with the expanded services hub (Trauma & PTSD, Anxiety & Panic, Christian Counseling, Grief & Loss, Life Transitions, Free Consult, Fees & Insurance, Office & Telehealth). Title + meta from doc §2.
-- **`src/routes/about.tsx`** — Replaced with the doc's about copy: My approach (3 commitments), Training and credentials (with `[placeholders]` kept), What I work with most, What I don't work with, Outside the office placeholder, closing CTA. Title + meta from doc §3.
-- **`src/routes/contact.tsx`** — Address, phone (placeholder), email `hello@havenandharborcounseling.com`, office hours, telehealth note, 988 crisis line. Doc §9.
-- **`src/components/site/SiteFooter.tsx`** — NAP-consistent footer per doc §4 (address, email, license line, Explore links updated to canonical URLs, Insurance block, crisis 988 line, 2026 copyright).
+### 5. Sitemap (`src/routes/sitemap[.]xml.ts`)
+- Replace old `/resources/{slug}` entries with all 33 `/blog/{slug}` entries.
+- Keep canonical pillar + core routes.
 
-## 3. New pillar pages
+### 6. Internal links
+- `SiteHeader.tsx` / `SiteFooter.tsx`: update any `/resources` link to `/blog`.
+- `resources.media.tsx`: leave URL as-is (media page is separate) OR rename to `/media`. **Will leave at `/resources/media`** to minimize scope; just update its internal back-links.
 
-- **`src/routes/trauma-therapy-austin.tsx`** — new file. Starting body: existing `/austin-trauma-therapy` content, retitled and re-linked. Full FAQ block (4 Qs from doc §5c). Breadcrumb schema.
-- **`src/routes/christian-counseling-austin.tsx`** — new file. Starting body: existing `/christian-counseling` content. FAQ + breadcrumb schema.
-- **`src/routes/anxiety-therapy-austin.tsx`** — new file. Built from doc §2 anxiety section + a 3–4 Q FAQ derived in the same tone. FAQ + breadcrumb schema.
+## Out of scope (intentionally)
+- No domain swap from `lovable.app`.
+- No real phone / license / training-org placeholders changed.
+- No design / theme changes.
+- Off-site SEO playbook (GBP, citations, Psychology Today) — unchanged.
 
-## 4. Schema (JSON-LD)
+## Technical notes
+- Doc parsing happens once at plan-execution time; I'll write a one-off Node script in `/tmp` to chunk each doc into `{slug, title, meta, body}` and emit a TS array I paste into `posts.ts`. The script is throwaway, not committed.
+- Body format mirrors existing posts in `posts.ts` (array of `{ type: 'p' | 'h2' | 'h3' | 'ul' | 'ol', ... }` blocks) so the existing `resources.$slug.tsx` renderer works unchanged when copied to `blog.$slug.tsx`.
+- FAQ blocks in each post become a `faq: [{q, a}]` field; renderer emits `<details>` and FAQPage schema when present.
 
-- **Root (`__root.tsx`)** — keep existing MedicalBusiness/LocalBusiness/Psychologist enhancements. Add `priceRange "$130-$225"`, `email`, `medicalSpecialty`, `availableService[]`, expanded `sameAs[]` (Headway, Psychology Today placeholder) from doc §5a. Existing `geo`, `hasMap`, `openingHoursSpecification` retained.
-- **About (`about.tsx`)** — replace existing Person schema with the fuller version in doc §5b (jobTitle, hasCredential, alumniOf placeholder, knowsAbout[], sameAs[]).
-- **FAQPage schema** — add via `head().scripts` on `/`, `/faq`, `/trauma-therapy-austin`, `/christian-counseling-austin`, `/anxiety-therapy-austin`. Each route's FAQ block in JSX must match its FAQPage JSON-LD (Google requires this).
-- **BreadcrumbList schema** — add to every inner route via `head().scripts`.
-- **Article schema** — add to `resources.$slug.tsx` from the post's loader data (headline, dates, author, publisher, mainEntityOfPage). The existing blog posts don't currently have it.
-
-All schema URLs use `https://haven-harbor-counseling.lovable.app`.
-
-## 5. Things I'm intentionally NOT doing
-
-- Domain swap to `havenandharborcounseling.com` (you said: keep lovable.app for now).
-- Replacing `[real phone]`, LPC license number, Master's institution, EMDR/IFS training org names (you said: skip).
-- Off-site work (GBP, Psychology Today profile, Headway sameAs URL, review-link, citations) — these are doc §6, §7, §8, §12; they live in the existing `SEO-PLAYBOOK.md` and require external action, not code.
-- Image format migration to WebP + srcset — out of scope for this turn unless you ask; current assets are already optimized.
-- Buying / migrating to the custom domain — when you do, it's a one-line `BASE_URL` change in 4 places (sitemap, root schema, about Person schema, OG URLs).
-
-## Technical details
-
-- Redirects use `beforeLoad: () => { throw redirect({ to: '/trauma-therapy-austin', statusCode: 301 }) }` inside the legacy route file. Component becomes a noop. This is SSR-friendly and TanStack-native.
-- FAQPage schema is injected per-route via `head().scripts` (not in `__root.tsx`) so each FAQ-bearing page emits its own.
-- BreadcrumbList JSON-LD is generated inline in each leaf route's `head()` — no shared helper, to keep route files self-contained and SSR-safe.
-- Sitemap stays a server route; only canonical URLs listed; `lastmod` omitted (matches current behavior).
-- All internal `<Link to="...">` calls are updated to canonical URLs so the type-checked router doesn't compile against deleted/redirected paths.
-
-## Files touched (approximate count)
-
-- Edit: `index.tsx`, `about.tsx`, `services.tsx`, `contact.tsx`, `faq.tsx`, `SiteFooter.tsx`, `__root.tsx`, `sitemap[.]xml.ts`, `resources.$slug.tsx`, `SiteHeader.tsx` (nav links)
-- Create: `trauma-therapy-austin.tsx`, `christian-counseling-austin.tsx`, `anxiety-therapy-austin.tsx`
-- Convert to redirect stubs: `austin-trauma-therapy.tsx`, `austin-trauma-therapist.tsx`, `trauma-counseling-austin.tsx`, `trauma-therapy-austin-guide.tsx`, `austin-christian-therapist.tsx`, `christian-counseling.tsx`, `austin-counseling.tsx`, `austin-therapy.tsx`, `austin-therapist.tsx`
+## Expected outcome
+- 33 posts live under `/blog/{slug}` with proper SEO heads, breadcrumb + Article + (optional) FAQ schema.
+- 11 old `/resources/{slug}` URLs 301 to new canonical.
+- 3 pillar pages now full long-form with FAQ schema and links into the new blog hub.
+- Sitemap updated; no broken internal links.

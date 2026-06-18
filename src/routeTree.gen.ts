@@ -34,8 +34,10 @@ import { Route as AnxietyTherapyAustinRouteImport } from './routes/anxiety-thera
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ResourcesMediaRouteImport } from './routes/resources.media'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const WhatIsIfsTherapyRoute = WhatIsIfsTherapyRouteImport.update({
   id: '/what-is-ifs-therapy',
@@ -165,6 +167,11 @@ const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
   path: '/resources/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesMediaRoute = ResourcesMediaRouteImport.update({
   id: '/resources/media',
   path: '/resources/media',
@@ -173,6 +180,11 @@ const ResourcesMediaRoute = ResourcesMediaRouteImport.update({
 const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
   id: '/resources/$slug',
   path: '/resources/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -201,8 +213,10 @@ export interface FileRoutesByFullPath {
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/media': typeof ResourcesMediaRoute
+  '/blog/': typeof BlogIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -230,8 +244,10 @@ export interface FileRoutesByTo {
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/media': typeof ResourcesMediaRoute
+  '/blog': typeof BlogIndexRoute
   '/resources': typeof ResourcesIndexRoute
 }
 export interface FileRoutesById {
@@ -260,8 +276,10 @@ export interface FileRoutesById {
   '/trauma-therapy-austin-guide': typeof TraumaTherapyAustinGuideRoute
   '/what-is-emdr': typeof WhatIsEmdrRoute
   '/what-is-ifs-therapy': typeof WhatIsIfsTherapyRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/media': typeof ResourcesMediaRoute
+  '/blog/': typeof BlogIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRouteTypes {
@@ -291,8 +309,10 @@ export interface FileRouteTypes {
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
+    | '/blog/$slug'
     | '/resources/$slug'
     | '/resources/media'
+    | '/blog/'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -320,8 +340,10 @@ export interface FileRouteTypes {
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
+    | '/blog/$slug'
     | '/resources/$slug'
     | '/resources/media'
+    | '/blog'
     | '/resources'
   id:
     | '__root__'
@@ -349,8 +371,10 @@ export interface FileRouteTypes {
     | '/trauma-therapy-austin-guide'
     | '/what-is-emdr'
     | '/what-is-ifs-therapy'
+    | '/blog/$slug'
     | '/resources/$slug'
     | '/resources/media'
+    | '/blog/'
     | '/resources/'
   fileRoutesById: FileRoutesById
 }
@@ -379,8 +403,10 @@ export interface RootRouteChildren {
   TraumaTherapyAustinGuideRoute: typeof TraumaTherapyAustinGuideRoute
   WhatIsEmdrRoute: typeof WhatIsEmdrRoute
   WhatIsIfsTherapyRoute: typeof WhatIsIfsTherapyRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesMediaRoute: typeof ResourcesMediaRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
@@ -561,6 +587,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/media': {
       id: '/resources/media'
       path: '/resources/media'
@@ -573,6 +606,13 @@ declare module '@tanstack/react-router' {
       path: '/resources/$slug'
       fullPath: '/resources/$slug'
       preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -603,8 +643,10 @@ const rootRouteChildren: RootRouteChildren = {
   TraumaTherapyAustinGuideRoute: TraumaTherapyAustinGuideRoute,
   WhatIsEmdrRoute: WhatIsEmdrRoute,
   WhatIsIfsTherapyRoute: WhatIsIfsTherapyRoute,
+  BlogSlugRoute: BlogSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
   ResourcesMediaRoute: ResourcesMediaRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
