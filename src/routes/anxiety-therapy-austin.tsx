@@ -186,7 +186,10 @@ function AnxietyAustinPage() {
         </div>
       </section>
 
+      <PillarLongForm body={anxietyTherapy.body} />
+
       <Testimonials />
+
       <CtaBanner />
     </SiteLayout>
   );

@@ -211,7 +211,10 @@ function ChristianAustinPage() {
         </div>
       </section>
 
+      <PillarLongForm body={christianCounseling.body} />
+
       <Testimonials />
+
       <CtaBanner />
     </SiteLayout>
   );
