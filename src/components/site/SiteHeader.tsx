@@ -8,7 +8,7 @@ const nav = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/approach", label: "Approach" },
-  { to: "/christian-counseling-austin", label: "Christian" },
+  { to: "/christian-counseling-austin", label: "Christian counseling" },
   { to: "/blog", label: "Blog" },
   { to: "/faq", label: "FAQ" },
 ];
