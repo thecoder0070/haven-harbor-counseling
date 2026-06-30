@@ -27,7 +27,7 @@ export function SiteHeader() {
             alt="Haven & Harbor Counseling — Austin, Texas"
             width={264}
             height={77}
-            className="h-14 w-auto md:h-18"
+            className="h-16 w-auto md:h-22"
           />
         </Link>
 
