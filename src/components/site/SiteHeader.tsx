@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/haven-harbor-logo.png";
 
 const nav = [
+  { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/approach", label: "Approach" },
@@ -13,21 +14,23 @@ const nav = [
 ];
 
 
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="container-prose flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Haven & Harbor Counseling — Austin, Texas">
+      <div className="container-prose flex h-24 items-center justify-between">
+        <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Haven & Harbor Counseling — Home">
           <img
             src={logo}
             alt="Haven & Harbor Counseling — Austin, Texas"
-            width={220}
-            height={64}
-            className="h-12 w-auto md:h-14"
+            width={264}
+            height={77}
+            className="h-14 w-auto md:h-18"
           />
         </Link>
+
 
         <nav className="hidden items-center gap-6 lg:flex">
           {nav.map((n) => (
