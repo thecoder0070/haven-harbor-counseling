@@ -20,7 +20,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="container-prose flex h-24 items-center justify-between">
+      <div className="container-prose flex h-28 items-center justify-between">
         <Link to="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="Haven & Harbor Counseling — Home">
           <img
             src={logo}
